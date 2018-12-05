@@ -17,16 +17,31 @@ public class SQLConnector {
             Connection con = DriverManager.getConnection("jdbc:mysql://mysql.webhosting24.1blu.de/db85565x2810214?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "s85565_2810214", "kkgbeste");
             Statement stmt = con.createStatement();
 
-            // lösche die Tabelle, falls sie schon existiert
+
+            //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             try {
-                stmt.execute("DROP TABLE test_person;");
+                stmt.execute("DROP TABLE HaFl_Spieler;");
             } catch (Exception e){
                 System.out.println("Tabelle nicht gelöscht.");
             }
-
-            // Lege eine neue Tabelle (wirft Exception, falls Tabelle schon vorhanden)
             try {
-                stmt.execute("CREATE TABLE test_person (" +
+                stmt.execute("CREATE TABLE HaFl_Spieler (" +
+                        "sID int NOT NULL,"+
+                        "Geld int NOT NULL," +
+                        "Zufriedenheit int NOT NULL," +
+                        "PRIMARY KEY (sID)" +
+                        ");");
+            } catch (Exception e){
+                System.out.println("Keine neue Tabelle angelegt.");
+            }
+            //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            try {
+                stmt.execute("DROP TABLE HaFl_Wohngebiet;");
+            } catch (Exception e){
+                System.out.println("Tabelle nicht gelöscht.");
+            }
+            try {
+                stmt.execute("CREATE TABLE HaFl_Wohngebiet (" +
                         "pID int NOT NULL AUTO_INCREMENT," +
                         "firstname varchar(255) NOT NULL," +
                         "lastname varchar(255) NOT NULL," +
@@ -36,6 +51,43 @@ public class SQLConnector {
             } catch (Exception e){
                 System.out.println("Keine neue Tabelle angelegt.");
             }
+            //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            try {
+                stmt.execute("DROP TABLE HaFl_Gewerbegebiet;");
+            } catch (Exception e){
+                System.out.println("Tabelle nicht gelöscht.");
+            }
+            try {
+                stmt.execute("CREATE TABLE HaFl_Gewerbegebiet (" +
+                        "pID int NOT NULL AUTO_INCREMENT," +
+                        "firstname varchar(255) NOT NULL," +
+                        "lastname varchar(255) NOT NULL," +
+                        "currentage int NOT NULL," +
+                        "PRIMARY KEY (pID)" +
+                        ");");
+            } catch (Exception e){
+                System.out.println("Keine neue Tabelle angelegt.");
+            }
+            //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            try {
+                stmt.execute("DROP TABLE HaFl_Industriegebiet;");
+            } catch (Exception e){
+                System.out.println("Tabelle nicht gelöscht.");
+            }
+            try {
+                stmt.execute("CREATE TABLE HaFl_Industriegebiet (" +
+                        "pID int NOT NULL AUTO_INCREMENT," +
+                        "firstname varchar(255) NOT NULL," +
+                        "lastname varchar(255) NOT NULL," +
+                        "currentage int NOT NULL," +
+                        "PRIMARY KEY (pID)" +
+                        ");");
+            } catch (Exception e){
+                System.out.println("Keine neue Tabelle angelegt.");
+            }
+            //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
 
             // Lege ein paar Datensätze in der Tabelle an (primary key wird ausgelassen wg. auto-inkrement => heißt aber man kann Leute auch doppelt anlegen)
             stmt.execute("INSERT INTO test_person (firstname, lastname, currentage) " +
