@@ -42,11 +42,11 @@ public class SQLConnector {
             }
             try {
                 stmt.execute("CREATE TABLE HaFl_Wohngebiet (" +
-                        "pID int NOT NULL AUTO_INCREMENT," +
-                        "firstname varchar(255) NOT NULL," +
-                        "lastname varchar(255) NOT NULL," +
-                        "currentage int NOT NULL," +
-                        "PRIMARY KEY (pID)" +
+                        "PosX int NOT NULL," +
+                        "PosY int NOT NULL," +
+                        "Population int NOT NULL," +
+                        "PRIMARY KEY (PosX)," +
+                        "PRIMARY KEY (PosY)" +
                         ");");
             } catch (Exception e){
                 System.out.println("Keine neue Tabelle angelegt.");
@@ -59,11 +59,11 @@ public class SQLConnector {
             }
             try {
                 stmt.execute("CREATE TABLE HaFl_Gewerbegebiet (" +
-                        "pID int NOT NULL AUTO_INCREMENT," +
-                        "firstname varchar(255) NOT NULL," +
-                        "lastname varchar(255) NOT NULL," +
-                        "currentage int NOT NULL," +
-                        "PRIMARY KEY (pID)" +
+                        "PosX int NOT NULL," +
+                        "PosY int NOT NULL," +
+                        "Arbeitsplatz int NOT NULL," +
+                        "PRIMARY KEY (PosX)," +
+                        "PRIMARY KEY (PosY)" +
                         ");");
             } catch (Exception e){
                 System.out.println("Keine neue Tabelle angelegt.");
@@ -76,44 +76,19 @@ public class SQLConnector {
             }
             try {
                 stmt.execute("CREATE TABLE HaFl_Industriegebiet (" +
-                        "pID int NOT NULL AUTO_INCREMENT," +
-                        "firstname varchar(255) NOT NULL," +
-                        "lastname varchar(255) NOT NULL," +
-                        "currentage int NOT NULL," +
-                        "PRIMARY KEY (pID)" +
+                        "PosX int NOT NULL," +
+                        "PosY int NOT NULL," +
+                        "Arbeitsplatz int NOT NULL," +
+                        "PRIMARY KEY (PosX)," +
+                        "PRIMARY KEY (PosY)" +
                         ");");
             } catch (Exception e){
                 System.out.println("Keine neue Tabelle angelegt.");
             }
             //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-
-
-            // Lege ein paar Datensätze in der Tabelle an (primary key wird ausgelassen wg. auto-inkrement => heißt aber man kann Leute auch doppelt anlegen)
-            stmt.execute("INSERT INTO test_person (firstname, lastname, currentage) " +
-                    "VALUES ('Peter', 'Pan', 14);");
-            stmt.execute("INSERT INTO test_person (firstname, lastname, currentage) " +
-                    "VALUES ('Jack', 'Ripperlein', 32);");
-            stmt.execute("INSERT INTO test_person (firstname, lastname, currentage) " +
-                    "VALUES ('Olaf', 'Steiner', 52);");
-            stmt.execute("INSERT INTO test_person (firstname, lastname, currentage) " +
-                    "VALUES ('Klaus', 'Kloppmann', 41);");
-            stmt.execute("INSERT INTO test_person (firstname, lastname, currentage) " +
-                    "VALUES ('Bese', 'Flor', 16);");
-
-            // Gib die gesamte Tabelle test_person aus
-            ResultSet results = stmt.executeQuery("SELECT * FROM test_person;");
-
-            System.out.println("ID(primary key) - Vorname - Nachname - Alter");
-            while(results.next()){
-                System.out.println(results.getString(1) + " - " +results.getString(2) + " - " + results.getString(3) + " - " + results.getString(4));
-            }
-
         } catch(Exception e){
             e.printStackTrace();
         }
-
-
     }
-
 }
