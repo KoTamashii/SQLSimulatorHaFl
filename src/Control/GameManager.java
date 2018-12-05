@@ -20,7 +20,6 @@ import java.awt.event.MouseEvent;
  */
 public class GameManager implements DrawableObject{
 
-    private Cat cat;
     private MusicManager musicManager;
 
     public GameManager(DrawFrame df){

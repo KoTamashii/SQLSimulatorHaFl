@@ -29,7 +29,10 @@ public class Block extends GameObject {
         g2d.drawImage(image, (int)x, (int)y, (int)width, (int)height,null);
 
         Rectangle tempRect;
-/*
+
+
+
+        /*
         g2d.setColor(Color.red);
         tempRect = getBoundsTop();
         //g2d.fill(tempRect);
