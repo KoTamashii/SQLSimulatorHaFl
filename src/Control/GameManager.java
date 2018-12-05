@@ -4,8 +4,6 @@ import MYF.Level;
 import MYF.MusicManager;
 import MYF.UIDesigner;
 import Model.Background;
-import Model.Cat;
-import Model.Enemy;
 import View.Framework.DrawFrame;
 import View.Framework.DrawTool;
 import View.Framework.DrawableObject;

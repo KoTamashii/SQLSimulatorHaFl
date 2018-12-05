@@ -4,9 +4,6 @@ package MYF;
 
 
 import Model.Block;
-import Model.Cat;
-import Model.Enemy;
-import Model.Grass;
 import View.Framework.DrawFrame;
 import View.Framework.DrawingPanel;
 

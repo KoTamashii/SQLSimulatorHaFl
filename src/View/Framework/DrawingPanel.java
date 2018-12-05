@@ -3,7 +3,6 @@ package View.Framework;
 import MYF.Camera;
 import MYF.GameObject;
 import MYF.InputManager;
-import Model.Cat;
 
 import javax.swing.*;
 import java.awt.*;
