@@ -86,6 +86,23 @@ public class SQLConnector {
                 System.out.println("Keine neue Tabelle angelegt.");
             }
             //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            try {
+                stmt.execute("DROP TABLE HaFl_Finanzamt;");
+            } catch (Exception e){
+                System.out.println("Tabelle nicht gelöscht.");
+            }
+            try {
+                stmt.execute("CREATE TABLE HaFl_Finanzamt (" +
+                        "fID int NOT NULL,"+
+                        "EinnahmenWohn int NOT NULL," +
+                        "EinnahmenGewerbe int NOT NULL," +
+                        "EinnahmenIndustrie int NOT NULL," +
+                        "PRIMARY KEY (fID)" +
+                        ");");
+            } catch (Exception e){
+                System.out.println("Keine neue Tabelle angelegt.");
+            }
+            //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         } catch(Exception e){
             e.printStackTrace();
