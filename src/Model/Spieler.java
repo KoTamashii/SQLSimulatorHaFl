@@ -4,12 +4,29 @@ import MYF.GameObject;
 import View.Framework.DrawingPanel;
 
 import java.awt.*;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class Spieler extends GameObject {
 
+    //Attribute
+    private int geld;
+    private int population;
+
+    //Referenzen
+    private Connection con;
+    private Statement stmt;
+
     public Spieler(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
+
+        try {
+            // Erstelle eine Verbindung zu unserer SQL-Datenbank
+            con = DriverManager.getConnection("jdbc:mysql://mysql.webhosting24.1blu.de/db85565x2810214?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "s85565_2810214", "kkgbeste");
+            stmt = con.createStatement();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -20,5 +37,27 @@ public class Spieler extends GameObject {
     @Override
     public void render(DrawingPanel dp, Graphics g) {
 
+    }
+
+
+
+    public void updateData(){
+
+    }
+
+    public int getPopulation() {
+        return population;
+    }
+
+    public void setPopulation(int population) {
+        this.population = population;
+    }
+
+    public int getGeld() {
+        return geld;
+    }
+
+    public void setGeld(int geld) {
+        this.geld = geld;
     }
 }
