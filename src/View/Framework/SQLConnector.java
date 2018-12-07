@@ -115,6 +115,7 @@ public class SQLConnector {
                 stmt.execute("CREATE TABLE HaFl_Bank (" +
                         "PosX int NOT NULL," +
                         "PosY int NOT NULL," +
+                        "Arbeitsplatz int NOT NULL," +
                         "Kapital int NOT NULL," +
                         "Zinsen double NOT NULL," +
                         "PRIMARY KEY (PosX, PosY)" +
