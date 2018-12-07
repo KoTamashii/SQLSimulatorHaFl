@@ -39,7 +39,15 @@ public class Wohngebiet extends GameObject {
     }
 
     public void erstellWohngebiet(){
-        stmt.execute("INSERT INTO HaFl_Wohngebiet")
+        try {
+            stmt.execute("INSERT INTO HaFl_Wohngebiet " +
+                    "Values("+x+""+ y + ");");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
 
     }
 }

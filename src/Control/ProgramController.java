@@ -2,6 +2,7 @@ package Control;
 
 import Control.Framework.UIController;
 import View.Framework.DrawFrame;
+import View.Framework.SQLConnector;
 
 /**
  * Ein Objekt der Klasse ProgramController dient dazu das Programm zu steuern. Die updateProgram - Methode wird
@@ -33,6 +34,7 @@ public class ProgramController {
         GameManager manager = new GameManager(drawFrame);
         // Weist das Objekt der Klasse UIController an, das dieses Objekt gezeichnet und "geupdatet" werden soll
         uiController.drawObjectOnPanel(manager,0);
+        SQLConnector sqlc = new SQLConnector();
     }
 
     /**

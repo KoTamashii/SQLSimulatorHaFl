@@ -98,11 +98,6 @@ public class DrawingPanel extends JPanel implements KeyListener, MouseListener {
             tempGO.render(this, g);
             tempGO.update(gameObjects);
 
-            if(tempGO instanceof Cat){
-                if(camera != null){
-                    camera.update( ( (Cat)tempGO) );
-                }
-            }
         }
     }
 

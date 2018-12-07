@@ -14,6 +14,7 @@ public class SQLConnector {
 
         try {
             // Erstelle eine Verbindung zu unserer SQL-Datenbank
+
             Connection con = DriverManager.getConnection("jdbc:mysql://mysql.webhosting24.1blu.de/db85565x2810214?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "s85565_2810214", "kkgbeste");
             Statement stmt = con.createStatement();
 
@@ -45,8 +46,7 @@ public class SQLConnector {
                         "PosX int NOT NULL," +
                         "PosY int NOT NULL," +
                         "Population int NOT NULL," +
-                        "PRIMARY KEY (PosX)," +
-                        "PRIMARY KEY (PosY)" +
+                        "PRIMARY KEY (PosX)" +
                         ");");
             } catch (Exception e){
                 System.out.println("Keine neue Tabelle angelegt.");
@@ -62,8 +62,7 @@ public class SQLConnector {
                         "PosX int NOT NULL," +
                         "PosY int NOT NULL," +
                         "Arbeitsplatz int NOT NULL," +
-                        "PRIMARY KEY (PosX)," +
-                        "PRIMARY KEY (PosY)" +
+                        "PRIMARY KEY (PosX)" +
                         ");");
             } catch (Exception e){
                 System.out.println("Keine neue Tabelle angelegt.");
@@ -79,8 +78,7 @@ public class SQLConnector {
                         "PosX int NOT NULL," +
                         "PosY int NOT NULL," +
                         "Arbeitsplatz int NOT NULL," +
-                        "PRIMARY KEY (PosX)," +
-                        "PRIMARY KEY (PosY)" +
+                        "PRIMARY KEY (PosX)" +
                         ");");
             } catch (Exception e){
                 System.out.println("Keine neue Tabelle angelegt.");
@@ -115,8 +113,7 @@ public class SQLConnector {
                         "Arbeitsplatz int NOT NULL," +
                         "Kapital int NOT NULL," +
                         "Zinsen double NOT NULL," +
-                        "PRIMARY KEY (PosX)," +
-                        "PRIMARY KEY (PosY)" +
+                        "PRIMARY KEY (PosX)" +
                         ");");
             } catch (Exception e){
                 System.out.println("Keine neue Tabelle angelegt.");
@@ -132,8 +129,7 @@ public class SQLConnector {
                         "PosX int NOT NULL," +
                         "PosY int NOT NULL," +
                         "Arbeitsplatz int NOT NULL," +
-                        "PRIMARY KEY (PosX)," +
-                        "PRIMARY KEY (PosY)" +
+                        "PRIMARY KEY (PosX)" +
                         ");");
             } catch (Exception e){
                 System.out.println("Keine neue Tabelle angelegt.");
@@ -149,8 +145,7 @@ public class SQLConnector {
                         "PosX int NOT NULL," +
                         "PosY int NOT NULL," +
                         "Arbeitsplatz int NOT NULL," +
-                        "PRIMARY KEY (PosX)," +
-                        "PRIMARY KEY (PosY)" +
+                        "PRIMARY KEY (PosX)" +
                         ");");
             } catch (Exception e){
                 System.out.println("Keine neue Tabelle angelegt.");
@@ -166,8 +161,7 @@ public class SQLConnector {
                         "PosX int NOT NULL," +
                         "PosY int NOT NULL," +
                         "uPlatz int NOT NULL," +
-                        "PRIMARY KEY (PosX)," +
-                        "PRIMARY KEY (PosY)" +
+                        "PRIMARY KEY (PosX)" +
                         ");");
             } catch (Exception e){
                 System.out.println("Keine neue Tabelle angelegt.");
