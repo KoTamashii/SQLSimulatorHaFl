@@ -16,7 +16,6 @@ public class Spieler extends GameObject implements InputManager {
 
     //Attribute
     private int geld;
-    private int population;
     boolean clicked = false;
     private int gPopulation;
 
@@ -65,6 +64,11 @@ public class Spieler extends GameObject implements InputManager {
 
     public void setgPopulation(int gPopulation) {
         this.gPopulation = gPopulation;
+        /*try {
+            stmt.execute("INSERT INTO HaFl_Spieler VALUES(" + geld + population + ");");
+        } catch (SQLException e){
+            e.printStackTrace();
+        }*/
     }
 
     public int getGeld() {
@@ -75,6 +79,11 @@ public class Spieler extends GameObject implements InputManager {
         this.geld = geld;
     }
 
+
+
+    //
+    //INPUT MANAGER
+    //
     @Override
     public void keyTyped(KeyEvent keyEvent) {
 
@@ -97,7 +106,12 @@ public class Spieler extends GameObject implements InputManager {
 
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
+        while (!clicked){
+            clicked = true;
+            Rectangle2D rect = new Rectangle2D.Double(mouseEvent.getX(), mouseEvent.getY(), 1, 1);
 
+            while(gameObjects.nx)
+        }
     }
 
     @Override
