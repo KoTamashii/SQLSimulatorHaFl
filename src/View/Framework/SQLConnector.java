@@ -32,7 +32,6 @@ public class SQLConnector {
                         "Zufriedenheit int NOT NULL," +
                         "PRIMARY KEY (sID)" +
                         ");");
-                System.out.println("Spieler wurde erstellt");
             } catch (Exception e){
                 System.out.println("Keine neue Tabelle angelegt.");
             }
@@ -47,9 +46,8 @@ public class SQLConnector {
                         "PosX int NOT NULL," +
                         "PosY int NOT NULL," +
                         "Population int NOT NULL," +
-                        "PRIMARY KEY (PosX, PosY)" +
+                        "PRIMARY KEY (PosX)" +
                         ");");
-                System.out.println("Wohngebiet wurde erstellt");
             } catch (Exception e){
                 System.out.println("Keine neue Tabelle angelegt.");
             }
@@ -64,9 +62,8 @@ public class SQLConnector {
                         "PosX int NOT NULL," +
                         "PosY int NOT NULL," +
                         "Arbeitsplatz int NOT NULL," +
-                        "PRIMARY KEY (PosX, PosY)" +
+                        "PRIMARY KEY (PosX)" +
                         ");");
-                System.out.println("Gewerbegebiet wurde erstellt");
             } catch (Exception e){
                 System.out.println("Keine neue Tabelle angelegt.");
             }
@@ -81,9 +78,8 @@ public class SQLConnector {
                         "PosX int NOT NULL," +
                         "PosY int NOT NULL," +
                         "Arbeitsplatz int NOT NULL," +
-                        "PRIMARY KEY (PosX, PosY)" +
+                        "PRIMARY KEY (PosX)" +
                         ");");
-                System.out.println("Industriegebiet wurde erstellt");
             } catch (Exception e){
                 System.out.println("Keine neue Tabelle angelegt.");
             }
@@ -101,7 +97,6 @@ public class SQLConnector {
                         "EinnahmenIndustrie int NOT NULL," +
                         "PRIMARY KEY (fID)" +
                         ");");
-                System.out.println("Finanzamt wurde erstellt");
             } catch (Exception e){
                 System.out.println("Keine neue Tabelle angelegt.");
             }
@@ -118,9 +113,8 @@ public class SQLConnector {
                         "Arbeitsplatz int NOT NULL," +
                         "Kapital int NOT NULL," +
                         "Zinsen double NOT NULL," +
-                        "PRIMARY KEY (PosX, PosY)" +
+                        "PRIMARY KEY (PosX)" +
                         ");");
-                System.out.println("Bank wurde erstellt");
             } catch (Exception e){
                 System.out.println("Keine neue Tabelle angelegt.");
             }
@@ -135,9 +129,8 @@ public class SQLConnector {
                         "PosX int NOT NULL," +
                         "PosY int NOT NULL," +
                         "Arbeitsplatz int NOT NULL," +
-                        "PRIMARY KEY (PosX, PosY)" +
+                        "PRIMARY KEY (PosX)" +
                         ");");
-                System.out.println("Feuerwehr wurde erstellt");
             } catch (Exception e){
                 System.out.println("Keine neue Tabelle angelegt.");
             }
@@ -152,9 +145,8 @@ public class SQLConnector {
                         "PosX int NOT NULL," +
                         "PosY int NOT NULL," +
                         "Arbeitsplatz int NOT NULL," +
-                        "PRIMARY KEY (PosX, PosY)" +
+                        "PRIMARY KEY (PosX)" +
                         ");");
-                System.out.println("Polizeo wurde erstellt");
             } catch (Exception e){
                 System.out.println("Keine neue Tabelle angelegt.");
             }
@@ -169,9 +161,8 @@ public class SQLConnector {
                         "PosX int NOT NULL," +
                         "PosY int NOT NULL," +
                         "uPlatz int NOT NULL," +
-                        "PRIMARY KEY (PosX, PosY)" +
+                        "PRIMARY KEY (PosX)" +
                         ");");
-                System.out.println("Schule wurde erstellt");
             } catch (Exception e){
                 System.out.println("Keine neue Tabelle angelegt.");
             }

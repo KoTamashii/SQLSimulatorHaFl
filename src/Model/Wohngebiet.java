@@ -16,6 +16,7 @@ public class Wohngebiet extends GameObject {
     private Connection con;
     private Statement stmt;
 
+
     public Wohngebiet(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
 
