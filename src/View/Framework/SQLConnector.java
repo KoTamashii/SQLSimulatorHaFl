@@ -115,7 +115,6 @@ public class SQLConnector {
                 stmt.execute("CREATE TABLE HaFl_Bank (" +
                         "PosX int NOT NULL," +
                         "PosY int NOT NULL," +
-                        "Arbeitsplatz int NOT NULL," +
                         "Kapital int NOT NULL," +
                         "Zinsen double NOT NULL," +
                         "PRIMARY KEY (PosX, PosY)" +
@@ -154,7 +153,7 @@ public class SQLConnector {
                         "Arbeitsplatz int NOT NULL," +
                         "PRIMARY KEY (PosX, PosY)" +
                         ");");
-                System.out.println("Polizeo wurde erstellt");
+                System.out.println("Polizei wurde erstellt");
             } catch (Exception e){
                 System.out.println("Keine neue Tabelle angelegt.");
             }
@@ -168,10 +167,26 @@ public class SQLConnector {
                 stmt.execute("CREATE TABLE HaFl_Schule (" +
                         "PosX int NOT NULL," +
                         "PosY int NOT NULL," +
-                        "uPlatz int NOT NULL," +
+                        "sPlatz int NOT NULL," +
                         "PRIMARY KEY (PosX, PosY)" +
                         ");");
                 System.out.println("Schule wurde erstellt");
+            } catch (Exception e){
+                System.out.println("Keine neue Tabelle angelegt.");
+            }
+            //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            try {
+                stmt.execute("DROP TABLE HaFl_Freizeit;");
+            } catch (Exception e){
+                System.out.println("Tabelle nicht gelöscht.");
+            }
+            try {
+                stmt.execute("CREATE TABLE HaFl_Freizeit (" +
+                        "PosX int NOT NULL," +
+                        "PosY int NOT NULL," +
+                        "PRIMARY KEY (PosX, PosY)" +
+                        ");");
+                System.out.println("Freizeit wurde erstellt");
             } catch (Exception e){
                 System.out.println("Keine neue Tabelle angelegt.");
             }

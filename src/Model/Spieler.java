@@ -11,7 +11,7 @@ public class Spieler extends GameObject {
 
     //Attribute
     private int geld;
-    private int population;
+    private int gPopulation;
 
     //Referenzen
     private Connection con;
@@ -19,6 +19,8 @@ public class Spieler extends GameObject {
 
     public Spieler(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
+
+
 
         try {
             // Erstelle eine Verbindung zu unserer SQL-Datenbank
@@ -32,6 +34,7 @@ public class Spieler extends GameObject {
     @Override
     public void update(ArrayList<GameObject> object) {
 
+       // gPopulation = Wohngebiet.getPopulation;
     }
 
     @Override
@@ -45,12 +48,12 @@ public class Spieler extends GameObject {
 
     }
 
-    public int getPopulation() {
-        return population;
+    public int getgPopulation() {
+        return gPopulation;
     }
 
-    public void setPopulation(int population) {
-        this.population = population;
+    public void setgPopulation(int gPopulation) {
+        this.gPopulation = gPopulation;
     }
 
     public int getGeld() {

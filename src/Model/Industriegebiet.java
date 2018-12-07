@@ -12,6 +12,9 @@ import java.util.ArrayList;
 
 public class Industriegebiet extends GameObject {
 
+    //Attribute
+    private int arbeitsplatz;
+
     //Referenzen
     private Connection con;
     private Statement stmt;
@@ -39,6 +42,17 @@ public class Industriegebiet extends GameObject {
     }
 
     public void erstelleIndustriegebiet(){
+        try {
+            stmt.execute("INSERT INTO HaFl_Industriegebiet" +
+                    "Values(x,y,Arbeitsplatz)" +
+                    ";");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public int getArbeitsplatz() {
+        return arbeitsplatz;
     }
 }

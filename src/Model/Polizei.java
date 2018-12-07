@@ -12,6 +12,9 @@ import java.util.ArrayList;
 
 public class Polizei extends GameObject {
 
+    //Attribute
+    private int arbeitsplatz;
+
     //Referenzen
     private Connection con;
     private Statement stmt;
@@ -38,6 +41,17 @@ public class Polizei extends GameObject {
     }
 
     public void erstellePolizei(){
+        try {
+            stmt.execute("INSERT INTO HaFl_Polizei " +
+                    "Values(x,y,Arbeitsplatz)" +
+                    ";");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public int getArbeitsplatz() {
+        return arbeitsplatz;
     }
 }

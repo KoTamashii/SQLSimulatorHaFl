@@ -38,6 +38,13 @@ public class Schule extends GameObject {
     }
 
     public void erstellSchule(){
-
+        try {
+            stmt.execute("INSERT INTO HaFl_Schule " +
+                    "Values(x,y,sPlatz)" +
+                    ";");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

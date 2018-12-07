@@ -39,6 +39,13 @@ public class Freizeit extends GameObject {
     }
 
     public void erstelleFreizeit(){
-
+        try {
+            stmt.execute("INSERT INTO HaFl_Freizeit " +
+                    "Values(x,y)" +
+                    ";");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

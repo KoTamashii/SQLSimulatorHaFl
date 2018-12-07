@@ -12,6 +12,9 @@ import java.util.ArrayList;
 
 public class Feuerwehr extends GameObject {
 
+    //Attribute
+    private int arbeitsplatz;
+
     //Referenzen
     private Connection con;
     private Statement stmt;
@@ -39,6 +42,17 @@ public class Feuerwehr extends GameObject {
     }
 
     public void erstelleFeuerwehr(){
+        try {
+            stmt.execute("INSERT INTO HaFl_Feuerwehr" +
+                    "Values(x,y,Arbeitsplatz)" +
+                    ";");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public int getArbeitsplatz() {
+        return arbeitsplatz;
     }
 }

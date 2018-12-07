@@ -12,12 +12,18 @@ import java.util.ArrayList;
 
 public class Wohngebiet extends GameObject {
 
+    //Attribute
+    private int population;
+
     //Referenzen
     private Connection con;
     private Statement stmt;
 
+
     public Wohngebiet(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
+
+        population = 50;
 
         try {
             // Erstelle eine Verbindung zu unserer SQL-Datenbank
@@ -41,13 +47,17 @@ public class Wohngebiet extends GameObject {
     public void erstellWohngebiet(){
         try {
             stmt.execute("INSERT INTO HaFl_Wohngebiet " +
-                    "Values("+x+""+ y + ");");
+                    "Values(x,y,population)" +
+                    ";");
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
 
+    }
 
 
+    public int getPopulation() {
+        return population;
     }
 }

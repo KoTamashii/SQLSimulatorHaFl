@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 public class Finanzamt extends GameObject {
 
+    //Atribute
+    private int einnahmenWohn,einnahmenWGewerbe, einnahmenIndustrie;
     //Referenzen
     private Connection con;
     private Statement stmt;
@@ -39,6 +41,40 @@ public class Finanzamt extends GameObject {
     }
 
     public void erstelleFinanzamt(){
+        try {
+            stmt.execute("INSERT INTO HaFl_Finanzamt" +
+                    "Values(fID,EinnahmenWohn,EinnahmenGewerbe,EinnahmenIndustrie)" +
+                    ";");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
+
+
+
+    public int getEinnahmenWohn() {
+        return einnahmenWohn;
+    }
+
+    public int getEinnahmenWGewerbe() {
+        return einnahmenWGewerbe;
+    }
+
+    public int getEinnahmenIndustrie() {
+        return einnahmenIndustrie;
+    }
+
+    public void setEinnahmenWohn(int einnahmenWohn) {
+        this.einnahmenWohn = einnahmenWohn;
+    }
+
+    public void setEinnahmenWGewerbe(int einnahmenWGewerbe) {
+        this.einnahmenWGewerbe = einnahmenWGewerbe;
+    }
+
+    public void setEinnahmenIndustrie(int einnahmenIndustrie) {
+        this.einnahmenIndustrie = einnahmenIndustrie;
     }
 }
