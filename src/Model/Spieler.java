@@ -18,6 +18,7 @@ public class Spieler extends GameObject implements InputManager {
     private int geld;
     boolean clicked = false;
     private int gPopulation;
+    private int arbeiter;
 
     //Referenzen
     private Connection con;
@@ -28,7 +29,6 @@ public class Spieler extends GameObject implements InputManager {
 
     public Spieler(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
-
 
 
         try {

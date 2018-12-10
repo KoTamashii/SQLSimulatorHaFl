@@ -10,23 +10,20 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class Wohngebiet extends GameObject {
+public class Arbeitsamt extends GameObject {
 
     //Attribute
-    private int population;
-    private int arbeitslose;
+    private int arbeitsPlaetze, arbeiter, arbeitslose, arbeitsPlaetzeGewerbe, arbeitsPlaetzeIndustrie;
 
     //Referenzen
     private Connection con;
     private Statement stmt;
-    private Zeit zeit;
     private Spieler spieler;
+    private Gewerbegebiet gewerbeGebiet;
+    private Industriegebiet industrieGebiet;
 
-
-    public Wohngebiet(int x, int y, int width, int height, String filePath){
+    public Arbeitsamt(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
-
-        population = 2;
 
         try {
             // Erstelle eine Verbindung zu unserer SQL-Datenbank
@@ -39,15 +36,7 @@ public class Wohngebiet extends GameObject {
 
     @Override
     public void update(ArrayList<GameObject> object) {
-        spieler.setgPopulation(population);
-        if (population < 51) {
-            if (zeit.isDayOver()) {
-                int kinderMachen = (int)Math.random()*100;
-                if (kinderMachen<70){
-                    population+= 1;
-                }
-            }
-        }
+
     }
 
     @Override
@@ -55,20 +44,25 @@ public class Wohngebiet extends GameObject {
 
     }
 
-    public void erstellWohngebiet(){
+    public void erstelleArbeitsamt(){
         try {
-            stmt.execute("INSERT INTO HaFl_Wohngebiet " +
-                    "Values(x,y,population)" +
+            stmt.execute("INSERT INTO HaFl_Arbeitsamt" +
+                    "Values(aID, Arbeiter, Arbeitslose)" +
                     ";");
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
+    public void berechneArbeitsplaetze(){
+        arbeitsPlaetze = gewerbeGebiet.getArbeitsplatz() + industrieGebiet.getArbeitsplatz();
+        arbeitsPlaetzeGewerbe = gewerbeGebiet.getArbeitsplatz();
+        arbeitsPlaetzeIndustrie = industrieGebiet.getArbeitsplatz();
+    }
 
-    public int getPopulation() {
-        return population;
+    public void berechneArbeiter(){
+        arbeiter = arbeitsPlaetze;
+        arbeitslose =  spieler.getgPopulation() - arbeitsPlaetze;
     }
 }

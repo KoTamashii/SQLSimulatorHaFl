@@ -16,6 +16,7 @@ public class Finanzamt extends GameObject {
     private Statement stmt;
     private Spieler spieler;
     private Zeit zeit;
+    private Arbeitsamt arbeitsamt;
 
     public Finanzamt(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
@@ -33,9 +34,9 @@ public class Finanzamt extends GameObject {
     public void update(ArrayList<GameObject> object) {
 
         if (zeit.isDayOver()){
-            berechneKostenWohn();
-            berechneKostenGewerbe();
-            berechneKostenIndustrie();
+            berechneEinnahmenWohn();
+            berechneEinnahmenGewerbe();
+            berechneEinnahmenIndustrie();
             berechneEinnahmenKomplett();
         }
     }
@@ -56,7 +57,9 @@ public class Finanzamt extends GameObject {
         }
     }
 
-    public void berechneKostenWohn(){
+    public void berechneEinnahmenWohn(){
+        arbeitsamt.
+        /*
         try {
         ResultSet einnahmen = stmt.executeQuery("SELECT SUM(Population) + FROM HaFl_Wohngebiet;");
         einnahmenWohn = einnahmen.getInt(1) * 200;
@@ -64,8 +67,9 @@ public class Finanzamt extends GameObject {
         catch (SQLException e) {
             e.printStackTrace();
         }
+        */
     }
-    public void berechneKostenGewerbe(){
+    public void berechneEinnahmenGewerbe(){
         try {
             ResultSet einnahmen = stmt.executeQuery("SELECT SUM(Arbeitsplatz) + FROM HaFl_Gewerbegebiet;");
             einnahmenGewerbe = einnahmen.getInt(1) * 3;
@@ -75,7 +79,7 @@ public class Finanzamt extends GameObject {
         }
     }
 
-    public void berechneKostenIndustrie(){
+    public void berechneEinnahmenIndustrie(){
         try {
             ResultSet einnahmen = stmt.executeQuery("SELECT SUM(Arbeitsplatz) + FROM HaFl_Industriegebiet;");
             einnahmenIndustrie = einnahmen.getInt(1) * 5;
