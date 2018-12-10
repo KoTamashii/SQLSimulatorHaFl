@@ -15,6 +15,7 @@ public class Finanzamt extends GameObject {
     private Connection con;
     private Statement stmt;
     private Spieler spieler;
+    private Zeit zeit;
 
     public Finanzamt(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
@@ -31,6 +32,12 @@ public class Finanzamt extends GameObject {
     @Override
     public void update(ArrayList<GameObject> object) {
 
+        if (zeit.isDayOver()){
+            berechneKostenWohn();
+            berechneKostenGewerbe();
+            berechneKostenIndustrie();
+            berechneEinnahmenKomplett();
+        }
     }
 
     @Override
@@ -79,7 +86,8 @@ public class Finanzamt extends GameObject {
     }
 
     public void berechneEinnahmenKomplett(){
-        spieler.setGeld(einnahmenWohn + einnahmenGewerbe + einnahmenIndustrie);
+        gesamtEinnahmen = einnahmenWohn + einnahmenGewerbe + einnahmenIndustrie;
+        spieler.setGeld(gesamtEinnahmen);
     }
 
 

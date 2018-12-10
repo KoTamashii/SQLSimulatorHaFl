@@ -18,4 +18,7 @@ public class Zeit{
         }, 10*1000, 10*1000);
     }
 
+    public boolean isDayOver() {
+        return dayOver;
+    }
 }

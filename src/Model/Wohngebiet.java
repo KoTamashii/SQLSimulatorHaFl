@@ -18,12 +18,13 @@ public class Wohngebiet extends GameObject {
     //Referenzen
     private Connection con;
     private Statement stmt;
+    private Zeit zeit;
 
 
     public Wohngebiet(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
 
-        population = 50;
+        population = 2;
 
         try {
             // Erstelle eine Verbindung zu unserer SQL-Datenbank
@@ -36,7 +37,12 @@ public class Wohngebiet extends GameObject {
 
     @Override
     public void update(ArrayList<GameObject> object) {
-
+        if (population < 51) {
+            if (zeit.isDayOver()) {
+                int kinderMachen = (int)Math.random()*100;
+                if (kinderMachen<70){}
+            }
+        }
     }
 
     @Override
