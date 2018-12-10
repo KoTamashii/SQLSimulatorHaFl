@@ -4,19 +4,17 @@ import MYF.GameObject;
 import View.Framework.DrawingPanel;
 
 import java.awt.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class Finanzamt extends GameObject {
 
     //Atribute
-    private int einnahmenWohn,einnahmenWGewerbe, einnahmenIndustrie;
+    private int einnahmenWohn,einnahmenGewerbe, einnahmenIndustrie, gesamtEinnahmen;
     //Referenzen
     private Connection con;
     private Statement stmt;
+    private Spieler spieler;
 
     public Finanzamt(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
@@ -51,6 +49,39 @@ public class Finanzamt extends GameObject {
         }
     }
 
+    public void berechneKostenWohn(){
+        try {
+        ResultSet einnahmen = stmt.executeQuery("SELECT SUM(Population) + FROM HaFl_Wohngebiet;");
+        einnahmenWohn = einnahmen.getInt(1) * 200;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void berechneKostenGewerbe(){
+        try {
+            ResultSet einnahmen = stmt.executeQuery("SELECT SUM(Arbeitsplatz) + FROM HaFl_Gewerbegebiet;");
+            einnahmenGewerbe = einnahmen.getInt(1) * 3;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void berechneKostenIndustrie(){
+        try {
+            ResultSet einnahmen = stmt.executeQuery("SELECT SUM(Arbeitsplatz) + FROM HaFl_Industriegebiet;");
+            einnahmenIndustrie = einnahmen.getInt(1) * 5;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void berechneEinnahmenKomplett(){
+        spieler.setGeld(einnahmenWohn + einnahmenGewerbe + einnahmenIndustrie);
+    }
+
 
 
 
@@ -59,7 +90,7 @@ public class Finanzamt extends GameObject {
     }
 
     public int getEinnahmenWGewerbe() {
-        return einnahmenWGewerbe;
+        return einnahmenGewerbe;
     }
 
     public int getEinnahmenIndustrie() {
@@ -71,7 +102,7 @@ public class Finanzamt extends GameObject {
     }
 
     public void setEinnahmenWGewerbe(int einnahmenWGewerbe) {
-        this.einnahmenWGewerbe = einnahmenWGewerbe;
+        this.einnahmenGewerbe = einnahmenWGewerbe;
     }
 
     public void setEinnahmenIndustrie(int einnahmenIndustrie) {

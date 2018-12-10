@@ -43,7 +43,7 @@ public class Spieler extends GameObject implements InputManager {
     @Override
     public void update(ArrayList<GameObject> object) {
 
-       // gPopulation = Wohngebiet.getPopulation;
+        // gPopulation = Wohngebiet.getPopulation;
         gameObjects = object;
     }
 
@@ -76,7 +76,7 @@ public class Spieler extends GameObject implements InputManager {
     }
 
     public void setGeld(int geld) {
-        this.geld = geld;
+        this.geld += geld;
     }
 
 
@@ -110,7 +110,7 @@ public class Spieler extends GameObject implements InputManager {
             clicked = true;
             Rectangle2D rect = new Rectangle2D.Double(mouseEvent.getX(), mouseEvent.getY(), 1, 1);
 
-            while(gameObjects.nx)
+            //while(gameObjects.nx)
         }
     }
 
