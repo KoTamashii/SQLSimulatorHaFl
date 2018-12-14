@@ -14,7 +14,7 @@ public class Wohngebiet extends GameObject {
 
     //Attribute
     private int population;
-    private int arbeitslose;
+
 
     //Referenzen
     private Connection con;

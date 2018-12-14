@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Arbeitsamt extends GameObject {
 
     //Attribute
-    private int arbeitsPlaetze, arbeiter, arbeitslose, arbeitsPlaetzeGewerbe, arbeitsPlaetzeIndustrie;
+    private int arbeitsPlaetze, arbeiter, arbeitslose, arbeitsPlaetzeGewerbe, arbeitsPlaetzeIndustrie, arbeiterGewerbe, arbeiterIndustrie;
 
     //Referenzen
     private Connection con;
@@ -21,6 +21,7 @@ public class Arbeitsamt extends GameObject {
     private Spieler spieler;
     private Gewerbegebiet gewerbeGebiet;
     private Industriegebiet industrieGebiet;
+    private Wohngebiet wohngebiet;
 
     public Arbeitsamt(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
@@ -36,7 +37,8 @@ public class Arbeitsamt extends GameObject {
 
     @Override
     public void update(ArrayList<GameObject> object) {
-
+        berechneArbeitsplaetze();
+        berechneArbeiter();
     }
 
     @Override
@@ -62,7 +64,15 @@ public class Arbeitsamt extends GameObject {
     }
 
     public void berechneArbeiter(){
-        arbeiter = arbeitsPlaetze;
-        arbeitslose =  spieler.getgPopulation() - arbeitsPlaetze;
+        arbeiter = wohngebiet.getPopulation();
+    }
+
+    public void weiseArbeiterZu(){
+        int x;
+        int y;
+        x = (int)Math.random()*100+1;
+        y = 100-x;
+        arbeiterGewerbe = arbeiter / 100 * x;
+        arbeiterIndustrie = arbeiter / 100 * y;
     }
 }
