@@ -201,8 +201,10 @@ public class SQLConnector {
                 stmt.execute("CREATE TABLE HaFl_Arbeitsamt (" +
                         "aID int NOT NULL,"+
                         "Arbeiter int NOT NULL," +
+                        "ArbeiterGewerbe int NOT NULL," +
+                        "ArbeiterIndustrie int NOT NULL," +
                         "Arbeitslose int NOT NULL," +
-                        "PRIMARY KEY (fID)" +
+                        "PRIMARY KEY (aID)" +
                         ");");
                 System.out.println("Finanzamt wurde erstellt");
             } catch (Exception e){

@@ -16,7 +16,6 @@ public class Finanzamt extends GameObject {
     private Statement stmt;
     private Spieler spieler;
     private Zeit zeit;
-    private Arbeitsamt arbeitsamt;
 
     public Finanzamt(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
@@ -58,21 +57,19 @@ public class Finanzamt extends GameObject {
     }
 
     public void berechneEinnahmenWohn(){
-        //arbeitsamt.
-        /*
         try {
-        ResultSet einnahmen = stmt.executeQuery("SELECT SUM(Population) + FROM HaFl_Wohngebiet;");
+        ResultSet einnahmen = stmt.executeQuery("SELECT SUM(arbeiter) + FROM HaFl_Arbeitsamt;");
         einnahmenWohn = einnahmen.getInt(1) * 200;
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
-        */
+
     }
     public void berechneEinnahmenGewerbe(){
         try {
-            ResultSet einnahmen = stmt.executeQuery("SELECT SUM(Arbeitsplatz) + FROM HaFl_Gewerbegebiet;");
-            einnahmenGewerbe = einnahmen.getInt(1) * 3;
+            ResultSet einnahmen = stmt.executeQuery("SELECT SUM(arbeiterGewerbe) + FROM HaFl_Arbeitsamt;");
+            einnahmenGewerbe = einnahmen.getInt(1) * 50;
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -81,8 +78,8 @@ public class Finanzamt extends GameObject {
 
     public void berechneEinnahmenIndustrie(){
         try {
-            ResultSet einnahmen = stmt.executeQuery("SELECT SUM(Arbeitsplatz) + FROM HaFl_Industriegebiet;");
-            einnahmenIndustrie = einnahmen.getInt(1) * 5;
+            ResultSet einnahmen = stmt.executeQuery("SELECT SUM(arbeiterIndustrie) + FROM HaFl_Arbeitsamt;");
+            einnahmenIndustrie = einnahmen.getInt(1) * 80;
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -92,6 +89,14 @@ public class Finanzamt extends GameObject {
     public void berechneEinnahmenKomplett(){
         gesamtEinnahmen = einnahmenWohn + einnahmenGewerbe + einnahmenIndustrie;
         spieler.setGeld(gesamtEinnahmen);
+        try {
+            stmt.execute("INSERT INTO HaFl_Spieler (Geld)" +
+                    "Values(gesamtEinnahmen)" +
+                    ";");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
