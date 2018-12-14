@@ -4,10 +4,7 @@ import MYF.GameObject;
 import View.Framework.DrawingPanel;
 
 import java.awt.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class Arbeitsamt extends GameObject {
@@ -19,9 +16,6 @@ public class Arbeitsamt extends GameObject {
     private Connection con;
     private Statement stmt;
     private Spieler spieler;
-    private Gewerbegebiet gewerbeGebiet;
-    private Industriegebiet industrieGebiet;
-    private Wohngebiet wohngebiet;
 
     public Arbeitsamt(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
@@ -49,7 +43,7 @@ public class Arbeitsamt extends GameObject {
     public void erstelleArbeitsamt(){
         try {
             stmt.execute("INSERT INTO HaFl_Arbeitsamt" +
-                    "Values(aID, Arbeiter, Arbeitslose)" +
+                    "Values(aID, Arbeiter, ArbeiterGewerbe, ArbeiterIndustrie, Arbeitslose)" +
                     ";");
         }
         catch (SQLException e) {
@@ -57,14 +51,36 @@ public class Arbeitsamt extends GameObject {
         }
     }
 
+
+
+
+
     public void berechneArbeitsplaetze(){
-        arbeitsPlaetze = gewerbeGebiet.getArbeitsplatz() + industrieGebiet.getArbeitsplatz();
-        arbeitsPlaetzeGewerbe = gewerbeGebiet.getArbeitsplatz();
-        arbeitsPlaetzeIndustrie = industrieGebiet.getArbeitsplatz();
+        try {
+            ResultSet result = stmt.executeQuery("SELECT arbeitsplatz FROM HaFl_Gewerbegebiet;");
+                    arbeitsPlaetzeGewerbe = result.getInt(1);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            ResultSet result = stmt.executeQuery("SELECT arbeitsplatz FROM HaFl_Industriegebiet;");
+            arbeitsPlaetzeIndustrie = result.getInt(1);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void berechneArbeiter(){
-        arbeiter = wohngebiet.getPopulation();
+        try {
+            ResultSet result = stmt.executeQuery("SELECT population FROM HaFl_Wohngebiet;");
+            arbeiter = result.getInt(1);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void weiseArbeiterZu(){
