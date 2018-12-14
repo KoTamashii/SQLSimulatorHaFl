@@ -10,12 +10,16 @@ import java.util.ArrayList;
 
 public class Block extends GameObject {
 
+    //Attribute
+    private boolean isPlaceable;
 
+    //Referenzen
     private BufferedImage image;
 
-    public Block(int x, int y, int width, int height, String filePath){
+    public Block(int x, int y, int width, int height, String filePath, boolean isPlaceable){
         super(x, y, width, height, filePath);
         image = ImageLoader.loadImage(filePath);
+        this.isPlaceable = isPlaceable;
     }
     //Array[x][y] 32px*32px
     @Override
