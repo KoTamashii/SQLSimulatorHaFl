@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Spieler extends GameObject implements InputManager {
 
@@ -19,6 +20,8 @@ public class Spieler extends GameObject implements InputManager {
     boolean clicked = false;
     private int gPopulation;
     private int arbeiter;
+
+    private Block selectedBlock;
 
     //Referenzen
     private Connection con;
@@ -49,12 +52,6 @@ public class Spieler extends GameObject implements InputManager {
 
     @Override
     public void render(DrawingPanel dp, Graphics g) {
-
-    }
-
-
-
-    public void updateData(){
 
     }
 
@@ -110,7 +107,19 @@ public class Spieler extends GameObject implements InputManager {
             clicked = true;
             Rectangle2D rect = new Rectangle2D.Double(mouseEvent.getX(), mouseEvent.getY(), 1, 1);
 
-            //while(gameObjects.nx)
+            Iterator iterator = gameObjects.iterator();
+            while(iterator.hasNext()){
+                GameObject tempGO = (GameObject) iterator.next();
+                //Wenn ein Gebäude placeable ist und eine Instanz von Block ist...
+                if(tempGO.getCompleteBounds().intersects(rect) && tempGO instanceof Block){
+                    Block block = (Block)tempGO;
+                    if(block.isPlaceable()){
+                        //Plaziere
+
+
+                    }
+                }
+            }
         }
     }
 

@@ -32,4 +32,8 @@ public class Block extends GameObject {
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(image,x,y, null);
     }
+
+    public boolean isPlaceable() {
+        return isPlaceable;
+    }
 }

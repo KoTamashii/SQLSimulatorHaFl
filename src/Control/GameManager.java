@@ -22,6 +22,9 @@ public class GameManager implements DrawableObject{
 
     private MusicManager musicManager;
 
+    //Attribute
+    private String level = "assets/images/level.png";
+
     public GameManager(DrawFrame df){
 
         musicManager = new MusicManager();
@@ -41,9 +44,10 @@ public class GameManager implements DrawableObject{
                 df.getActiveDrawingPanel().remove(playButton);
 
                 df.getActiveDrawingPanel().addObject(new Background(0,150,1280,720, "assets/images/Background.jpg"));
-                new Level("assets/images/level.png", df.getActiveDrawingPanel(), df);
+                new Level(level, df.getActiveDrawingPanel(), df);
             }
         });
+
     }
 
     @Override
