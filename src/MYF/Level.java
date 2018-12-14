@@ -3,6 +3,7 @@ package MYF;
 
 
 
+import Model.Block;
 import View.Framework.DrawFrame;
 import View.Framework.DrawingPanel;
 
@@ -43,22 +44,16 @@ public class Level {
 
                 //Checks if the
                 if (red == 0 && green == 0 && blue == 255) {
-                    dp.addObject(new Block((xx * 32), (yy * 32), 32, 32, "assets/images/wall.png"));
+                    dp.addObject(new Block((xx * 32), (yy * 32), 32, 32, "assets/images/wall.png", true));
                 }
 
-                //Portal
+                //Straße
+                if(red == 255 && green == 255 && blue == 255){
+                    Block straße = new Block(xx*32, yy*32, 32, 32, "rsc/Graphics/Portal/straße.png", false);
+                    dp.addObject(straße);
+                }
+
                 /*
-                if(red == 0 && green == 255 && blue == 255){
-                    Portal portal = new Portal(xx*32, yy*32, 32, 32, "rsc/Graphics/Portal/portalIdle.png");
-                    dp.addObject(portal);
-                    Portal secondPortal = new Portal(((xx*32)+640), yy*32, 32, 32, "rsc/Graphics/Portal/portalIdle.png");
-                    portal.setPortal(secondPortal);
-                    dp.addObject(secondPortal);
-
-                    secondPortal.setPortal(portal);
-                }
-
-
                 if(red == 155 && green == 155 && blue == 0){
                     dp.addObject(new Grass((xx*32), (yy*32), 32,32, "assets/images/grass2.jpg"));
                 }

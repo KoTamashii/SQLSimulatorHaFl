@@ -58,7 +58,7 @@ public class Finanzamt extends GameObject {
     }
 
     public void berechneEinnahmenWohn(){
-        arbeitsamt.
+        //arbeitsamt.
         /*
         try {
         ResultSet einnahmen = stmt.executeQuery("SELECT SUM(Population) + FROM HaFl_Wohngebiet;");
