@@ -12,12 +12,22 @@ import java.util.ArrayList;
 
 public class Schule extends GameObject {
 
+    //Attribute
+    private int sPlatz;
+
     //Referenzen
     private Connection con;
     private Statement stmt;
 
     public Schule(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
+
+        try {
+            stmt.execute("INSERT INTO HaFl_Feuerwehr (posX, posY, sPlatz)" +
+                    "VALUES (x, y, sPlatz);");
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         try {
             // Erstelle eine Verbindung zu unserer SQL-Datenbank

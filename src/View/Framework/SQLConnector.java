@@ -30,6 +30,7 @@ public class SQLConnector {
                         "sID int NOT NULL,"+
                         "Geld int NOT NULL," +
                         "Zufriedenheit int NOT NULL," +
+                        "gPopulation int NOT NULL," +
                         "PRIMARY KEY (sID)" +
                         ");");
                 System.out.println("Spieler wurde erstellt");
@@ -115,7 +116,6 @@ public class SQLConnector {
                 stmt.execute("CREATE TABLE HaFl_Bank (" +
                         "PosX int NOT NULL," +
                         "PosY int NOT NULL," +
-                        "Arbeitsplatz int NOT NULL," +
                         "Kapital int NOT NULL," +
                         "Zinsen double NOT NULL," +
                         "PRIMARY KEY (PosX, PosY)" +
@@ -206,7 +206,7 @@ public class SQLConnector {
                         "Arbeitslose int NOT NULL," +
                         "PRIMARY KEY (aID)" +
                         ");");
-                System.out.println("Finanzamt wurde erstellt");
+                System.out.println("Arbeitsamt wurde erstellt");
             } catch (Exception e){
                 System.out.println("Keine neue Tabelle angelegt.");
             }

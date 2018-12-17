@@ -20,6 +20,7 @@ public class Spieler extends GameObject implements InputManager {
     boolean clicked = false;
     private int gPopulation;
     private int arbeiter;
+    private int zufriedenheit;
 
     private Block selectedBlock;
 
@@ -33,6 +34,12 @@ public class Spieler extends GameObject implements InputManager {
     public Spieler(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
 
+        try {
+           stmt.execute("INSERT INTO HaFl_Spieler (sID, Geld, Zufriedenheit, gPopulation)" +
+                   "VALUES (1, geld, zufriedenheit, gPopulation);");
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         try {
             // Erstelle eine Verbindung zu unserer SQL-Datenbank
