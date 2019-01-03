@@ -44,15 +44,16 @@ public class Wohngebiet extends GameObject {
         try {
             stmt.execute("INSERT INTO HaFl_Wohngebiet (posX, posY, Population)" +
                     "VALUES (x, y, population);");
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        if (population < 51) {
-            if (zeit.isDayOver()) {
-                int kinderMachen = (int)Math.random()*100+(population/2);
-                if (kinderMachen<70){
-                    population+= 1;
+        if (zeit.isDayOver()) {
+            if (population < 51) {
+                if (zeit.isDayOver()) {
+                    int kinderMachen = (int) Math.random() * 100 + (population / 2);
+                    if (kinderMachen < 70) {
+                        population += 1;
+                    }
                 }
             }
         }
