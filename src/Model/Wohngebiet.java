@@ -60,7 +60,6 @@ public class Wohngebiet extends GameObject {
 
     @Override
     public void render(DrawingPanel dp, Graphics g) {
-
     }
 
     public void erstellWohngebiet(){

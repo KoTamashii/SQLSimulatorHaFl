@@ -15,9 +15,11 @@ public class Bank extends GameObject {
     //Attribute
     private double zinsen;
     private int kapital;
+
     //Referenzen
     private Connection con;
     private Statement stmt;
+    private Zeit zeit;
 
 
     public Bank(int x, int y, int width, int height, String filePath){
@@ -25,12 +27,7 @@ public class Bank extends GameObject {
 
         zinsen = 0.05;
 
-        try {
-            stmt.execute("INSERT INTO HaFl_Bank (posX, posY, Kapital, Zinsen)" +
-                    "VALUES (x, y, kapital, zinsen);");
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
+
 
         try {
             // Erstelle eine Verbindung zu unserer SQL-Datenbank
@@ -43,6 +40,16 @@ public class Bank extends GameObject {
 
     @Override
     public void update(ArrayList<GameObject> object) {
+        try {
+            stmt.execute("INSERT INTO HaFl_Bank (posX, posY, Kapital, Zinsen)" +
+                    "VALUES (x, y, kapital, zinsen);");
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (zeit.isDayOver()) {
+            kapital += kapital*zinsen;
+        }
     }
 
     @Override
@@ -61,11 +68,14 @@ public class Bank extends GameObject {
         }
     }
 
-    public int getKapital() {
-        return kapital;
-    }
-
-    public void setKapital(int kapital) {
-        this.kapital += kapital;
+    public void geldAuszahlen(){
+        try {
+            stmt.execute("INSERT INTO HaFl_Spieler (Geld) " +
+                    "Values(+kapital)" +
+                    ";");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
