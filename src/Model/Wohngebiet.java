@@ -20,7 +20,6 @@ public class Wohngebiet extends GameObject {
     private Connection con;
     private Statement stmt;
     private Zeit zeit;
-    private Spieler spieler;
 
 
     public Wohngebiet(int x, int y, int width, int height, String filePath){
@@ -28,12 +27,7 @@ public class Wohngebiet extends GameObject {
 
         population = 2;
 
-        try {
-            stmt.execute("INSERT INTO HaFl_Wohngebiet (posX, posY,Population)" +
-                    "VALUES (x, y, population);");
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
+
 
         try {
             // Erstelle eine Verbindung zu unserer SQL-Datenbank
@@ -46,10 +40,17 @@ public class Wohngebiet extends GameObject {
 
     @Override
     public void update(ArrayList<GameObject> object) {
-        spieler.setgPopulation(population);
+
+        try {
+            stmt.execute("INSERT INTO HaFl_Wohngebiet (posX, posY, Population)" +
+                    "VALUES (x, y, population);");
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         if (population < 51) {
             if (zeit.isDayOver()) {
-                int kinderMachen = (int)Math.random()*100;
+                int kinderMachen = (int)Math.random()*100+(population/2);
                 if (kinderMachen<70){
                     population+= 1;
                 }

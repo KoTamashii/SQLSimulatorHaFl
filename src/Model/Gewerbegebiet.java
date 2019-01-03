@@ -25,13 +25,6 @@ public class Gewerbegebiet extends GameObject {
         arbeitsplatz = 40;
 
         try {
-            stmt.execute("INSERT INTO HaFl_Gewerbegebiet (posX, posY, Arbeitsplatz)" +
-                    "VALUES (x, y, arbeitsplatz);");
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        try {
             // Erstelle eine Verbindung zu unserer SQL-Datenbank
             con = DriverManager.getConnection("jdbc:mysql://mysql.webhosting24.1blu.de/db85565x2810214?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "s85565_2810214", "kkgbeste");
             stmt = con.createStatement();
@@ -42,6 +35,12 @@ public class Gewerbegebiet extends GameObject {
 
     @Override
     public void update(ArrayList<GameObject> object) {
+        try {
+            stmt.execute("INSERT INTO HaFl_Gewerbegebiet (posX, posY, Arbeitsplatz)" +
+                    "VALUES (x, y, arbeitsplatz);");
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

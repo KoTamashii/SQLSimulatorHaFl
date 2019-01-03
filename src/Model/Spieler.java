@@ -53,7 +53,14 @@ public class Spieler extends GameObject implements InputManager {
     @Override
     public void update(ArrayList<GameObject> object) {
 
-        // gPopulation = Wohngebiet.getPopulation;
+        try {
+            ResultSet result = stmt.executeQuery("SELECT Population FROM HaFl_Wohngebiet;");
+            gPopulation = result.getInt(1);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         gameObjects = object;
     }
 

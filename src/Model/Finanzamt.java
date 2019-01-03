@@ -14,18 +14,10 @@ public class Finanzamt extends GameObject {
     //Referenzen
     private Connection con;
     private Statement stmt;
-    private Spieler spieler;
     private Zeit zeit;
 
     public Finanzamt(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
-
-        try {
-            stmt.execute("INSERT INTO HaFl_Finanzamt (fID, EinnahmenWohn, EinnahmenGewerbe, EinnahmenIndustrie)" +
-                    "VALUES (1, einnahmenWohn, einnahmenGewerbe, einnahmenIndustrie);");
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
 
         try {
             // Erstelle eine Verbindung zu unserer SQL-Datenbank
@@ -39,11 +31,18 @@ public class Finanzamt extends GameObject {
     @Override
     public void update(ArrayList<GameObject> object) {
 
+        try {
+            stmt.execute("INSERT INTO HaFl_Finanzamt (fID, EinnahmenWohn, EinnahmenGewerbe, EinnahmenIndustrie)" +
+                    "VALUES (1, einnahmenWohn, einnahmenGewerbe, einnahmenIndustrie);");
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         if (zeit.isDayOver()){
             berechneEinnahmenWohn();
             berechneEinnahmenGewerbe();
             berechneEinnahmenIndustrie();
-            berechneEinnahmenKomplett();
+            einnahmenSendenKomplett();
         }
     }
 
@@ -93,9 +92,9 @@ public class Finanzamt extends GameObject {
         }
     }
 
-    public void berechneEinnahmenKomplett(){
+    public void einnahmenSendenKomplett(){
         gesamtEinnahmen = einnahmenWohn + einnahmenGewerbe + einnahmenIndustrie;
-        spieler.setGeld(gesamtEinnahmen);
+        //spieler.setGeld(gesamtEinnahmen);
         try {
             stmt.execute("INSERT INTO HaFl_Spieler (Geld)" +
                     "Values(gesamtEinnahmen)" +
@@ -104,32 +103,5 @@ public class Finanzamt extends GameObject {
         catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-
-
-
-    public int getEinnahmenWohn() {
-        return einnahmenWohn;
-    }
-
-    public int getEinnahmenWGewerbe() {
-        return einnahmenGewerbe;
-    }
-
-    public int getEinnahmenIndustrie() {
-        return einnahmenIndustrie;
-    }
-
-    public void setEinnahmenWohn(int einnahmenWohn) {
-        this.einnahmenWohn = einnahmenWohn;
-    }
-
-    public void setEinnahmenWGewerbe(int einnahmenWGewerbe) {
-        this.einnahmenGewerbe = einnahmenWGewerbe;
-    }
-
-    public void setEinnahmenIndustrie(int einnahmenIndustrie) {
-        this.einnahmenIndustrie = einnahmenIndustrie;
     }
 }

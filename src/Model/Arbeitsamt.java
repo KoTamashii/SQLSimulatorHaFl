@@ -15,17 +15,11 @@ public class Arbeitsamt extends GameObject {
     //Referenzen
     private Connection con;
     private Statement stmt;
-    private Spieler spieler;
 
     public Arbeitsamt(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
 
-        try {
-            stmt.execute("INSERT INTO HaFl_Arbeitsamt (aID, Arbeiter, ArbeiterGewerbe, ArbeiterIndustrie, Arbeitslose)" +
-                    "VALUES (1, arbeiter, arbeiterGewerbe, arbeiterIndustrie ;");
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
+
 
         try {
             // Erstelle eine Verbindung zu unserer SQL-Datenbank
@@ -40,6 +34,13 @@ public class Arbeitsamt extends GameObject {
     public void update(ArrayList<GameObject> object) {
         berechneArbeitsplaetze();
         berechneArbeiter();
+
+        try {
+            stmt.execute("INSERT INTO HaFl_Arbeitsamt (aID, Arbeiter, ArbeiterGewerbe, ArbeiterIndustrie, Arbeitslose)" +
+                    "VALUES (1, arbeiter, arbeiterGewerbe, arbeiterIndustrie ;");
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -95,7 +96,8 @@ public class Arbeitsamt extends GameObject {
         int y;
         x = (int)Math.random()*100+1;
         y = 100-x;
-        arbeiterGewerbe = arbeiter / 100 * x;
-        arbeiterIndustrie = arbeiter / 100 * y;
+        arbeiter = arbeiter - (arbeiterGewerbe+ arbeiterIndustrie);
+        arbeiterGewerbe += arbeiter / 100 * x;
+        arbeiterIndustrie += arbeiter / 100 * y;
     }
 }
