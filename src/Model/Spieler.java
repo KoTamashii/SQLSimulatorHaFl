@@ -1,9 +1,12 @@
 package Model;
 
+import Control.Framework.UIController;
 import MYF.GameObject;
 import MYF.InputManager;
+import MYF.UIDesigner;
 import View.Framework.DrawingPanel;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -21,19 +24,18 @@ public class Spieler extends GameObject implements InputManager {
     private int gPopulation;
     private int zufriedenheit;
 
-    private Block selectedBlock;
+    private DrawingPanel dp;
 
     //Referenzen
     private Connection con;
     private Statement stmt;
     private Wohngebiet[] wohngebiete;
-    private Block[] blocks;
     private ArrayList<GameObject> gameObjects;
 
-    public Spieler(int x, int y, int width, int height, String filePath){
+    public Spieler(int x, int y, int width, int height, String filePath, DrawingPanel dp){
         super(x,y,width,height,filePath);
 
-
+        this.dp = dp;
 
         try {
             // Erstelle eine Verbindung zu unserer SQL-Datenbank
@@ -47,7 +49,7 @@ public class Spieler extends GameObject implements InputManager {
     @Override
     public void update(ArrayList<GameObject> object) {
 
-        try {
+        /*try {
             stmt.execute("INSERT INTO HaFl_Spieler (sID, Geld, Zufriedenheit, gPopulation)" +
                     "VALUES (1, geld, zufriedenheit, gPopulation);");
         }catch (SQLException e) {
@@ -60,7 +62,7 @@ public class Spieler extends GameObject implements InputManager {
         }
         catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
 
         gameObjects = object;
     }
@@ -102,11 +104,17 @@ public class Spieler extends GameObject implements InputManager {
             while(iterator.hasNext()){
                 GameObject tempGO = (GameObject) iterator.next();
                 //Wenn ein Gebäude placeable ist und eine Instanz von Block ist...
-                if(tempGO.getCompleteBounds().intersects(rect) && tempGO instanceof Block){
+                if(tempGO.getCompleteBounds().intersects(rect) && tempGO instanceof Block ){
                     Block block = (Block)tempGO;
                     if(block.isPlaceable()){
                         //Plaziere
-
+                        System.out.println("Block berührt!");
+                        JFrame shop = new JFrame();
+                        shop.setLayout(null);
+                        shop.setAlwaysOnTop(true);
+                        shop.setSize(500,200);
+                        shop.add(UIDesigner.addButtonWithImageWithStandardDesign("Arbeitsamt", dp,new Point(0,0), new Point(50, 50), null));
+                        shop.setVisible(true);
 
                     }
                 }

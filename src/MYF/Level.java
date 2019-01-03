@@ -48,16 +48,17 @@ public class Level {
                 }
 
                 //Straße
-                if(red == 255 && green == 255 && blue == 255){
-                    Block straße = new Block(xx*32, yy*32, 32, 32, "rsc/Graphics/Portal/straße.png", false);
+                if(red == 0 && green == 0 && blue == 0){
+                    Block straße = new Block(xx*32, yy*32, 32, 32, "assets/images/straße.png", false);
                     dp.addObject(straße);
                 }
 
-                /*
-                if(red == 155 && green == 155 && blue == 0){
-                    dp.addObject(new Grass((xx*32), (yy*32), 32,32, "assets/images/grass2.jpg"));
+
+                if(red == 0 && green == 255 && blue == 0){
+                    dp.addObject(new Block((xx*32), (yy*32), 32,32, "assets/images/grass.png", false));
                 }
 
+                /*
                 if(red == 100 && green == 100 && blue == 100){
                     dp.addObject(new Grass((xx*32), (yy*32),32,32, "assets/images/powerup_flower.png"));
                 }

@@ -4,6 +4,7 @@ import MYF.Level;
 import MYF.MusicManager;
 import MYF.UIDesigner;
 import Model.Background;
+import Model.Spieler;
 import View.Framework.DrawFrame;
 import View.Framework.DrawTool;
 import View.Framework.DrawableObject;
@@ -45,6 +46,7 @@ public class GameManager implements DrawableObject{
 
                 df.getActiveDrawingPanel().addObject(new Background(0,150,1280,720, "assets/images/Background.jpg"));
                 new Level(level, df.getActiveDrawingPanel(), df);
+                df.getActiveDrawingPanel().addObject(new Spieler(0,0,0,0,null, df.getActiveDrawingPanel()));
             }
         });
 
