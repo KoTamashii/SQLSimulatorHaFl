@@ -126,57 +126,6 @@ public class SQLConnector {
             }
             //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             try {
-                stmt.execute("DROP TABLE HaFl_Feuerwehr;");
-            } catch (Exception e){
-                System.out.println("Tabelle nicht gelöscht.");
-            }
-            try {
-                stmt.execute("CREATE TABLE HaFl_Feuerwehr (" +
-                        "PosX int NOT NULL," +
-                        "PosY int NOT NULL," +
-                        "Arbeitsplatz int NOT NULL," +
-                        "PRIMARY KEY (PosX, PosY)" +
-                        ");");
-                System.out.println("Feuerwehr wurde erstellt");
-            } catch (Exception e){
-                System.out.println("Keine neue Tabelle angelegt.");
-            }
-            //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-            try {
-                stmt.execute("DROP TABLE HaFl_Polizei;");
-            } catch (Exception e){
-                System.out.println("Tabelle nicht gelöscht.");
-            }
-            try {
-                stmt.execute("CREATE TABLE HaFl_Polizei (" +
-                        "PosX int NOT NULL," +
-                        "PosY int NOT NULL," +
-                        "Arbeitsplatz int NOT NULL," +
-                        "PRIMARY KEY (PosX, PosY)" +
-                        ");");
-                System.out.println("Polizei wurde erstellt");
-            } catch (Exception e){
-                System.out.println("Keine neue Tabelle angelegt.");
-            }
-            //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-            try {
-                stmt.execute("DROP TABLE HaFl_Schule;");
-            } catch (Exception e){
-                System.out.println("Tabelle nicht gelöscht.");
-            }
-            try {
-                stmt.execute("CREATE TABLE HaFl_Schule (" +
-                        "PosX int NOT NULL," +
-                        "PosY int NOT NULL," +
-                        "sPlatz int NOT NULL," +
-                        "PRIMARY KEY (PosX, PosY)" +
-                        ");");
-                System.out.println("Schule wurde erstellt");
-            } catch (Exception e){
-                System.out.println("Keine neue Tabelle angelegt.");
-            }
-            //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-            try {
                 stmt.execute("DROP TABLE HaFl_Freizeit;");
             } catch (Exception e){
                 System.out.println("Tabelle nicht gelöscht.");

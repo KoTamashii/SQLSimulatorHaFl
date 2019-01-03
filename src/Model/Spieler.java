@@ -1,12 +1,9 @@
 package Model;
 
-import Control.Framework.UIController;
 import MYF.GameObject;
 import MYF.InputManager;
-import MYF.UIDesigner;
 import View.Framework.DrawingPanel;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -35,6 +32,7 @@ public class Spieler extends GameObject implements InputManager {
     public Spieler(int x, int y, int width, int height, String filePath, DrawingPanel dp){
         super(x,y,width,height,filePath);
 
+        geld = 50000;
         this.dp = dp;
 
         try {
@@ -49,7 +47,7 @@ public class Spieler extends GameObject implements InputManager {
     @Override
     public void update(ArrayList<GameObject> object) {
 
-        /*try {
+        try {
             stmt.execute("INSERT INTO HaFl_Spieler (sID, Geld, Zufriedenheit, gPopulation)" +
                     "VALUES (1, geld, zufriedenheit, gPopulation);");
         }catch (SQLException e) {
@@ -62,7 +60,7 @@ public class Spieler extends GameObject implements InputManager {
         }
         catch (SQLException e) {
             e.printStackTrace();
-        }*/
+        }
 
         gameObjects = object;
     }

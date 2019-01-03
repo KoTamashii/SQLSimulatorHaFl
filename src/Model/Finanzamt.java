@@ -11,10 +11,12 @@ public class Finanzamt extends GameObject {
 
     //Atribute
     private int einnahmenWohn,einnahmenGewerbe, einnahmenIndustrie, gesamtEinnahmen;
+    private int spielerZufriedenheit;
     //Referenzen
     private Connection con;
     private Statement stmt;
     private Zeit zeit;
+
 
     public Finanzamt(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
@@ -94,7 +96,14 @@ public class Finanzamt extends GameObject {
 
     public void einnahmenSendenKomplett(){
         gesamtEinnahmen = einnahmenWohn + einnahmenGewerbe + einnahmenIndustrie;
-        //spieler.setGeld(gesamtEinnahmen);
+        try {
+            ResultSet einnahmen = stmt.executeQuery("SELECT Zufriedenheit + FROM HaFl_Spieler;");
+            spielerZufriedenheit = einnahmen.getInt(1);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        gesamtEinnahmen += gesamtEinnahmen / 100 * spielerZufriedenheit;
         try {
             stmt.execute("INSERT INTO HaFl_Spieler (Geld)" +
                     "Values(gesamtEinnahmen)" +
