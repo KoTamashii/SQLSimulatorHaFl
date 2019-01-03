@@ -19,7 +19,6 @@ public class Spieler extends GameObject implements InputManager {
     private int geld;
     boolean clicked = false;
     private int gPopulation;
-    private int arbeiter;
     private int zufriedenheit;
 
     private Block selectedBlock;
@@ -34,12 +33,7 @@ public class Spieler extends GameObject implements InputManager {
     public Spieler(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
 
-        try {
-           stmt.execute("INSERT INTO HaFl_Spieler (sID, Geld, Zufriedenheit, gPopulation)" +
-                   "VALUES (1, geld, zufriedenheit, gPopulation);");
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
+
 
         try {
             // Erstelle eine Verbindung zu unserer SQL-Datenbank
@@ -54,6 +48,13 @@ public class Spieler extends GameObject implements InputManager {
     public void update(ArrayList<GameObject> object) {
 
         try {
+            stmt.execute("INSERT INTO HaFl_Spieler (sID, Geld, Zufriedenheit, gPopulation)" +
+                    "VALUES (1, geld, zufriedenheit, gPopulation);");
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
             ResultSet result = stmt.executeQuery("SELECT Population FROM HaFl_Wohngebiet;");
             gPopulation = result.getInt(1);
         }
@@ -66,31 +67,7 @@ public class Spieler extends GameObject implements InputManager {
 
     @Override
     public void render(DrawingPanel dp, Graphics g) {
-
     }
-
-    public int getgPopulation() {
-        return gPopulation;
-    }
-
-    public void setgPopulation(int gPopulation) {
-        this.gPopulation = gPopulation;
-        /*try {
-            stmt.execute("INSERT INTO HaFl_Spieler VALUES(" + geld + population + ");");
-        } catch (SQLException e){
-            e.printStackTrace();
-        }*/
-    }
-
-    public int getGeld() {
-        return geld;
-    }
-
-    public void setGeld(int geld) {
-        this.geld += geld;
-    }
-
-
 
     //
     //INPUT MANAGER
