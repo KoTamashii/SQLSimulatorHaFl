@@ -68,6 +68,17 @@ public class Bank extends GameObject {
         }
     }
 
+    public void geldEinzahlen(int abzug){
+
+        try {
+            stmt.execute("INSERT INTO HaFl_Spieler (Geld) " +
+                    "Values(-abzug)" +
+                    ";");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     public void geldAuszahlen(){
         try {
             stmt.execute("INSERT INTO HaFl_Spieler (Geld) " +

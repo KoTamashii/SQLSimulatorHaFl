@@ -21,14 +21,13 @@ public class Spieler extends GameObject implements InputManager {
     private int gPopulation;
     private int zufriedenheit;
 
-    private Block selectedBlock;
-
     //Referenzen
     private Connection con;
     private Statement stmt;
     private Wohngebiet[] wohngebiete;
     private Block[] blocks;
     private ArrayList<GameObject> gameObjects;
+    private Block selectedBlock;
 
     public Spieler(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);

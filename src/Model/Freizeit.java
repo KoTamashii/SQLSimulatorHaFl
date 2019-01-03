@@ -20,7 +20,7 @@ public class Freizeit extends GameObject {
         super(x,y,width,height,filePath);
 
         try {
-            stmt.execute("INSERT INTO HaFl_Feuerwehr (posX, posY)" +
+            stmt.execute("INSERT INTO HaFl_Freizeit (posX, posY)" +
                     "VALUES (x, y);");
         }catch (SQLException e) {
             e.printStackTrace();
@@ -49,6 +49,17 @@ public class Freizeit extends GameObject {
         try {
             stmt.execute("INSERT INTO HaFl_Freizeit " +
                     "Values(x,y)" +
+                    ";");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void steigereZufriedenheit(){
+        try {
+            stmt.execute("INSERT INTO HaFl_Spieler (Zufriedenheit)" +
+                    "Values(+20)" +
                     ";");
         }
         catch (SQLException e) {
