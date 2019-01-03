@@ -44,7 +44,7 @@ public class Level {
 
                 //Checks if the
                 if (red == 0 && green == 0 && blue == 255) {
-                    dp.addObject(new Block((xx * 32), (yy * 32), 32, 32, "assets/images/wall.png", true));
+                    dp.addObject(new Block((xx * 32), (yy * 32), 32, 32, "assets/images/Bauplatz.png", true));
                 }
 
                 //Straße
@@ -55,7 +55,7 @@ public class Level {
 
 
                 if(red == 0 && green == 255 && blue == 0){
-                    dp.addObject(new Block((xx*32), (yy*32), 32,32, "assets/images/grass.png", false));
+                    dp.addObject(new Block((xx*32), (yy*32), 32,32, "assets/images/GrassBackground.png", false));
                 }
 
                 /*

@@ -44,7 +44,6 @@ public class GameManager implements DrawableObject{
             public void actionPerformed(ActionEvent actionEvent) {
                 df.getActiveDrawingPanel().remove(playButton);
 
-                df.getActiveDrawingPanel().addObject(new Background(0,150,1280,720, "assets/images/Background.jpg"));
                 new Level(level, df.getActiveDrawingPanel(), df);
                 df.getActiveDrawingPanel().addObject(new Spieler(0,0,0,0,null, df.getActiveDrawingPanel()));
             }

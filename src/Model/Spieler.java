@@ -48,7 +48,7 @@ public class Spieler extends GameObject implements InputManager {
 
     @Override
     public void update(ArrayList<GameObject> object) {
-
+        /*
         try {
             stmt.execute("INSERT INTO HaFl_Spieler (sID, Geld, Zufriedenheit, gPopulation)" +
                     "VALUES (1, geld, zufriedenheit, gPopulation);");
@@ -62,7 +62,7 @@ public class Spieler extends GameObject implements InputManager {
         }
         catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
 
         gameObjects = object;
     }
@@ -113,7 +113,7 @@ public class Spieler extends GameObject implements InputManager {
                         shop.setLayout(null);
                         shop.setAlwaysOnTop(true);
                         shop.setSize(500,200);
-                        shop.add(UIDesigner.addButtonWithImageWithStandardDesign("Arbeitsamt", dp,new Point(0,0), new Point(50, 50), null));
+                        //shop.add(UIDesigner.addButtonWithImageWithStandardDesign("assets/images/level.png", dp,new Point(0,0), new Point(50, 50), null));
                         shop.setVisible(true);
 
                     }
