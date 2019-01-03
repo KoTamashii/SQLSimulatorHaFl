@@ -2,8 +2,10 @@ package Model;
 
 import MYF.GameObject;
 import MYF.InputManager;
+import MYF.UIDesigner;
 import View.Framework.DrawingPanel;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
