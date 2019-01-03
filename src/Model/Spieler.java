@@ -32,7 +32,7 @@ public class Spieler extends GameObject implements InputManager {
     public Spieler(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
 
-
+        geld = 50000;
 
         try {
             // Erstelle eine Verbindung zu unserer SQL-Datenbank
