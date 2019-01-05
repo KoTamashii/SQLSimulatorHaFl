@@ -19,7 +19,8 @@ public class Spieler extends GameObject implements InputManager {
 
     //Attribute
     private int geld;
-    boolean clicked = false;
+
+    private boolean clicked = false;
     private int gPopulation;
     private int zufriedenheit;
 
@@ -30,9 +31,13 @@ public class Spieler extends GameObject implements InputManager {
     private Statement stmt;
     private Wohngebiet[] wohngebiete;
     private ArrayList<GameObject> gameObjects;
+    private Shop shop;
 
-    public Spieler(int x, int y, int width, int height, String filePath, DrawingPanel dp){
+    public Spieler(int x, int y, int width, int height, String filePath, DrawingPanel dp, Shop shop){
         super(x,y,width,height,filePath);
+
+        shop.setPlayer(this);
+        this.shop = shop;
 
         geld = 50000;
         this.dp = dp;
@@ -70,6 +75,11 @@ public class Spieler extends GameObject implements InputManager {
     @Override
     public void render(DrawingPanel dp, Graphics g) {
     }
+
+    public void setClicked(boolean clicked) {
+        this.clicked = clicked;
+    }
+
 
     //
     //INPUT MANAGER
@@ -109,13 +119,7 @@ public class Spieler extends GameObject implements InputManager {
                     if(block.isPlaceable()){
                         //Plaziere
                         System.out.println("Block berührt!");
-                        JFrame shop = new JFrame();
-                        shop.setLayout(null);
-                        shop.setAlwaysOnTop(true);
-                        shop.setSize(500,200);
-                        //shop.add(UIDesigner.addButtonWithImageWithStandardDesign("assets/images/level.png", dp,new Point(0,0), new Point(50, 50), null));
-                        shop.setVisible(true);
-
+                        shop.activateShop(block);
                     }
                 }
             }

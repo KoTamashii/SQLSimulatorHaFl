@@ -36,4 +36,8 @@ public class Block extends GameObject {
     public boolean isPlaceable() {
         return isPlaceable;
     }
+
+    public void setPlaceable(boolean placeable) {
+        isPlaceable = placeable;
+    }
 }

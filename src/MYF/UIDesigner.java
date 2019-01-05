@@ -31,6 +31,21 @@ public class UIDesigner {
         return jButton;
     }
 
+    public static JButton addButtonWithImageWithStandardDesign(String filePath,
+                                                               Point location, Point size, String text){
+        JButton jButton = new JButton(new ImageIcon(filePath));
+
+        //Setting up the JButton
+        jButton.setVisible(true);
+        jButton.setBounds(location.x, location.y, size.x, size.y);
+        jButton.setText(text);
+        jButton.setBorderPainted(false);
+        jButton.setContentAreaFilled(false);
+        jButton.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+
+        return jButton;
+    }
+
     public static JButton addButtonWithImageWithCustomDesign(String filePath, DrawingPanel activePanel,
                                                              Point location, String text){
         JButton jButton = new JButton(new ImageIcon(filePath));
