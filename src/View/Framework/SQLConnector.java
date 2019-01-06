@@ -96,7 +96,7 @@ public class SQLConnector {
             }
             try {
                 stmt.execute("CREATE TABLE HaFl_Finanzamt (" +
-                        "fID int NOT NULL,"+
+                        "fID int NOT NULL AUTO_INCREMENT,"+
                         "EinnahmenWohn int NOT NULL," +
                         "EinnahmenGewerbe int NOT NULL," +
                         "EinnahmenIndustrie int NOT NULL," +
@@ -148,7 +148,7 @@ public class SQLConnector {
             }
             try {
                 stmt.execute("CREATE TABLE HaFl_Arbeitsamt (" +
-                        "aID int NOT NULL,"+
+                        "aID int NOT NULL AUTO_INCREMENT,"+
                         "Arbeiter int NOT NULL," +
                         "ArbeiterGewerbe int NOT NULL," +
                         "ArbeiterIndustrie int NOT NULL," +

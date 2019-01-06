@@ -28,13 +28,19 @@ public class Industriegebiet extends GameObject {
         }catch (SQLException e) {
             e.printStackTrace();
         }
-
         arbeitsplatz = 60;
 
         try {
             stmt.execute("INSERT INTO HaFl_Spieler (Geld)" +
-                    "Values(-1000)" +
-                    ";");
+                    "Values(-1000)");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            stmt.execute("INSERT INTO HaFl_Industriegebiet (posX, posY, Arbeitsplatz)" +
+                    "VALUES ("+x+", "+y+", "+arbeitsplatz+");");
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -43,32 +49,11 @@ public class Industriegebiet extends GameObject {
 
     @Override
     public void update(ArrayList<GameObject> object) {
-        try {
-            stmt.execute("INSERT INTO HaFl_Industriegebiet (posX, posY, Arbeitsplatz)" +
-                    "VALUES (x, y, arbeitsplatz);");
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
     public void render(DrawingPanel dp, Graphics g) {
         Graphics2D g2d = (Graphics2D)g;
         g2d.drawImage(image,x,y,width,height,null);
-    }
-
-    public void erstelleIndustriegebiet(){
-        try {
-            stmt.execute("INSERT INTO HaFl_Industriegebiet" +
-                    "Values(x,y,Arbeitsplatz)" +
-                    ";");
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public int getArbeitsplatz() {
-        return arbeitsplatz;
     }
 }

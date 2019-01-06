@@ -15,16 +15,21 @@ public class Arbeitsamt extends GameObject {
     //Referenzen
     private Connection con;
     private Statement stmt;
+    private Zeit zeit;
 
     public Arbeitsamt(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
-
-
-
         try {
             // Erstelle eine Verbindung zu unserer SQL-Datenbank
             con = DriverManager.getConnection("jdbc:mysql://mysql.webhosting24.1blu.de/db85565x2810214?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "s85565_2810214", "kkgbeste");
             stmt = con.createStatement();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            stmt.execute("INSERT INTO HaFl_Arbeitsamt (Arbeiter, ArbeiterGewerbe, ArbeiterIndustrie, Arbeitslose)" +
+                    "VALUES (arbeiter, arbeiterGewerbe, arbeiterIndustrie ;");
         }catch (SQLException e) {
             e.printStackTrace();
         }
@@ -34,12 +39,8 @@ public class Arbeitsamt extends GameObject {
     public void update(ArrayList<GameObject> object) {
         berechneArbeitsplaetze();
         berechneArbeiter();
-
-        try {
-            stmt.execute("INSERT INTO HaFl_Arbeitsamt (aID, Arbeiter, ArbeiterGewerbe, ArbeiterIndustrie, Arbeitslose)" +
-                    "VALUES (1, arbeiter, arbeiterGewerbe, arbeiterIndustrie ;");
-        }catch (SQLException e) {
-            e.printStackTrace();
+        if (zeit.isDayOver()){
+            weiseArbeiterZu();
         }
     }
 
@@ -49,25 +50,12 @@ public class Arbeitsamt extends GameObject {
         g2d.drawImage(image,x,y,width,height,null);
     }
 
-    public void erstelleArbeitsamt(){
-        try {
-            stmt.execute("INSERT INTO HaFl_Arbeitsamt" +
-                    "Values(aID, Arbeiter, ArbeiterGewerbe, ArbeiterIndustrie, Arbeitslose)" +
-                    ";");
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
-
 
     public void berechneArbeitsplaetze(){
         try {
             ResultSet result = stmt.executeQuery("SELECT arbeitsplatz FROM HaFl_Gewerbegebiet;");
-                    arbeitsPlaetzeGewerbe = result.getInt(1);
+            arbeitsPlaetzeGewerbe = result.getInt(1);
+            System.out.println("arbeitsPlaetzeGewerbe" + arbeitsPlaetzeGewerbe);
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -76,6 +64,7 @@ public class Arbeitsamt extends GameObject {
         try {
             ResultSet result = stmt.executeQuery("SELECT arbeitsplatz FROM HaFl_Industriegebiet;");
             arbeitsPlaetzeIndustrie = result.getInt(1);
+            System.out.println("arbeitsPlaetzeIndustrie"+arbeitsPlaetzeIndustrie);
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -86,6 +75,7 @@ public class Arbeitsamt extends GameObject {
         try {
             ResultSet result = stmt.executeQuery("SELECT population FROM HaFl_Wohngebiet;");
             arbeiter = result.getInt(1);
+            System.out.println("arbeiter"+arbeiter);
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -100,5 +90,14 @@ public class Arbeitsamt extends GameObject {
         arbeiter = arbeiter - (arbeiterGewerbe+ arbeiterIndustrie);
         arbeiterGewerbe += arbeiter / 100 * x;
         arbeiterIndustrie += arbeiter / 100 * y;
+        try{
+            stmt.execute("UPDATE HaFl_Arbeitsamt " +
+                    "SET ArbeiterGewerbe = "+arbeiterGewerbe+";");
+            stmt.execute("UPDATE HaFl_Arbeitsamt " +
+                    "SET ArbeiterIndustrie = "+arbeiterIndustrie+";");
+        }
+        catch (SQLException e) {
+        e.printStackTrace();
+    }
     }
 }

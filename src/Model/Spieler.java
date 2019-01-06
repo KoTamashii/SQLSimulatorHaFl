@@ -53,22 +53,21 @@ public class Spieler extends GameObject implements InputManager {
         shop.setPlayer(this);
         this.shop = shop;
         this.dp = dp;
-
     }
 
     @Override
     public void update(ArrayList<GameObject> object) {
-
         try {
-            ResultSet result = stmt.executeQuery("SELECT Population FROM HaFl_Wohngebiet;");
-           while (result.next()) {
-               gPopulation = result.getInt(1);
-           }
+               ResultSet rsGeld = stmt.executeQuery("SELECT Geld FROM HaFl_Spieler;");
+               geld = rsGeld.getInt(1);
+               ResultSet rsPopulation = stmt.executeQuery("SELECT Population FROM HaFl_Wohngebiet;");
+               gPopulation = rsPopulation.getInt(1);
+               ResultSet rsZufriedenheit = stmt.executeQuery("SELECT Zufriedenheit FROM HaFl_Spieler;");
+               zufriedenheit = rsZufriedenheit.getInt(1);
         }
         catch (SQLException popu) {
             popu.printStackTrace();
         }
-
         gameObjects = object;
     }
 
