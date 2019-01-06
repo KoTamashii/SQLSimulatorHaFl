@@ -1,6 +1,8 @@
 package Model;
 
+import MYF.Animation;
 import MYF.GameObject;
+import MYF.ImageLoader;
 import View.Framework.DrawingPanel;
 
 import java.awt.*;
@@ -20,10 +22,12 @@ public class Bank extends GameObject {
     private Connection con;
     private Statement stmt;
     private Zeit zeit;
+    private Animation idle;
 
 
     public Bank(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
+
         try {
             // Erstelle eine Verbindung zu unserer SQL-Datenbank
             con = DriverManager.getConnection("jdbc:mysql://mysql.webhosting24.1blu.de/db85565x2810214?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "s85565_2810214", "kkgbeste");
@@ -39,6 +43,9 @@ public class Bank extends GameObject {
         }catch (SQLException e) {
             e.printStackTrace();
         }
+
+        idle = new Animation(3f, image, ImageLoader.loadImage("assets/images/Bank/Bank2.png"));
+        idle.runAnimation();
     }
 
     @Override
@@ -52,8 +59,7 @@ public class Bank extends GameObject {
 
     @Override
     public void render(DrawingPanel dp, Graphics g) {
-        Graphics2D g2d = (Graphics2D)g;
-        g2d.drawImage(image,x,y,width,height,null);
+        idle.renderAnimation(g, x, y);
     }
 
     public void erstelleBank(){
