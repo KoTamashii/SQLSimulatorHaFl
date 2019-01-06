@@ -33,6 +33,7 @@ public class Bank extends GameObject {
             e.printStackTrace();
         }
         zinsen = 0.05;
+        kapital = 0;
 
          try {
             stmt.execute("INSERT INTO HaFl_Bank (posX, posY, Kapital, Zinsen)" +
@@ -48,11 +49,11 @@ public class Bank extends GameObject {
 
     @Override
     public void update(ArrayList<GameObject> object) {
-
-
-       // if (zeit.isDayOver()) {
-        //        kapital += kapital * zinsen;
-        //}
+        if (zeit.isDayOver()) {
+             if (kapital >0) {
+                 kapital += kapital * zinsen;
+             }
+        }
     }
 
     @Override
@@ -61,33 +62,29 @@ public class Bank extends GameObject {
         idle.renderAnimation(g, x, y);
     }
 
-    public void erstelleBank(){
+    public void geldEinzahlen(int abzugVonGeld){
         try {
-            stmt.execute("INSERT INTO HaFl_Bank " +
-                    "Values(x,y,Kapital,Zinsen)" +
-                    ";");
+            ResultSet rsGeld = stmt.executeQuery("SELECT Geld FROM HaFl_Spieler;");
+            int geld = rsGeld.getInt(1)-abzugVonGeld;
+            stmt.execute("UPDATE HaFl_Spieler "+
+                    "SET Geld = "+geld+";");
+            kapital += abzugVonGeld;
+            stmt.execute("UPDATE HaFl_Bank"+
+                    "SET Kapital = "+kapital+";");
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
-    public void geldEinzahlen(int abzug){
-
+    public void geldAuszahlen(int abzugVonKapital){
         try {
-            stmt.execute("INSERT INTO HaFl_Spieler (Geld) " +
-                    "Values(-abzug)" +
-                    ";");
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-    public void geldAuszahlen(){
-        try {
-            stmt.execute("INSERT INTO HaFl_Spieler (Geld) " +
-                    "Values(+kapital)" +
-                    ";");
+            ResultSet rsGeld = stmt.executeQuery("SELECT Geld FROM HaFl_Spieler;");
+            int geld = rsGeld.getInt(1)+abzugVonKapital;
+            stmt.execute("UPDATE HaFl_Spieler "+
+                    "SET Geld = "+geld+";");
+            kapital -= abzugVonKapital;
+            stmt.execute("UPDATE HaFl_Bank"+
+                    "SET Kapital = "+kapital+";");
         }
         catch (SQLException e) {
             e.printStackTrace();
