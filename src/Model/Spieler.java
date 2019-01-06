@@ -59,7 +59,8 @@ public class Spieler extends GameObject implements InputManager {
     @Override
     public void update(ArrayList<GameObject> object) {
         try{
-            ResultSet neueRelation = stmt.executeQuery("SELECT SUM(Geld), SUM(Zufriedenheit), SUM(gPopulation) FROM HaFl_Spieler;");
+            ResultSet neueRelation = stmt.executeQuery("SELECT SUM(Geld), SUM(Zufriedenheit), SUM(gPopulation))"+
+                    "FROM HaFl_Spieler;");
         }catch (SQLException a) {
             a.printStackTrace();
         }

@@ -26,7 +26,7 @@ public class Shop {
         shop.setAlwaysOnTop(true);
         shop.setSize(500,200);
         //Initialize all buttons
-        JButton bankButton = UIDesigner.addButtonWithImageWithStandardDesign("assets/images/Bank.png",new Point(0,0), new Point(50, 50), null);
+        JButton bankButton = UIDesigner.addButtonWithImageWithStandardDesign("assets/images/Bank/Bank1.png",new Point(0,0), new Point(50, 50), null);
         bankButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -53,7 +53,7 @@ public class Shop {
                                 d.printStackTrace();
                             }
                             actualBlock.setPlaceable(false);
-                            drawFrame.getActiveDrawingPanel().addObject(new Bank((int) actualBlock.getX(), (int) actualBlock.getY(), 32, 32, "assets/images/Bank.png"));
+                            drawFrame.getActiveDrawingPanel().addObject(new Bank((int) actualBlock.getX(), (int) actualBlock.getY(), 32, 32, "assets/images/Bank/Bank1.png"));
                             spieler.setClicked(false);
                             shop.setVisible(false);
                         } else {
