@@ -63,7 +63,6 @@ public class GameManager implements DrawableObject{
 
     @Override
     public void update(double dt) {
-
     }
 
     @Override

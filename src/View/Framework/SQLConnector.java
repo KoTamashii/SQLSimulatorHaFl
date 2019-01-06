@@ -27,15 +27,15 @@ public class SQLConnector {
             }
             try {
                 stmt.execute("CREATE TABLE HaFl_Spieler (" +
-                        "sID int NOT NULL,"+
-                        "Geld int NOT NULL," +
-                        "Zufriedenheit int NOT NULL," +
-                        "gPopulation int NOT NULL," +
+                        "sID int NOT NULL AUTO_INCREMENT,"+
+                        "Geld int ," +
+                        "Zufriedenheit int ," +
+                        "gPopulation int ," +
                         "PRIMARY KEY (sID)" +
                         ");");
                 System.out.println("Spieler wurde erstellt");
             } catch (Exception e){
-                System.out.println("Keine neue Tabelle angelegt.");
+                System.out.println("Keine neue SpielerTabelle angelegt.");
             }
            //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             try {
@@ -52,7 +52,7 @@ public class SQLConnector {
                         ");");
                 System.out.println("Wohngebiet wurde erstellt");
             } catch (Exception e){
-                System.out.println("Keine neue Tabelle angelegt.");
+                System.out.println("Keine neue WohngebietTabelle angelegt.");
             }
             //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             try {
@@ -69,7 +69,7 @@ public class SQLConnector {
                         ");");
                 System.out.println("Gewerbegebiet wurde erstellt");
             } catch (Exception e){
-                System.out.println("Keine neue Tabelle angelegt.");
+                System.out.println("Keine neue GewerbegebietTabelle angelegt.");
             }
             //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             try {
@@ -86,7 +86,7 @@ public class SQLConnector {
                         ");");
                 System.out.println("Industriegebiet wurde erstellt");
             } catch (Exception e){
-                System.out.println("Keine neue Tabelle angelegt.");
+                System.out.println("Keine neue IndustriegebietTabelle angelegt.");
             }
             //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             try {
@@ -104,7 +104,7 @@ public class SQLConnector {
                         ");");
                 System.out.println("Finanzamt wurde erstellt");
             } catch (Exception e){
-                System.out.println("Keine neue Tabelle angelegt.");
+                System.out.println("Keine neue FinanzamtTabelle angelegt.");
             }
             //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             try {
@@ -122,7 +122,7 @@ public class SQLConnector {
                         ");");
                 System.out.println("Bank wurde erstellt");
             } catch (Exception e){
-                System.out.println("Keine neue Tabelle angelegt.");
+                System.out.println("Keine neue BankTabelle angelegt.");
             }
             //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             try {
@@ -138,7 +138,7 @@ public class SQLConnector {
                         ");");
                 System.out.println("Freizeit wurde erstellt");
             } catch (Exception e){
-                System.out.println("Keine neue Tabelle angelegt.");
+                System.out.println("Keine neue FreizeitTabelle angelegt.");
             }
             //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             try {
@@ -157,7 +157,7 @@ public class SQLConnector {
                         ");");
                 System.out.println("Arbeitsamt wurde erstellt");
             } catch (Exception e){
-                System.out.println("Keine neue Tabelle angelegt.");
+                System.out.println("Keine neue ArbeitsamtTabelle angelegt.");
             }
             //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

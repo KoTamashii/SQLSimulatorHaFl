@@ -41,7 +41,6 @@ public class Spieler extends GameObject implements InputManager {
             stmt = con.createStatement();
         }catch (SQLException e) {
             e.printStackTrace();
-
         }
         zufriedenheit = 10;
         geld = 50000;
@@ -79,7 +78,7 @@ public class Spieler extends GameObject implements InputManager {
     }
 
     public void setClicked(boolean clicked) {
-        this.clicked = clicked;
+        this.clicked = false;
     }
 
 
@@ -119,7 +118,7 @@ public class Spieler extends GameObject implements InputManager {
                 if(tempGO.getCompleteBounds().intersects(rect) && tempGO instanceof Block ){
                     Block block = (Block)tempGO;
                     if(block.isPlaceable()){
-                        //Plaziere
+                        //Platziere
                         System.out.println("Block berührt!");
                         shop.activateShop(block);
                     }

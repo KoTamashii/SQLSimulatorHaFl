@@ -55,8 +55,12 @@ public class Level {
 
 
                 if(red == 0 && green == 255 && blue == 0){
-                    dp.addObject(new Block((xx*32), (yy*32), 32,32, "assets/images/GrassBackground.png", false));
+                            dp.addObject(new Block((xx * 32), (yy * 32), 32, 32, "assets/images/GrassBackground.png", false));
                 }
+                if (red != 0 && green != 0 && blue != 255) {
+                        dp.addObject(new Block((xx * 32), (yy * 32), 32, 32, "assets/images/GrassBackground.png", false));
+
+                    }
 
                 /*
                 if(red == 100 && green == 100 && blue == 100){

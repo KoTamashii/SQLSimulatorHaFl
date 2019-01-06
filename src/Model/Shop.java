@@ -11,6 +11,8 @@ import java.sql.*;
 
 public class Shop {
 
+    private Connection con;
+    private Statement stmt;
     private JFrame shop;
     private Block actualBlock;
     private DrawFrame drawFrame;
@@ -30,29 +32,37 @@ public class Shop {
             public void actionPerformed(ActionEvent e) {
                 try {
                     // Erstelle eine Verbindung zu unserer SQL-Datenbank
+                    con = DriverManager.getConnection("jdbc:mysql://mysql.webhosting24.1blu.de/db85565x2810214?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "s85565_2810214", "kkgbeste");
+                    stmt = con.createStatement();
+                }catch (SQLException a) {
+                    a.printStackTrace();
+                }
 
-                    Connection con = DriverManager.getConnection("jdbc:mysql://mysql.webhosting24.1blu.de/db85565x2810214?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "s85565_2810214", "kkgbeste");
-                    Statement stmt = con.createStatement();
-
+                try {
                     stmt.executeQuery("SELECT Geld " +
                             "FROM HaFl_Spieler;");
 
                     ResultSet rs = stmt.getResultSet();
-                    if(rs.getInt(1) >= 200){
-                        int geld = rs.getInt(1) - 200;
-                        stmt.execute("INSERT INTO HaFl_Spieler (Geld)" +
-                                "VALUES ("+ geld + ");");
-                        actualBlock.setPlaceable(false);
-
-                        drawFrame.getActiveDrawingPanel().addObject(new Bank((int)actualBlock.getX(), (int)actualBlock.getY(), 32, 32, "assets/images/Bank.png"));
-                        spieler.setClicked(false);
-                        shop.setVisible(false);
-                    } else{
-                        System.out.println("Du hat nicht genug Geld. Dein Geld beträgt: " + rs.getInt(1));
-                    }
-                }catch (SQLException exception) {
-                    exception.printStackTrace();
+                    if (rs.next()){
+                        if (rs.getInt(1) >= 200) {
+                            int geld = rs.getInt(1) - 200;
+                            try {
+                                stmt.execute("INSERT INTO HaFl_Spieler (Geld)" +
+                                        "VALUES (" + geld + ");");
+                            } catch (SQLException d) {
+                                d.printStackTrace();
+                            }
+                            actualBlock.setPlaceable(false);
+                            drawFrame.getActiveDrawingPanel().addObject(new Bank((int) actualBlock.getX(), (int) actualBlock.getY(), 32, 32, "assets/images/Bank.png"));
+                            spieler.setClicked(false);
+                            shop.setVisible(false);
+                        } else {
+                            System.out.println("Du hat nicht genug Geld. Dein Geld beträgt: " + rs.getInt(1));
+                        }
                 }
+            }catch (SQLException b) {
+                b.printStackTrace();
+            }
             }
         });
         shop.add(bankButton);

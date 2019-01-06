@@ -34,27 +34,20 @@ public class Bank extends GameObject {
         zinsen = 0.05;
 
         try {
-            stmt.execute("INSERT INTO HaFl_Spieler (Geld)" +
-                    "Values(-100000)" +
-                    ";");
-        }
-        catch (SQLException e) {
+            stmt.execute("INSERT INTO HaFl_Bank (posX, posY, Kapital, Zinsen)" +
+                    "VALUES ("+x+", "+y+", "+kapital+", "+zinsen+");");
+        }catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     @Override
     public void update(ArrayList<GameObject> object) {
-        try {
-            stmt.execute("INSERT INTO HaFl_Bank (posX, posY, Kapital, Zinsen)" +
-                    "VALUES (x, y, kapital, zinsen);");
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
 
-        if (zeit.isDayOver()) {
-            kapital += kapital*zinsen;
-        }
+
+       // if (zeit.isDayOver()) {
+        //        kapital += kapital * zinsen;
+        //}
     }
 
     @Override
