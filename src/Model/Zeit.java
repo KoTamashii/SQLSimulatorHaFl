@@ -8,7 +8,7 @@ public class Zeit{
     private boolean dayOver;
 
     public Zeit(){
-
+        System.out.println("Zeit Läuft");
         Timer timeClocker = new Timer();
         timeClocker.scheduleAtFixedRate(new TimerTask() {
             @Override

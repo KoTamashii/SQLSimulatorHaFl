@@ -6,6 +6,7 @@ import MYF.UIDesigner;
 import Model.Background;
 import Model.Shop;
 import Model.Spieler;
+import Model.Zeit;
 import View.Framework.DrawFrame;
 import View.Framework.DrawTool;
 import View.Framework.DrawableObject;
@@ -48,7 +49,7 @@ public class GameManager implements DrawableObject{
                 new Level(level, df.getActiveDrawingPanel(), df);
 
                 Shop shop = new Shop(df);
-
+                Zeit zeit = new Zeit();
                 df.getActiveDrawingPanel().addObject(new Spieler(0,0,0,0,null, df.getActiveDrawingPanel(), shop));
             }
         });

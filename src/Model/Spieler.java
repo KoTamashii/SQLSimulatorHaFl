@@ -19,10 +19,10 @@ public class Spieler extends GameObject implements InputManager {
 
     //Attribute
     private int geld;
-
     private boolean clicked = false;
     private int gPopulation;
     private int zufriedenheit;
+    private int sID;
 
     private DrawingPanel dp;
 
@@ -35,35 +35,37 @@ public class Spieler extends GameObject implements InputManager {
 
     public Spieler(int x, int y, int width, int height, String filePath, DrawingPanel dp, Shop shop){
         super(x,y,width,height,filePath);
-
-        shop.setPlayer(this);
-        this.shop = shop;
-
-        geld = 50000;
-        this.dp = dp;
-
         try {
             // Erstelle eine Verbindung zu unserer SQL-Datenbank
             con = DriverManager.getConnection("jdbc:mysql://mysql.webhosting24.1blu.de/db85565x2810214?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "s85565_2810214", "kkgbeste");
             stmt = con.createStatement();
         }catch (SQLException e) {
             e.printStackTrace();
+
         }
+        zufriedenheit = 10;
+        geld = 50000;
+        gPopulation= 2;
+        sID = 1;
+        try {
+            stmt.execute("INSERT INTO HaFl_Spieler (sID, Geld, Zufriedenheit, gPopulation)" +
+                    "VALUES ("+getsID()+","+getGeld()+","+getZufriedenheit()+","+getgPopulation()+");");
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        shop.setPlayer(this);
+        this.shop = shop;
+        this.dp = dp;
+
     }
 
     @Override
     public void update(ArrayList<GameObject> object) {
-
-        try {
-            stmt.execute("INSERT INTO HaFl_Spieler (sID, Geld, Zufriedenheit, gPopulation)" +
-                    "VALUES (1, geld, zufriedenheit, gPopulation);");
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
-
         try {
             ResultSet result = stmt.executeQuery("SELECT Population FROM HaFl_Wohngebiet;");
-            gPopulation = result.getInt(1);
+           while (result.next()) {
+               gPopulation = result.getInt(1);
+           }
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -154,5 +156,21 @@ public class Spieler extends GameObject implements InputManager {
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
 
+    }
+
+    public int getGeld() {
+        return geld;
+    }
+
+    public int getZufriedenheit() {
+        return zufriedenheit;
+    }
+
+    public int getgPopulation() {
+        return gPopulation;
+    }
+
+    public int getsID() {
+        return sID;
     }
 }

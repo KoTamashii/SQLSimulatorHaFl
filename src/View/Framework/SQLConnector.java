@@ -37,7 +37,7 @@ public class SQLConnector {
             } catch (Exception e){
                 System.out.println("Keine neue Tabelle angelegt.");
             }
-            //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+           //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             try {
                 stmt.execute("DROP TABLE HaFl_Wohngebiet;");
             } catch (Exception e){
