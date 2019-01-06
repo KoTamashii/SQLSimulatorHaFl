@@ -47,8 +47,9 @@ public class Shop {
                         if (rs.getInt(1) >= 200) {
                             int geld = rs.getInt(1) - 200;
                             try {
-                                stmt.execute("INSERT INTO HaFl_Spieler (Geld)" +
-                                        "VALUES (" + geld + ");");
+                                stmt.execute("UPDATE HaFl_Spieler " +
+                                        "SET Geld = "+geld+";");
+
                             } catch (SQLException d) {
                                 d.printStackTrace();
                             }
