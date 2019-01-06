@@ -5,6 +5,8 @@ public class Zeit{
     private boolean dayOver;
 
     public Zeit(){
+        dayOver = false;
+
         System.out.println("Zeit Läuft");
         new java.util.Timer().schedule(
             new java.util.TimerTask() {
