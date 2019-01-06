@@ -7,15 +7,20 @@ public class Zeit{
     public Zeit(){
         dayOver = false;
 
+        startDayTimer();
+
+    }
+
+    private void startDayTimer(){
         System.out.println("Zeit Läuft");
         new java.util.Timer().schedule(
-            new java.util.TimerTask() {
-            @Override
-            public void run() {
-                dayOver = true;
-            }
-        }, 10*1000);
-
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        dayOver = !dayOver;
+                        startDayTimer();
+                    }
+                }, 10*1000);
     }
 
 
