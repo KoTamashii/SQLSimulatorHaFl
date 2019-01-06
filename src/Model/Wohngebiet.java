@@ -57,6 +57,8 @@ public class Wohngebiet extends GameObject {
 
     @Override
     public void render(DrawingPanel dp, Graphics g) {
+        Graphics2D g2d = (Graphics2D)g;
+        g2d.drawImage(image,x,y,width,height,null);
     }
 
     public void erstellWohngebiet(){
