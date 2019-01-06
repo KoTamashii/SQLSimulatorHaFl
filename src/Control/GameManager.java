@@ -47,9 +47,9 @@ public class GameManager implements DrawableObject{
                 df.getActiveDrawingPanel().remove(playButton);
 
                 new Level(level, df.getActiveDrawingPanel(), df);
-
-                Shop shop = new Shop(df);
                 Zeit zeit = new Zeit();
+                Shop shop = new Shop(df, zeit);
+
                 df.getActiveDrawingPanel().addObject(new Spieler(0,0,0,0,null, df.getActiveDrawingPanel(), shop));
             }
         });

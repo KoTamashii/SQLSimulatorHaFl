@@ -21,9 +21,8 @@ public class Shop {
     private DrawFrame drawFrame;
     private Spieler spieler;
 
-    public Shop(DrawFrame drawFrame){
+    public Shop(DrawFrame drawFrame, Zeit zeit){
         this.drawFrame = drawFrame;
-
         shop = new JFrame();
         shop.setLayout(null);
         shop.setAlwaysOnTop(true);
@@ -60,7 +59,7 @@ public class Shop {
                                     d.printStackTrace();
                                 }
                                 actualBlock.setPlaceable(false);
-                                drawFrame.getActiveDrawingPanel().addObject(new Bank((int) actualBlock.getX(), (int) actualBlock.getY(), 32, 32, "assets/images/Bank/Bank1.png"));
+                                drawFrame.getActiveDrawingPanel().addObject(new Bank((int) actualBlock.getX(), (int) actualBlock.getY(), 32, 32, "assets/images/Bank/Bank1.png", zeit));
                                 spieler.setClicked(false);
                                 shop.setVisible(false);
                                 bankCount++;
@@ -110,7 +109,7 @@ public class Shop {
                                     d.printStackTrace();
                                 }
                                 actualBlock.setPlaceable(false);
-                                drawFrame.getActiveDrawingPanel().addObject(new Bank((int) actualBlock.getX(), (int) actualBlock.getY(), 32, 32, "assets/images/Bank/Bank1.png"));
+                                drawFrame.getActiveDrawingPanel().addObject(new Bank((int) actualBlock.getX(), (int) actualBlock.getY(), 32, 32, "assets/images/Bank/Bank1.png", zeit));
                                 spieler.setClicked(false);
                                 shop.setVisible(false);
                                 bankCount++;
