@@ -11,6 +11,9 @@ import java.sql.*;
 
 public class Shop {
 
+    //Attribute
+    private int bankCount = 0;
+
     private Connection con;
     private Statement stmt;
     private JFrame shop;
@@ -30,40 +33,48 @@ public class Shop {
         bankButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    // Erstelle eine Verbindung zu unserer SQL-Datenbank
-                    con = DriverManager.getConnection("jdbc:mysql://mysql.webhosting24.1blu.de/db85565x2810214?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "s85565_2810214", "kkgbeste");
-                    stmt = con.createStatement();
-                }catch (SQLException a) {
-                    a.printStackTrace();
-                }
+                if(bankCount == 0) {
 
-                try {
-                    stmt.executeQuery("SELECT Geld " +
-                            "FROM HaFl_Spieler;");
+                    try {
+                        // Erstelle eine Verbindung zu unserer SQL-Datenbank
+                        con = DriverManager.getConnection("jdbc:mysql://mysql.webhosting24.1blu.de/db85565x2810214?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "s85565_2810214", "kkgbeste");
+                        stmt = con.createStatement();
+                    } catch (SQLException a) {
+                        a.printStackTrace();
+                    }
 
-                    ResultSet rs = stmt.getResultSet();
-                    if (rs.next()){
-                        if (rs.getInt(1) >= 200) {
-                            int geld = rs.getInt(1) - 200;
-                            try {
-                                stmt.execute("UPDATE HaFl_Spieler " +
-                                        "SET Geld = "+geld+";");
+                    try {
+                        stmt.executeQuery("SELECT Geld " +
+                                "FROM HaFl_Spieler;");
 
-                            } catch (SQLException d) {
-                                d.printStackTrace();
+                        ResultSet rs = stmt.getResultSet();
+                        if (rs.next()) {
+                            if (rs.getInt(1) >= 200) {
+                                int geld = rs.getInt(1) - 200;
+                                try {
+                                    stmt.execute("UPDATE HaFl_Spieler " +
+                                            "SET Geld = " + geld + ";");
+
+                                } catch (SQLException d) {
+                                    d.printStackTrace();
+                                }
+                                actualBlock.setPlaceable(false);
+                                drawFrame.getActiveDrawingPanel().addObject(new Bank((int) actualBlock.getX(), (int) actualBlock.getY(), 32, 32, "assets/images/Bank/Bank1.png"));
+                                spieler.setClicked(false);
+                                shop.setVisible(false);
+                                bankCount++;
+                            } else {
+                                System.out.println("Du hat nicht genug Geld. Dein Geld beträgt: " + rs.getInt(1));
                             }
-                            actualBlock.setPlaceable(false);
-                            drawFrame.getActiveDrawingPanel().addObject(new Bank((int) actualBlock.getX(), (int) actualBlock.getY(), 32, 32, "assets/images/Bank/Bank1.png"));
-                            spieler.setClicked(false);
-                            shop.setVisible(false);
-                        } else {
-                            System.out.println("Du hat nicht genug Geld. Dein Geld beträgt: " + rs.getInt(1));
                         }
+                    } catch (SQLException b) {
+                        b.printStackTrace();
+                    }
+                }else {
+                    System.out.println("Sie haben bereits die maximale Anzahl an Banken erreicht(1)");
+                    spieler.setClicked(false);
+                    shop.setVisible(false);
                 }
-            }catch (SQLException b) {
-                b.printStackTrace();
-            }
             }
         });
         shop.add(bankButton);
