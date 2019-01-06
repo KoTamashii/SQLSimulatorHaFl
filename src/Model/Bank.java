@@ -42,13 +42,6 @@ public class Bank extends GameObject {
             e.printStackTrace();
         }
 
-        try {
-            stmt.executeQuery("SELECT posX, posY, Kapital, Zinsen FROM HaFl_Bank;");
-            System.out.println(stmt.getResultSet().getInt(1)+stmt.getResultSet().getInt(2));
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
-
         idle = new Animation(3f, image, ImageLoader.loadImage("assets/images/Bank/Bank2.png"),
                 ImageLoader.loadImage("assets/images/Bank/Bank3.png"));
     }

@@ -39,6 +39,12 @@ public class Arbeitsamt extends GameObject {
     public void update(ArrayList<GameObject> object) {
         berechneArbeitsplaetze();
         berechneArbeiter();
+        try{
+            stmt.execute("UPDATE HaFl_Arbeitsamt " +
+                    "SET Arbeiter = "+arbeiter+";");
+        }catch (SQLException e) {
+        e.printStackTrace();
+    }
         if (zeit.isDayOver()){
             weiseArbeiterZu();
         }
@@ -56,8 +62,7 @@ public class Arbeitsamt extends GameObject {
             ResultSet result = stmt.executeQuery("SELECT arbeitsplatz FROM HaFl_Gewerbegebiet;");
             arbeitsPlaetzeGewerbe = result.getInt(1);
             System.out.println("arbeitsPlaetzeGewerbe" + arbeitsPlaetzeGewerbe);
-        }
-        catch (SQLException e) {
+        }catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -85,11 +90,12 @@ public class Arbeitsamt extends GameObject {
     public void weiseArbeiterZu(){
         int x;
         int y;
+        int arbeiterX;
         x = (int)Math.random()*100+1;
         y = 100-x;
-        arbeiter = arbeiter - (arbeiterGewerbe+ arbeiterIndustrie);
-        arbeiterGewerbe += arbeiter / 100 * x;
-        arbeiterIndustrie += arbeiter / 100 * y;
+        arbeiterX = arbeiter - (arbeiterGewerbe+ arbeiterIndustrie);
+        arbeiterGewerbe += arbeiterX / 100 * x;
+        arbeiterIndustrie += arbeiterX / 100 * y;
         try{
             stmt.execute("UPDATE HaFl_Arbeitsamt " +
                     "SET ArbeiterGewerbe = "+arbeiterGewerbe+";");

@@ -59,11 +59,17 @@ public class Spieler extends GameObject implements InputManager {
     public void update(ArrayList<GameObject> object) {
         try {
                ResultSet rsGeld = stmt.executeQuery("SELECT Geld FROM HaFl_Spieler;");
-               geld = rsGeld.getInt(1);
+               while(rsGeld.next()) {
+                   geld = rsGeld.getInt(1);
+               }
                ResultSet rsPopulation = stmt.executeQuery("SELECT Population FROM HaFl_Wohngebiet;");
-               gPopulation = rsPopulation.getInt(1);
+               while(rsPopulation.next()) {
+                   gPopulation = rsPopulation.getInt(1);
+               }
                ResultSet rsZufriedenheit = stmt.executeQuery("SELECT Zufriedenheit FROM HaFl_Spieler;");
-               zufriedenheit = rsZufriedenheit.getInt(1);
+               while(rsZufriedenheit.next()) {
+                   zufriedenheit = rsZufriedenheit.getInt(1);
+               }
         }
         catch (SQLException popu) {
             popu.printStackTrace();
