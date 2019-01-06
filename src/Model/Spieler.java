@@ -2,11 +2,8 @@ package Model;
 
 import MYF.GameObject;
 import MYF.InputManager;
-import MYF.UIDesigner;
 import View.Framework.DrawingPanel;
-import com.sun.org.apache.bcel.internal.generic.Select;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -15,7 +12,6 @@ import java.awt.geom.Rectangle2D;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Timer;
 
 public class Spieler extends GameObject implements InputManager {
 
@@ -63,8 +59,7 @@ public class Spieler extends GameObject implements InputManager {
     @Override
     public void update(ArrayList<GameObject> object) {
         try{
-            ResultSet neueRelation = stmt.executeQuery("SELECT SUM(Geld), SUM(Zufriedenheit), SUM(gPopulation))"+
-                    "FROM HaFl_Spieler");
+            ResultSet neueRelation = stmt.executeQuery("SELECT SUM(Geld), SUM(Zufriedenheit), SUM(gPopulation) FROM HaFl_Spieler;");
         }catch (SQLException a) {
             a.printStackTrace();
         }

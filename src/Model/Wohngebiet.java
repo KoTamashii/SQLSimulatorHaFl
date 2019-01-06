@@ -4,10 +4,7 @@ import MYF.GameObject;
 import View.Framework.DrawingPanel;
 
 import java.awt.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class Wohngebiet extends GameObject {
@@ -43,14 +40,22 @@ public class Wohngebiet extends GameObject {
     @Override
     public void update(ArrayList<GameObject> object) {
         if (zeit.isDayOver()) {
-
-            if (population < 51) {
-                if (zeit.isDayOver()) {
-                    int kinderMachen = (int) Math.random() * 100 + (population / 2);
-                    if (kinderMachen < 70) {
-                        population += 1;
-                    }
+            try {
+                ResultSet rs = stmt.executeQuery("SELECT Population FROM HaFl_Wohngebiet;");
+                while (rs.next()) {
+                    population = rs.getInt(1);
                 }
+            }
+            catch (SQLException popu) {
+                popu.printStackTrace();
+            }
+            if (population < 51) {
+                int kinderMachen = (int) Math.random() * 100 + (population / 2);
+                if (kinderMachen < 70) {
+                    population += 1;
+                    erstellWohngebiet();
+                }
+
             }
         }
     }
