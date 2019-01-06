@@ -19,8 +19,9 @@ public class Wohngebiet extends GameObject {
     private Zeit zeit;
 
 
-    public Wohngebiet(int x, int y, int width, int height, String filePath){
+    public Wohngebiet(int x, int y, int width, int height, String filePath, Zeit zeit){
         super(x,y,width,height,filePath);
+        this.zeit = zeit;
         try {
             // Erstelle eine Verbindung zu unserer SQL-Datenbank
             con = DriverManager.getConnection("jdbc:mysql://mysql.webhosting24.1blu.de/db85565x2810214?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "s85565_2810214", "kkgbeste");

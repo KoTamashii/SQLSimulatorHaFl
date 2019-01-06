@@ -3,10 +3,7 @@ package Control;
 import MYF.Level;
 import MYF.MusicManager;
 import MYF.UIDesigner;
-import Model.Background;
-import Model.Shop;
-import Model.Spieler;
-import Model.Zeit;
+import Model.*;
 import View.Framework.DrawFrame;
 import View.Framework.DrawTool;
 import View.Framework.DrawableObject;
@@ -49,6 +46,8 @@ public class GameManager implements DrawableObject{
                 new Level(level, df.getActiveDrawingPanel(), df);
                 Zeit zeit = new Zeit();
                 Shop shop = new Shop(df, zeit);
+                Finanzamt finanzamt = new Finanzamt(-100,-100,1,1, "", zeit);
+                Arbeitsamt arbeitsamt = new Arbeitsamt(-100,-100,1,1, "", zeit);
 
                 df.getActiveDrawingPanel().addObject(new Spieler(0,0,0,0,null, df.getActiveDrawingPanel(), shop));
             }

@@ -2,6 +2,7 @@ package Model;
 
 import MYF.GameObject;
 import View.Framework.DrawingPanel;
+import com.mysql.cj.x.protobuf.MysqlxCrud;
 
 import java.awt.*;
 import java.sql.*;
@@ -10,15 +11,16 @@ import java.util.ArrayList;
 public class Arbeitsamt extends GameObject {
 
     //Attribute
-    private int arbeitsPlaetze, arbeiter, arbeitslose, arbeitsPlaetzeGewerbe, arbeitsPlaetzeIndustrie, arbeiterGewerbe, arbeiterIndustrie;
+    private int arbeitsPlaetze, bevölkerung, arbeitslose, arbeitsPlaetzeGewerbe, arbeitsPlaetzeIndustrie, arbeiterGewerbe, arbeiterIndustrie;
 
     //Referenzen
     private Connection con;
     private Statement stmt;
     private Zeit zeit;
 
-    public Arbeitsamt(int x, int y, int width, int height, String filePath){
+    public Arbeitsamt(int x, int y, int width, int height, String filePath, Zeit zeit){
         super(x,y,width,height,filePath);
+        this.zeit = zeit;
         try {
             // Erstelle eine Verbindung zu unserer SQL-Datenbank
             con = DriverManager.getConnection("jdbc:mysql://mysql.webhosting24.1blu.de/db85565x2810214?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "s85565_2810214", "kkgbeste");
@@ -29,7 +31,7 @@ public class Arbeitsamt extends GameObject {
 
         try {
             stmt.execute("INSERT INTO HaFl_Arbeitsamt (Arbeiter, ArbeiterGewerbe, ArbeiterIndustrie, Arbeitslose)" +
-                    "VALUES (arbeiter, arbeiterGewerbe, arbeiterIndustrie ;");
+                    "VALUES ("+ bevölkerung +", "+arbeiterGewerbe+", "+arbeiterIndustrie+","+arbeitslose+" ;");
         }catch (SQLException e) {
             e.printStackTrace();
         }
@@ -41,7 +43,7 @@ public class Arbeitsamt extends GameObject {
         berechneArbeiter();
         try{
             stmt.execute("UPDATE HaFl_Arbeitsamt " +
-                    "SET Arbeiter = "+arbeiter+";");
+                    "SET Arbeiter = "+ bevölkerung +";");
         }catch (SQLException e) {
         e.printStackTrace();
     }
@@ -79,8 +81,8 @@ public class Arbeitsamt extends GameObject {
     public void berechneArbeiter(){
         try {
             ResultSet result = stmt.executeQuery("SELECT population FROM HaFl_Wohngebiet;");
-            arbeiter = result.getInt(1);
-            System.out.println("arbeiter"+arbeiter);
+            bevölkerung = result.getInt(1);
+            System.out.println("bevölkerung"+ bevölkerung);
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -90,12 +92,48 @@ public class Arbeitsamt extends GameObject {
     public void weiseArbeiterZu(){
         int x;
         int y;
-        int arbeiterX;
+        int arbeiterx;
         x = (int)Math.random()*100+1;
         y = 100-x;
-        arbeiterX = arbeiter - (arbeiterGewerbe+ arbeiterIndustrie);
-        arbeiterGewerbe += arbeiterX / 100 * x;
-        arbeiterIndustrie += arbeiterX / 100 * y;
+        arbeitsPlaetze = arbeitsPlaetzeGewerbe + arbeiterIndustrie;
+        arbeitslose = bevölkerung - arbeitsPlaetze;
+        int arbeitsPlaetzeGewerbeX = arbeitsPlaetzeGewerbe - bevölkerung;
+        int arbeitsPlaetzeIndustrieX = arbeitsPlaetzeIndustrie - bevölkerung;
+        if (arbeitsPlaetzeGewerbeX >0) {
+            try {
+                stmt.execute("UPDATE HaFl_Gewerbegebiet " +
+                        "SET Arbeitsplatz = "+arbeitsPlaetzeGewerbeX+" ;");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        else
+            try {
+                stmt.execute("UPDATE HaFl_Gewerbegebiet " +
+                        "SET Arbeitsplatz = 0 ;");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        if (arbeitsPlaetzeIndustrieX >0) {
+            try {
+                stmt.execute("UPDATE HaFl_Industriegebiet " +
+                        "SET Arbeitsplatz = "+arbeitsPlaetzeIndustrieX+" ;");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        else
+            try {
+                stmt.execute("UPDATE HaFl_Industriegebiet " +
+                        "SET Arbeitsplatz = 0 ;");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        arbeiterx = bevölkerung - arbeitslose;
+        arbeiterGewerbe += arbeiterx / 100 * x;
+        arbeiterIndustrie += arbeiterx / 100 * y;
+
         try{
             stmt.execute("UPDATE HaFl_Arbeitsamt " +
                     "SET ArbeiterGewerbe = "+arbeiterGewerbe+";");
