@@ -4,10 +4,7 @@ import MYF.GameObject;
 import View.Framework.DrawingPanel;
 
 import java.awt.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class Bank extends GameObject {
@@ -36,6 +33,14 @@ public class Bank extends GameObject {
         try {
             stmt.execute("INSERT INTO HaFl_Bank (posX, posY, Kapital, Zinsen)" +
                     "VALUES ("+x+", "+y+", "+kapital+", "+zinsen+");");
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            stmt.executeQuery("SELECT posX, posY, Kapital, Zinsen FROM HaFl_Bank;");
+            System.out.println(stmt.getResultSet().getInt(1)+stmt.getResultSet().getInt(2));
         }catch (SQLException e) {
             e.printStackTrace();
         }
