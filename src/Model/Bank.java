@@ -24,10 +24,10 @@ public class Bank extends GameObject {
     private Zeit zeit;
     private Animation idle;
 
-
     public Bank(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
 
+        /*
         try {
             // Erstelle eine Verbindung zu unserer SQL-Datenbank
             con = DriverManager.getConnection("jdbc:mysql://mysql.webhosting24.1blu.de/db85565x2810214?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "s85565_2810214", "kkgbeste");
@@ -37,15 +37,15 @@ public class Bank extends GameObject {
         }
         zinsen = 0.05;
 
-        try {
+         try {
             stmt.execute("INSERT INTO HaFl_Bank (posX, posY, Kapital, Zinsen)" +
                     "VALUES ("+x+", "+y+", "+kapital+", "+zinsen+");");
         }catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
 
-        idle = new Animation(3f, image, ImageLoader.loadImage("assets/images/Bank/Bank2.png"));
-        idle.runAnimation();
+        idle = new Animation(3f, image, ImageLoader.loadImage("assets/images/Bank/Bank2.png"),
+                ImageLoader.loadImage("assets/images/Bank/Bank3.png"));
     }
 
     @Override
@@ -59,6 +59,7 @@ public class Bank extends GameObject {
 
     @Override
     public void render(DrawingPanel dp, Graphics g) {
+        idle.runAnimation();
         idle.renderAnimation(g, x, y);
     }
 

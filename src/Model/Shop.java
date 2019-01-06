@@ -26,7 +26,7 @@ public class Shop {
         shop.setAlwaysOnTop(true);
         shop.setSize(500,200);
         //Initialize all buttons
-        JButton bankButton = UIDesigner.addButtonWithImageWithStandardDesign("assets/images/Bank1.png",new Point(0,0), new Point(50, 50), null);
+        JButton bankButton = UIDesigner.addButtonWithImageWithStandardDesign("assets/images/Bank/Bank1.png",new Point(0,0), new Point(50, 50), null);
         bankButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
