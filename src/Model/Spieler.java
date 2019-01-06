@@ -45,8 +45,8 @@ public class Spieler extends GameObject implements InputManager {
         gPopulation= 2;
         sID = 1;
         try {
-            stmt.execute("INSERT INTO HaFl_Spieler (sID, Geld, Zufriedenheit, gPopulation)" +
-                    "VALUES ("+getsID()+","+getGeld()+","+getZufriedenheit()+","+getgPopulation()+");");
+            stmt.execute("INSERT INTO HaFl_Spieler (Geld, Zufriedenheit, gPopulation)" +
+                    "VALUES ("+getGeld()+","+getZufriedenheit()+","+getgPopulation()+");");
         }catch (SQLException e) {
             e.printStackTrace();
         }
@@ -58,13 +58,6 @@ public class Spieler extends GameObject implements InputManager {
 
     @Override
     public void update(ArrayList<GameObject> object) {
-        try{
-            ResultSet neueRelation = stmt.executeQuery("SELECT SUM(Geld), SUM(Zufriedenheit), SUM(gPopulation))"+
-                    "FROM HaFl_Spieler;");
-        }catch (SQLException a) {
-            a.printStackTrace();
-        }
-
 
         try {
             ResultSet result = stmt.executeQuery("SELECT Population FROM HaFl_Wohngebiet;");
