@@ -20,7 +20,6 @@ public class Finanzamt extends GameObject {
 
     public Finanzamt(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
-
         try {
             // Erstelle eine Verbindung zu unserer SQL-Datenbank
             con = DriverManager.getConnection("jdbc:mysql://mysql.webhosting24.1blu.de/db85565x2810214?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "s85565_2810214", "kkgbeste");
@@ -28,18 +27,17 @@ public class Finanzamt extends GameObject {
         }catch (SQLException e) {
             e.printStackTrace();
         }
+
+        try {
+            stmt.execute("INSERT INTO HaFl_Finanzamt (EinnahmenWohn, EinnahmenGewerbe, EinnahmenIndustrie)" +
+                    "VALUES (einnahmenWohn, einnahmenGewerbe, einnahmenIndustrie);");
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void update(ArrayList<GameObject> object) {
-
-        try {
-            stmt.execute("INSERT INTO HaFl_Finanzamt (fID, EinnahmenWohn, EinnahmenGewerbe, EinnahmenIndustrie)" +
-                    "VALUES (1, einnahmenWohn, einnahmenGewerbe, einnahmenIndustrie);");
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
-
         if (zeit.isDayOver()){
             berechneEinnahmenWohn();
             berechneEinnahmenGewerbe();
@@ -54,16 +52,6 @@ public class Finanzamt extends GameObject {
         g2d.drawImage(image,x,y,width,height,null);
     }
 
-    public void erstelleFinanzamt(){
-        try {
-            stmt.execute("INSERT INTO HaFl_Finanzamt" +
-                    "Values(fID,EinnahmenWohn,EinnahmenGewerbe,EinnahmenIndustrie)" +
-                    ";");
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void berechneEinnahmenWohn(){
         try {

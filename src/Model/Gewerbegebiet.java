@@ -28,7 +28,6 @@ public class Gewerbegebiet extends GameObject {
         }catch (SQLException e) {
             e.printStackTrace();
         }
-
         arbeitsplatz = 40;
 
         try {
@@ -38,35 +37,23 @@ public class Gewerbegebiet extends GameObject {
         catch (SQLException e) {
             e.printStackTrace();
         }
-    }
 
-    @Override
-    public void update(ArrayList<GameObject> object) {
         try {
             stmt.execute("INSERT INTO HaFl_Gewerbegebiet (posX, posY, Arbeitsplatz)" +
-                    "VALUES (x, y, arbeitsplatz);");
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void render(DrawingPanel dp, Graphics g) {
-        Graphics2D g2d = (Graphics2D)g;
-        g2d.drawImage(image,x,y,width,height,null);
-    }
-
-    public void erstelleGewerbegebiet(){
-        try {
-            stmt.execute("INSERT INTO HaFl_Gewerbegebiet " +
-                    "Values(x,y,Arbeitsplatz)");
+                    "VALUES ("+x+", "+y+", "+arbeitsplatz+");");
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public int getArbeitsplatz() {
-        return arbeitsplatz;
+    @Override
+    public void update(ArrayList<GameObject> object) {
+    }
+
+    @Override
+    public void render(DrawingPanel dp, Graphics g) {
+        Graphics2D g2d = (Graphics2D)g;
+        g2d.drawImage(image,x,y,width,height,null);
     }
 }

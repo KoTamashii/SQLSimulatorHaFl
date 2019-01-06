@@ -31,7 +31,7 @@ public class Wohngebiet extends GameObject {
         population = 2;
         try {
             stmt.execute("INSERT INTO HaFl_Wohngebiet (posX, posY, Population)" +
-                    "VALUES (x, y, population);");
+                    "VALUES ("+x+", "+y+", "+population+");");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -39,21 +39,25 @@ public class Wohngebiet extends GameObject {
 
     @Override
     public void update(ArrayList<GameObject> object) {
+        try {
+            ResultSet rsPopulation = stmt.executeQuery("SELECT Population FROM HaFl_Wohngebiet;");
+            population = rsPopulation.getInt(1);
+        }catch (SQLException popu) {
+            popu.printStackTrace();
+        }
+
         if (zeit.isDayOver()) {
-            try {
-                ResultSet rs = stmt.executeQuery("SELECT Population FROM HaFl_Wohngebiet;");
-                while (rs.next()) {
-                    population = rs.getInt(1);
-                }
-            }
-            catch (SQLException popu) {
-                popu.printStackTrace();
-            }
             if (population < 51) {
                 int kinderMachen = (int) Math.random() * 100 + (population / 2);
                 if (kinderMachen < 70) {
                     population += 1;
-                    erstellWohngebiet();
+                    try {
+                    stmt.execute("UPDATE HaFl_Wohngebiet"+
+                            "SET Population = "+population+" +" +
+                            "WHERE "+x+" = posX, "+y+" = poxY;");
+                    }catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
 
             }
@@ -64,22 +68,5 @@ public class Wohngebiet extends GameObject {
     public void render(DrawingPanel dp, Graphics g) {
         Graphics2D g2d = (Graphics2D)g;
         g2d.drawImage(image,x,y,width,height,null);
-    }
-
-    public void erstellWohngebiet(){
-        try {
-            stmt.execute("INSERT INTO HaFl_Wohngebiet " +
-                    "Values(x,y,"+getPopulation()+")" +
-                    ";");
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-
-    public int getPopulation() {
-        return population;
     }
 }
