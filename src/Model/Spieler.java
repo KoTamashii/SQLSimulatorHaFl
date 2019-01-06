@@ -4,6 +4,7 @@ import MYF.GameObject;
 import MYF.InputManager;
 import MYF.UIDesigner;
 import View.Framework.DrawingPanel;
+import com.sun.org.apache.bcel.internal.generic.Select;
 
 import javax.swing.*;
 import java.awt.*;
@@ -60,14 +61,22 @@ public class Spieler extends GameObject implements InputManager {
 
     @Override
     public void update(ArrayList<GameObject> object) {
+        try{
+            ResultSet neueRelation = stmt.executeQuery("SELECT SUM(Geld), SUM(Zufriedenheit), SUM(gPopulation))"+
+                    "FROM HaFl_Spieler");
+        }catch (SQLException a) {
+            a.printStackTrace();
+        }
+
+
         try {
             ResultSet result = stmt.executeQuery("SELECT Population FROM HaFl_Wohngebiet;");
            while (result.next()) {
                gPopulation = result.getInt(1);
            }
         }
-        catch (SQLException e) {
-            e.printStackTrace();
+        catch (SQLException popu) {
+            popu.printStackTrace();
         }
 
         gameObjects = object;

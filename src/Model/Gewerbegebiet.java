@@ -33,8 +33,7 @@ public class Gewerbegebiet extends GameObject {
 
         try {
             stmt.execute("INSERT INTO HaFl_Spieler (Geld)" +
-                    "Values(-1000)" +
-                    ";");
+                    "Values(-1000)");
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -59,8 +58,7 @@ public class Gewerbegebiet extends GameObject {
     public void erstelleGewerbegebiet(){
         try {
             stmt.execute("INSERT INTO HaFl_Gewerbegebiet " +
-                    "Values(x,y,Arbeitsplatz)" +
-                    ";");
+                    "Values(x,y,Arbeitsplatz)");
         }
         catch (SQLException e) {
             e.printStackTrace();

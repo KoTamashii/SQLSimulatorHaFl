@@ -24,11 +24,6 @@ public class Wohngebiet extends GameObject {
 
     public Wohngebiet(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
-
-        population = 2;
-
-
-
         try {
             // Erstelle eine Verbindung zu unserer SQL-Datenbank
             con = DriverManager.getConnection("jdbc:mysql://mysql.webhosting24.1blu.de/db85565x2810214?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "s85565_2810214", "kkgbeste");
@@ -36,18 +31,19 @@ public class Wohngebiet extends GameObject {
         }catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void update(ArrayList<GameObject> object) {
-
+        population = 2;
         try {
             stmt.execute("INSERT INTO HaFl_Wohngebiet (posX, posY, Population)" +
                     "VALUES (x, y, population);");
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void update(ArrayList<GameObject> object) {
         if (zeit.isDayOver()) {
+
             if (population < 51) {
                 if (zeit.isDayOver()) {
                     int kinderMachen = (int) Math.random() * 100 + (population / 2);
