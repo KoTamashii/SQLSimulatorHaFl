@@ -76,6 +76,7 @@ public class GameManager implements DrawableObject{
                 musicManager.searchForSoundFileWithName("DODI").startSoundFile();
             }
         }
+
     }
 
     @Override
