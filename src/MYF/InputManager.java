@@ -4,9 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-/**
- * Created by Haydar Genc on 13.09.2017.
- */
 public interface InputManager {
 
     public void keyTyped(KeyEvent keyEvent);

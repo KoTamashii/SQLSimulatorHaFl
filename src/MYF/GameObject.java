@@ -8,9 +8,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-/**
- * Created by Haydar Genc on 17.09.2017.
- */
+
 public abstract class GameObject{
 
     protected int x, y;

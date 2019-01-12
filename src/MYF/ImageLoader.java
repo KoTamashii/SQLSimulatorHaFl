@@ -4,9 +4,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-/**
- * Created by Haydar Genc on 11.09.2017.
- */
+
 public class ImageLoader {
 
     /**

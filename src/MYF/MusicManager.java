@@ -6,9 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/**
- * Created by Haydar Genc on 10.09.2017.
- */
+
 public class MusicManager {
 
     //Future Plans: Add index stuff to the SoundFile class

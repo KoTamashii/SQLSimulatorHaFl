@@ -3,9 +3,7 @@ package MYF;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-/**
- * Created by Haydar Genc on 23.09.2017.
- */
+
 public class Animation {
 
     private float speed;

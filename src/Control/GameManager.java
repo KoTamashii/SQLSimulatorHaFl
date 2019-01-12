@@ -28,10 +28,10 @@ public class GameManager implements DrawableObject{
     public GameManager(DrawFrame df){
 
         musicManager = new MusicManager();
-        musicManager.addNewSoundFile("copycat", "assets/music/copycat.wav",true);
-        musicManager.addNewSoundFile("CatSong", "assets/music/CatSong.wav",true);
+        musicManager.addNewSoundFile("DODI", "assets/music/DODI.wav",true);
+        musicManager.addNewSoundFile("BALLIN", "assets/music/BALLIN.wav",true);
 
-        musicManager.searchForSoundFileWithName("copycat").startSoundFile();
+        musicManager.searchForSoundFileWithName("DODI").startSoundFile();
 
         JButton playButton = UIDesigner.addButtonWithImageWithStandardDesign("assets/images/play.png", df.getActiveDrawingPanel(),
                                                         new Point((Config.WINDOW_WIDTH/2)-63, (Config.WINDOW_HEIGHT/2)-63 ), new Point(126,126), null);
@@ -46,8 +46,9 @@ public class GameManager implements DrawableObject{
                 new Level(level, df.getActiveDrawingPanel(), df);
                 Zeit zeit = new Zeit();
                 Shop shop = new Shop(df, zeit);
-                Finanzamt finanzamt = new Finanzamt(-100,-100,1,1, "", zeit);
-                Arbeitsamt arbeitsamt = new Arbeitsamt(-100,-100,1,1, "", zeit);
+                //Niicht sichtbar -> ausserhabl des Windows & nicht zum drawingpanel hinzugefügt
+                Finanzamt finanzamt = new Finanzamt(-100,-100,1,1, "assets/images/Bank/Bank1.png", zeit);
+                Arbeitsamt arbeitsamt = new Arbeitsamt(-100,-100,1,1, "assets/images/Bank/Bank1.png", zeit);
 
                 df.getActiveDrawingPanel().addObject(new Spieler(0,0,0,0,null, df.getActiveDrawingPanel(), shop));
             }
@@ -67,12 +68,12 @@ public class GameManager implements DrawableObject{
     @Override
     public void keyPressed(int key) {
         if(key == KeyEvent.VK_X){
-            if(musicManager.getCurrentlyPlayingSF().equals(musicManager.searchForSoundFileWithName("copycat"))){
+            if(musicManager.getCurrentlyPlayingSF().equals(musicManager.searchForSoundFileWithName("DODI"))){
                 musicManager.getCurrentlyPlayingSF().stopSoundFile();
-                musicManager.searchForSoundFileWithName("CatSong").startSoundFile();
+                musicManager.searchForSoundFileWithName("BALLIN").startSoundFile();
             } else {
                 musicManager.getCurrentlyPlayingSF().stopSoundFile();
-                musicManager.searchForSoundFileWithName("copycat").startSoundFile();
+                musicManager.searchForSoundFileWithName("DODI").startSoundFile();
             }
         }
     }

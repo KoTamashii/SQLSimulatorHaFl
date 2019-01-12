@@ -2,9 +2,7 @@ package MYF;
 
 import View.Framework.DrawFrame;
 
-/**
- * Created by Haydar Genc on 19.09.2017.
- */
+
 public class Camera {
 
     private float x, y;

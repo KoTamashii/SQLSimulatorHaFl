@@ -2,7 +2,6 @@ package Model;
 
 import MYF.GameObject;
 import View.Framework.DrawingPanel;
-import com.mysql.cj.x.protobuf.MysqlxCrud;
 
 import java.awt.*;
 import java.sql.*;
@@ -30,8 +29,8 @@ public class Arbeitsamt extends GameObject {
         }
 
         try {
-            stmt.execute("INSERT INTO HaFl_Arbeitsamt (Arbeiter, ArbeiterGewerbe, ArbeiterIndustrie, Arbeitslose)" +
-                    "VALUES ("+ bevölkerung +", "+arbeiterGewerbe+", "+arbeiterIndustrie+","+arbeitslose+" ;");
+            stmt.execute("INSERT INTO HaFl_Arbeitsamt (Arbeiter, ArbeiterGewerbe, ArbeiterIndustrie, Arbeitslose) " +
+                    "VALUES ("+ bevölkerung +", "+arbeiterGewerbe+", "+arbeiterIndustrie+","+arbeitslose+") ;");
         }catch (SQLException e) {
             e.printStackTrace();
         }

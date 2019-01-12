@@ -9,9 +9,7 @@ import View.Framework.DrawingPanel;
 
 import java.awt.image.BufferedImage;
 
-/**
- * Created by Haydar Genc on 23.09.2017.
- */
+
 public class Level {
 
     private BufferedImage image;
