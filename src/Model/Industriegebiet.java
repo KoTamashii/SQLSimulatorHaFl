@@ -50,9 +50,8 @@ public class Industriegebiet extends GameObject {
             e.printStackTrace();
         }
 
-        idle = new Animation(3f, image, ImageLoader.loadImage("assets/images/Industriegebiet/Freizeit2.png"),
-                ImageLoader.loadImage("assets/images/Freizeit/Freizeit3.png"),
-                ImageLoader.loadImage("assets/images/Freizeit/Freizeit4.png"));
+        idle = new Animation(3f, image, ImageLoader.loadImage("assets/images/Industriegebiet/Fabrik2.png"),
+                ImageLoader.loadImage("assets/images/Industriegebiet/Fabrik3.png"));
     }
 
     @Override
