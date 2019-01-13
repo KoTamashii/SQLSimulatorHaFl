@@ -38,6 +38,7 @@ public class Arbeitsamt extends GameObject {
         cross = new Animation(2, ImageLoader.loadImage("assets/images/X.png"));
         check = new Animation(2, ImageLoader.loadImage("assets/images/check.png"));
 
+
         this.zeit = zeit;
         this.shop = shop;
 
