@@ -11,7 +11,6 @@ public class Arbeitsamt extends GameObject {
 
     //Attribute
     private int arbeitsPlaetze, bevölkerung, arbeitslose, arbeitsPlaetzeGewerbe, arbeitsPlaetzeIndustrie, arbeiterGewerbe, arbeiterIndustrie;
-    private int anzahlObdachlose = 0;
     private int timer;
 
     //Referenzen
@@ -115,15 +114,42 @@ public class Arbeitsamt extends GameObject {
         y = 100-x;
         arbeitsPlaetze = arbeitsPlaetzeGewerbe + arbeiterIndustrie;
         arbeitslose = bevölkerung - arbeitsPlaetze;
-
-        try {
-            ResultSet rs = stmt.executeQuery("SELECT SUM(Arbeitsplatz) FROM HaFl_Gewerbegebiet; ");
-            arbeiterGewerbe = rs.getInt(1);
-        } catch (SQLException e){
-            e.printStackTrace();
+        int arbeitsPlaetzeGewerbeX = arbeitsPlaetzeGewerbe - bevölkerung;
+        int arbeitsPlaetzeIndustrieX = arbeitsPlaetzeIndustrie - bevölkerung;
+        if (arbeitsPlaetzeGewerbeX >0) {
+            try {
+                stmt.execute("UPDATE HaFl_Gewerbegebiet " +
+                        "SET Arbeitsplatz = "+arbeitsPlaetzeGewerbeX+" ;");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+        else
+            try {
+                stmt.execute("UPDATE HaFl_Gewerbegebiet " +
+                        "SET Arbeitsplatz = 0 ;");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        if (arbeitsPlaetzeIndustrieX >0) {
+            try {
+                stmt.execute("UPDATE HaFl_Industriegebiet " +
+                        "SET Arbeitsplatz = "+arbeitsPlaetzeIndustrieX+" ;");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        else
+            try {
+                stmt.execute("UPDATE HaFl_Industriegebiet " +
+                        "SET Arbeitsplatz = 0 ;");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
-
+        arbeiterx = bevölkerung - arbeitslose;
+        arbeiterGewerbe += arbeiterx / 100 * x;
+        arbeiterIndustrie += arbeiterx / 100 * y;
 
         try{
             stmt.execute("UPDATE HaFl_Arbeitsamt " +
@@ -135,17 +161,4 @@ public class Arbeitsamt extends GameObject {
         e.printStackTrace();
     }
     }
-
-    /*private void weiseArbeiterZu(){
-        int anzahlIndustrieArbeitspläte = shop.getIndustriegebiete() * 3;
-        int gewerbeArbeitsplätze = shop .getGewerbegebiete() *5;
-        int wohnAnzahl = shop.getWohngebiete() * 6;
-
-        //anzahlObdachlose =  bevölkerung - wohnAnzahl;
-        //System.out.println("Anzahl der Obdachlosen: " + anzahlObdachlose);
-
-
-
-
-    }*/
 }

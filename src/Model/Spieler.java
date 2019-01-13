@@ -18,7 +18,6 @@ public class Spieler extends GameObject implements InputManager {
     //Attribute
     private int geld;
     private boolean clicked = false;
-    private int gPopulation;
     private int zufriedenheit;
 
     private DrawingPanel dp;
@@ -41,10 +40,9 @@ public class Spieler extends GameObject implements InputManager {
         }
         zufriedenheit = 10;
         geld = 50000;
-        gPopulation= 2;
         try {
-            stmt.execute("INSERT INTO HaFl_Spieler (Geld, Zufriedenheit, gPopulation)" +
-                    "VALUES ("+getGeld()+","+getZufriedenheit()+","+getgPopulation()+");");
+            stmt.execute("INSERT INTO HaFl_Spieler (Geld, Zufriedenheit)" +
+                    "VALUES ("+getGeld()+","+getZufriedenheit()+");");
         }catch (SQLException e) {
             e.printStackTrace();
         }
@@ -63,10 +61,6 @@ public class Spieler extends GameObject implements InputManager {
                ResultSet rsGeld = stmt.executeQuery("SELECT Geld FROM HaFl_Spieler;");
                while(rsGeld.next()) {
                    geld = rsGeld.getInt(1);
-               }
-               ResultSet rsPopulation = stmt.executeQuery("SELECT Population FROM HaFl_Wohngebiet;");
-               while(rsPopulation.next()) {
-                   gPopulation = rsPopulation.getInt(1);
                }
                ResultSet rsZufriedenheit = stmt.executeQuery("SELECT Zufriedenheit FROM HaFl_Spieler;");
                while(rsZufriedenheit.next()) {
@@ -187,9 +181,6 @@ public class Spieler extends GameObject implements InputManager {
         return zufriedenheit;
     }
 
-    public int getgPopulation() {
-        return gPopulation;
-    }
 
     private void fügeBasicsHinzu() {
         try {

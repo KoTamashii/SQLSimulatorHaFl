@@ -30,7 +30,6 @@ public class SQLConnector {
                         "sID int NOT NULL AUTO_INCREMENT,"+
                         "Geld int ," +
                         "Zufriedenheit int ," +
-                        "gPopulation int ," +
                         "PRIMARY KEY (sID)" +
                         ");");
                 System.out.println("Spieler wurde erstellt");
@@ -103,6 +102,7 @@ public class SQLConnector {
                         "EinnahmenWohn int NOT NULL," +
                         "EinnahmenGewerbe int NOT NULL," +
                         "EinnahmenIndustrie int NOT NULL," +
+                        "EinnahmenArbeitslose int NOT NULL," +
                         "PRIMARY KEY (fID)" +
                         ");");
                 System.out.println("Finanzamt wurde erstellt");
@@ -155,7 +155,9 @@ public class SQLConnector {
                         "aID int NOT NULL AUTO_INCREMENT,"+
                         "Arbeiter int NOT NULL," +
                         "ArbeiterGewerbe int NOT NULL," +
+                        "ArbeitsPlaetzeGewerbe int NOT NULL," +
                         "ArbeiterIndustrie int NOT NULL," +
+                        "ArbeitsPlaetzeIndustrie int NOT NULL," +
                         "Arbeitslose int NOT NULL," +
                         "PRIMARY KEY (aID)" +
                         ");");

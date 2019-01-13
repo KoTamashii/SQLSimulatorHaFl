@@ -41,8 +41,8 @@ public class Industriegebiet extends GameObject {
             rs.next();
             int geld = rs.getInt(1);
             geld -= 1000;
-            stmt.execute("INSERT INTO HaFl_Spieler (Geld)" +
-                    "Values("+geld+");");
+            stmt.execute("UPDATE HaFl_Spieler " +
+                    "SET Geld = "+geld+";");
         }
         catch (SQLException e) {
             e.printStackTrace();
