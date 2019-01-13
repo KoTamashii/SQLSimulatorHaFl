@@ -169,6 +169,8 @@ public class Shop {
         });
         shop.add(gewerbeButton);
 
+
+
         //WohnGEBIET
         JButton wohnButton = UIDesigner.addButtonWithImageWithStandardDesign("assets/images/Wohngebiet/Haus.png",new Point(225,0), new Point(50, 50), null);
         wohnButton.addActionListener(new ActionListener() {
