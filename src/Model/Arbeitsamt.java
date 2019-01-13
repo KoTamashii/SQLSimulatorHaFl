@@ -11,11 +11,13 @@ public class Arbeitsamt extends GameObject {
 
     //Attribute
     private int arbeitsPlaetze, bevölkerung, arbeitslose, arbeitsPlaetzeGewerbe, arbeitsPlaetzeIndustrie, arbeiterGewerbe, arbeiterIndustrie;
+    private int timer;
 
     //Referenzen
     private Connection con;
     private Statement stmt;
     private Zeit zeit;
+
 
     public Arbeitsamt(int x, int y, int width, int height, String filePath, Zeit zeit){
         super(x,y,width,height,filePath);
@@ -34,20 +36,27 @@ public class Arbeitsamt extends GameObject {
         }catch (SQLException e) {
             e.printStackTrace();
         }
+        timer=0;
     }
 
     @Override
     public void update(ArrayList<GameObject> object) {
-        berechneArbeitsplaetze();
-        berechneArbeiter();
-        try{
-            stmt.execute("UPDATE HaFl_Arbeitsamt " +
-                    "SET Arbeiter = "+ bevölkerung +";");
-        }catch (SQLException e) {
-        e.printStackTrace();
-    }
-        if (zeit.isDayOver()){
-            weiseArbeiterZu();
+        if (timer ==10) {
+            if (!zeit.isDayOver()) {
+                timer = 0;
+            }
+        }
+
+        if (timer == 0) {
+            if (zeit.isDayOver()) {
+                berechneArbeitsplaetze();
+                berechneArbeiter();
+                weiseArbeiterZu();
+                timer =10;
+                System.out.println("---------------------------------------");
+                System.out.println("     Der Tag geht zuende");
+                System.out.println("---------------------------------------");
+            }
         }
     }
 
@@ -61,16 +70,18 @@ public class Arbeitsamt extends GameObject {
     public void berechneArbeitsplaetze(){
         try {
             ResultSet result = stmt.executeQuery("SELECT arbeitsplatz FROM HaFl_Gewerbegebiet;");
+            result.next();
             arbeitsPlaetzeGewerbe = result.getInt(1);
-            System.out.println("arbeitsPlaetzeGewerbe" + arbeitsPlaetzeGewerbe);
+            System.out.println("Arbeitsplätze der Gewerbegebiete: " + arbeitsPlaetzeGewerbe);
         }catch (SQLException e) {
             e.printStackTrace();
         }
 
         try {
             ResultSet result = stmt.executeQuery("SELECT arbeitsplatz FROM HaFl_Industriegebiet;");
+            result.next();
             arbeitsPlaetzeIndustrie = result.getInt(1);
-            System.out.println("arbeitsPlaetzeIndustrie"+arbeitsPlaetzeIndustrie);
+            System.out.println("Arbeitsplätze der Industriegebiete: "+arbeitsPlaetzeIndustrie);
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -79,9 +90,13 @@ public class Arbeitsamt extends GameObject {
 
     public void berechneArbeiter(){
         try {
-            ResultSet result = stmt.executeQuery("SELECT population FROM HaFl_Wohngebiet;");
-            bevölkerung = result.getInt(1);
-            System.out.println("bevölkerung"+ bevölkerung);
+            ResultSet result = stmt.executeQuery("SELECT SUM(population) FROM HaFl_Wohngebiet;");
+            result.next();
+                bevölkerung = result.getInt(1);
+                System.out.println("Bevölkerung: " + bevölkerung);
+            stmt.execute("UPDATE HaFl_Arbeitsamt " +
+                    "SET Arbeiter = " +bevölkerung + ";");
+
         }
         catch (SQLException e) {
             e.printStackTrace();

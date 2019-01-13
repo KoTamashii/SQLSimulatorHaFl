@@ -16,21 +16,20 @@ public class Zeit{
 
     private void startDayTimer(){
         if (dayOver) {
-            System.out.println("derzeitiger Tag: " + dayCounter);
+            System.out.println(" ");
+            System.out.println("---------------------------------------");
+            System.out.println("     Derzeitiger Tag: " + dayCounter);
             dayCounter++;
         }
+
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {
                     @Override
                     public void run() {
-                        if (dayOver){
-                            dayOver = !dayOver;
-                        }else {
-                            dayOver = true;
-                        }
+                        dayOver = !dayOver;
                         startDayTimer();
                     }
-                }, 2*1000);
+                }, 5*1000);
     }
 
 

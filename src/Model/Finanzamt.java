@@ -12,6 +12,7 @@ public class Finanzamt extends GameObject {
     //Atribute
     private int einnahmenWohn,einnahmenGewerbe, einnahmenIndustrie, gesamtEinnahmen;
     private int spielerZufriedenheit;
+    private int timer;
     //Referenzen
     private Connection con;
     private Statement stmt;
@@ -35,20 +36,28 @@ public class Finanzamt extends GameObject {
         }catch (SQLException e) {
             e.printStackTrace();
         }
+        timer=0;
     }
 
     @Override
     public void update(ArrayList<GameObject> object) {
-        System.out.println("Geht DOCH");
-        System.out.println(zeit.isDayOver());
-        if (zeit.isDayOver()){
 
-            System.out.println("MIAU");
-            berechneEinnahmenWohn();
-            berechneEinnahmenGewerbe();
-            berechneEinnahmenIndustrie();
-            einnahmenSendenKomplett();
+        if (timer ==10) {
+            if (!zeit.isDayOver()) {
+                timer = 0;
+            }
+        }
 
+        if (timer == 0) {
+            if (zeit.isDayOver()) {
+                System.out.println("---------------------------------------");
+                berechneEinnahmenWohn();
+                berechneEinnahmenGewerbe();
+                berechneEinnahmenIndustrie();
+                einnahmenSendenKomplett();
+                System.out.println("---------------------------------------");
+                timer = 10;
+            }
         }
 
     }
@@ -62,8 +71,11 @@ public class Finanzamt extends GameObject {
 
     public void berechneEinnahmenWohn(){
         try {
-        ResultSet einnahmen = stmt.executeQuery("SELECT SUM(arbeiter) + FROM HaFl_Arbeitsamt;");
+        ResultSet einnahmen = stmt.executeQuery("SELECT SUM(arbeiter) FROM HaFl_Arbeitsamt;");
+        einnahmen.next();
         einnahmenWohn = einnahmen.getInt(1) * 200;
+            stmt.execute("UPDATE HaFl_Finanzamt " +
+                    "SET EinnahmenWohn = " + einnahmenWohn + ";");
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -72,7 +84,8 @@ public class Finanzamt extends GameObject {
     }
     public void berechneEinnahmenGewerbe(){
         try {
-            ResultSet einnahmen = stmt.executeQuery("SELECT SUM(arbeiterGewerbe) + FROM HaFl_Arbeitsamt;");
+            ResultSet einnahmen = stmt.executeQuery("SELECT SUM(arbeiterGewerbe) FROM HaFl_Arbeitsamt;");
+            einnahmen.next();
             einnahmenGewerbe = einnahmen.getInt(1) * 50;
         }
         catch (SQLException e) {
@@ -83,7 +96,8 @@ public class Finanzamt extends GameObject {
 
     public void berechneEinnahmenIndustrie(){
         try {
-            ResultSet einnahmen = stmt.executeQuery("SELECT SUM(arbeiterIndustrie) + FROM HaFl_Arbeitsamt;");
+            ResultSet einnahmen = stmt.executeQuery("SELECT SUM(arbeiterIndustrie) FROM HaFl_Arbeitsamt;");
+            einnahmen.next();
             einnahmenIndustrie = einnahmen.getInt(1) * 80;
         }
         catch (SQLException e) {
@@ -94,9 +108,10 @@ public class Finanzamt extends GameObject {
 
     public void einnahmenSendenKomplett(){
         gesamtEinnahmen = einnahmenWohn + einnahmenGewerbe + einnahmenIndustrie;
-        System.out.println("gesamteinnahmen: " + gesamtEinnahmen);
+        System.out.println("Gesamteinnahmen: " + gesamtEinnahmen);
         try {
-            ResultSet einnahmen = stmt.executeQuery("SELECT Zufriedenheit + FROM HaFl_Spieler;");
+            ResultSet einnahmen = stmt.executeQuery("SELECT Zufriedenheit FROM HaFl_Spieler;");
+            einnahmen.next();
             spielerZufriedenheit = einnahmen.getInt(1);
         }
         catch (SQLException e) {
@@ -104,9 +119,11 @@ public class Finanzamt extends GameObject {
         }
         gesamtEinnahmen += gesamtEinnahmen / 100 * spielerZufriedenheit;
         try {
-            stmt.execute("INSERT INTO HaFl_Spieler (Geld)" +
-                    "Values(gesamtEinnahmen)" +
-                    ";");
+            ResultSet rs = stmt.executeQuery("SELECT Geld FROM HaFl_Spieler;");
+            rs.next();
+            int neuesGeld = rs.getInt(1);
+            stmt.execute("UPDATE HaFl_Spieler " +
+                    "SET Geld = " + neuesGeld + ";");
         }
         catch (SQLException e) {
             e.printStackTrace();

@@ -54,6 +54,8 @@ public class GameManager implements DrawableObject{
                 df.getActiveDrawingPanel().addObject(finanzamt);
                 df.getActiveDrawingPanel().addObject(arbeitsamt);
                 df.getActiveDrawingPanel().addObject(new Spieler(0,0,0,0,null, df.getActiveDrawingPanel(), shop));
+
+
             }
         });
 

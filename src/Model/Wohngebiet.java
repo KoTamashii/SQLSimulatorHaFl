@@ -11,6 +11,7 @@ public class Wohngebiet extends GameObject {
 
     //Attribute
     private int population;
+    private int timer;
 
 
     //Referenzen
@@ -36,31 +37,46 @@ public class Wohngebiet extends GameObject {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        timer =0;
     }
 
     @Override
     public void update(ArrayList<GameObject> object) {
-        try {
-            ResultSet rsPopulation = stmt.executeQuery("SELECT Population FROM HaFl_Wohngebiet;");
-            population = rsPopulation.getInt(1);
-        }catch (SQLException popu) {
-            popu.printStackTrace();
+        if (timer ==10) {
+            if (!zeit.isDayOver()) {
+                timer = 0;
+            }
         }
+        if (timer == 0) {
+            if (zeit.isDayOver()) {
+                if (population < 51) {
+                    System.out.println(population);
+                    int kinderMachen = (int) Math.random() * 100 + (population / 2);
+                    if (kinderMachen > 30) {
+                        population += 1;
+                        try {
+                            stmt.execute("UPDATE HaFl_Wohngebiet" +
+                                    "SET Population = " + population + "," +
+                                    "WHERE " + x + " = posX, " + y + " = posY;");
 
-        if (zeit.isDayOver()) {
-            if (population < 51) {
-                int kinderMachen = (int) Math.random() * 100 + (population / 2);
-                if (kinderMachen < 70) {
-                    population += 1;
-                    try {
-                    stmt.execute("UPDATE HaFl_Wohngebiet"+
-                            "SET Population = "+population+" +" +
-                            "WHERE "+x+" = posX, "+y+" = poxY;");
-                    }catch (SQLException e) {
-                        e.printStackTrace();
+                            ResultSet rsPopulation = stmt.executeQuery("SELECT Population FROM HaFl_Wohngebiet;");
+                            rsPopulation.next();
+                            population = rsPopulation.getInt(1);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
 
+                }
+                try {
+                ResultSet rsPopulation = stmt.executeQuery("SELECT Population FROM HaFl_Wohngebiet" +
+                        "WHERE " + x + " = posX AND " + y + " = posY;");
+                rsPopulation.next();
+                population = rsPopulation.getInt(1);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                timer =10;
             }
         }
     }

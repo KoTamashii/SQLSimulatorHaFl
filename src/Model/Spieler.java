@@ -51,7 +51,11 @@ public class Spieler extends GameObject implements InputManager {
         shop.setPlayer(this);
         this.shop = shop;
         this.dp = dp;
+
+        fügeBasicsHinzu();
     }
+
+
 
     @Override
     public void update(ArrayList<GameObject> object) {
@@ -71,7 +75,6 @@ public class Spieler extends GameObject implements InputManager {
         } catch (SQLException popu) {
             popu.printStackTrace();
         }
-        System.out.println("Geld: " + getGeld());
         gameObjects = object;
     }
 
@@ -186,5 +189,28 @@ public class Spieler extends GameObject implements InputManager {
 
     public int getgPopulation() {
         return gPopulation;
+    }
+
+    private void fügeBasicsHinzu() {
+        try {
+        stmt.execute("INSERT INTO HaFl_Wohngebiet " +
+                "VALUES (-100,-100,0);");
+        } catch (Exception e) {
+            System.out.println("Fehler beim Inserten des Basic Wohngebiets");
+        }
+
+        try {
+            stmt.execute("INSERT INTO HaFl_Gewerbegebiet " +
+                    "VALUES (-100,-100,0);");
+        } catch (Exception e) {
+            System.out.println("Fehler beim Inserten des Basic Gewerbegebiets");
+        }
+
+        try {
+            stmt.execute("INSERT INTO HaFl_Industriegebiet " +
+                    "VALUES (-100,-100,0);");
+        } catch (Exception e){
+            System.out.println("Fehler beim Inserten des Basic Industriegebiets");
+        }
     }
 }

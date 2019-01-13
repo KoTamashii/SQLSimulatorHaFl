@@ -45,10 +45,11 @@ public class SQLConnector {
             }
             try {
                 stmt.execute("CREATE TABLE HaFl_Wohngebiet (" +
+                        "wohnID int NOT NULL AUTO_INCREMENT," +
                         "PosX int NOT NULL," +
                         "PosY int NOT NULL," +
                         "Population int NOT NULL," +
-                        "PRIMARY KEY (PosX, PosY)" +
+                        "PRIMARY KEY (wohnID)" +
                         ");");
                 System.out.println("Wohngebiet wurde erstellt");
             } catch (Exception e){
@@ -62,10 +63,11 @@ public class SQLConnector {
             }
             try {
                 stmt.execute("CREATE TABLE HaFl_Gewerbegebiet (" +
+                        "gewerbeID int NOT NULL AUTO_INCREMENT," +
                         "PosX int NOT NULL," +
                         "PosY int NOT NULL," +
                         "Arbeitsplatz int NOT NULL," +
-                        "PRIMARY KEY (PosX, PosY)" +
+                        "PRIMARY KEY (gewerbeID)" +
                         ");");
                 System.out.println("Gewerbegebiet wurde erstellt");
             } catch (Exception e){
@@ -79,10 +81,11 @@ public class SQLConnector {
             }
             try {
                 stmt.execute("CREATE TABLE HaFl_Industriegebiet (" +
+                        "industrieID int NOT NULL AUTO_INCREMENT," +
                         "PosX int NOT NULL," +
                         "PosY int NOT NULL," +
                         "Arbeitsplatz int NOT NULL," +
-                        "PRIMARY KEY (PosX, PosY)" +
+                        "PRIMARY KEY (industrieID)" +
                         ");");
                 System.out.println("Industriegebiet wurde erstellt");
             } catch (Exception e){

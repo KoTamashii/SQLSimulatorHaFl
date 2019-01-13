@@ -168,6 +168,50 @@ public class Shop {
             }
         });
         shop.add(gewerbeButton);
+
+        //WohnGEBIET
+        JButton wohnButton = UIDesigner.addButtonWithImageWithStandardDesign("assets/images/Wohngebiet/Haus.png",new Point(225,0), new Point(50, 50), null);
+        wohnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                try {
+                    // Erstelle eine Verbindung zu unserer SQL-Datenbank
+                    con = DriverManager.getConnection("jdbc:mysql://mysql.webhosting24.1blu.de/db85565x2810214?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "s85565_2810214", "kkgbeste");
+                    stmt = con.createStatement();
+                } catch (SQLException a) {
+                    a.printStackTrace();
+                }
+
+                try {
+                    stmt.executeQuery("SELECT Geld " +
+                            "FROM HaFl_Spieler;");
+
+                    ResultSet rs = stmt.getResultSet();
+                    if (rs.next()) {
+                        if (rs.getInt(1) >= 200) {
+                            int geld = rs.getInt(1) - 200;
+                            try {
+                                stmt.execute("UPDATE HaFl_Spieler " +
+                                        "SET Geld = " + geld + ";");
+
+                            } catch (SQLException d) {
+                                d.printStackTrace();
+                            }
+                            actualBlock.setPlaceable(false);
+                            drawFrame.getActiveDrawingPanel().addObject(new Wohngebiet ((int) actualBlock.getX(), (int) actualBlock.getY(), 32, 32, "assets/images/Wohngebiet/Haus.png",zeit));
+                            spieler.setClicked(false);
+                            shop.setVisible(false);
+                        } else {
+                            System.out.println("Du hat nicht genug Geld. Dein Geld beträgt: " + rs.getInt(1));
+                        }
+                    }
+                } catch (SQLException b) {
+                    b.printStackTrace();
+                }
+            }
+        });
+        shop.add(wohnButton);
     }
 
     public void activateShop(Block block){
