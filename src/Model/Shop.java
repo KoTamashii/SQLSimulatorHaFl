@@ -103,7 +103,7 @@ public class Shop {
                                 d.printStackTrace();
                             }
                             actualBlock.setPlaceable(false);
-                            drawFrame.getActiveDrawingPanel().addObject(new Industriegebiet((int) actualBlock.getX(), (int) actualBlock.getY(), 32, 32, "assets/images/Industriegebiet/Fabrik.png"));
+                            drawFrame.getActiveDrawingPanel().addObject(new Industriegebiet((int) actualBlock.getX(), (int) actualBlock.getY(), 32, 32, "assets/images/Industriegebiet/Fabrik.png", zeit));
                             spieler.setClicked(false);
                             shop.setVisible(false);
                         } else {
@@ -139,7 +139,7 @@ public class Shop {
                                 d.printStackTrace();
                             }
                             actualBlock.setPlaceable(false);
-                            drawFrame.getActiveDrawingPanel().addObject(new Gewerbegebiet((int) actualBlock.getX(), (int) actualBlock.getY(), 32, 32, "assets/images/Gewerbegebiet/Markt.png"));
+                            drawFrame.getActiveDrawingPanel().addObject(new Gewerbegebiet((int) actualBlock.getX(), (int) actualBlock.getY(), 32, 32, "assets/images/Gewerbegebiet/Markt.png", zeit));
                             spieler.setClicked(false);
                             shop.setVisible(false);
                         } else {

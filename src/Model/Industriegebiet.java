@@ -22,9 +22,13 @@ public class Industriegebiet extends GameObject {
     private Statement stmt;
 
     private Animation idle;
+    private Zeit zeit;
 
-    public Industriegebiet(int x, int y, int width, int height, String filePath){
+    public Industriegebiet(int x, int y, int width, int height, String filePath, Zeit zeit){
         super(x,y,width,height,filePath);
+
+        this.zeit = zeit;
+
         try {
             // Erstelle eine Verbindung zu unserer SQL-Datenbank
             con = DriverManager.getConnection("jdbc:mysql://mysql.webhosting24.1blu.de/db85565x2810214?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "s85565_2810214", "kkgbeste");
