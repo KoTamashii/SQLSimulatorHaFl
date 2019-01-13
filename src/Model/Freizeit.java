@@ -42,16 +42,18 @@ public class Freizeit extends GameObject {
         idle = new Animation(3f, image, ImageLoader.loadImage("assets/images/Freizeit/Freizeit2.png"),
                 ImageLoader.loadImage("assets/images/Freizeit/Freizeit3.png"),
                 ImageLoader.loadImage("assets/images/Freizeit/Freizeit4.png"));
+
+        try {
+            stmt.execute("INSERT INTO HaFl_Freizeit (posX, posY)" +
+                    "VALUES ("+x+", "+y+");");
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void update(ArrayList<GameObject> object) {
-        try {
-            stmt.execute("INSERT INTO HaFl_Freizeit (posX, posY)" +
-                    "VALUES (" +x+"," + y + ");");
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
+
     }
 
     @Override

@@ -135,9 +135,10 @@ public class SQLConnector {
             }
             try {
                 stmt.execute("CREATE TABLE HaFl_Freizeit (" +
+                        "freizeitID int NOT NULL AUTO_INCREMENT,"+
                         "PosX int NOT NULL," +
                         "PosY int NOT NULL," +
-                        "PRIMARY KEY (PosX, PosY)" +
+                        "PRIMARY KEY (freizeitID)" +
                         ");");
                 System.out.println("Freizeit wurde erstellt");
             } catch (Exception e){
