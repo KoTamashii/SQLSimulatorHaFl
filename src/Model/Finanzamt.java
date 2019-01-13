@@ -45,6 +45,7 @@ public class Finanzamt extends GameObject {
             berechneEinnahmenIndustrie();
             einnahmenSendenKomplett();
         }
+
     }
 
     @Override
