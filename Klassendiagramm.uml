@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>Control.Config</OriginalElement>
+  <nodes>
+    <node x="2832.5" y="154.5">MYF.InputManager</node>
+    <node x="363.25" y="1298.5">java.awt.event.KeyListener</node>
+    <node x="1721.0" y="2003.0">MYF.SpriteSheet</node>
+    <node x="868.25" y="1320.5">java.awt.event.ActionListener</node>
+    <node x="826.75" y="1642.0">Control.Framework.UIController</node>
+    <node x="1210.75" y="1131.0">MYF.MusicManager</node>
+    <node x="1344.5" y="0.0">MYF.GameObject</node>
+    <node x="1246.25" y="1365.0">MYF.MusicManager.SoundFile</node>
+    <node x="0.0" y="2003.0">Model.Shop</node>
+    <node x="1184.0" y="825.0">Model.Gewerbegebiet</node>
+    <node x="245.0" y="2003.0">MYF.Animation</node>
+    <node x="316.0" y="825.0">Model.Background</node>
+    <node x="2597.0" y="2003.0">View.Framework.SQLConnector</node>
+    <node x="831.0" y="2003.0">MYF.UIDesigner</node>
+    <node x="598.25" y="1276.5">java.awt.event.MouseListener</node>
+    <node x="2130.0" y="803.0">Model.Block</node>
+    <node x="363.3958333333333" y="1532.0">View.Framework.DrawingPanel</node>
+    <node x="896.0000000000001" y="803.0">Model.Bank</node>
+    <node x="0.0" y="1708.0">javax.swing.JPanel.AccessibleJPanel</node>
+    <node x="2820.75" y="1131.0">MYF.Camera</node>
+    <node x="604.0000000000001" y="770.0">Model.Finanzamt</node>
+    <node x="664.25" y="1131.0">java.util.EventListener</node>
+    <node x="2492.75" y="1131.0">View.Framework.DrawTool</node>
+    <node x="1433.0" y="2003.0">Control.ProgramController</node>
+    <node x="0.0" y="825.0">Model.Industriegebiet</node>
+    <node x="2171.75" y="1131.0">View.Framework.DrawFrame</node>
+    <node x="1500.0" y="770.0">Model.Arbeitsamt</node>
+    <node x="2419.0" y="803.0">Model.Freizeit</node>
+    <node x="2707.0" y="660.0">Model.Spieler</node>
+    <node x="2799.0" y="2003.0">MYF.ImageLoader</node>
+    <node x="609.0" y="2003.0">Model.Zeit</node>
+    <node x="1876.75" y="1451.5">Control.GameManager</node>
+    <node x="2383.0" y="2003.0">Control.Framework.MainController</node>
+    <node x="1578.75" y="1320.0">Model.Framework.GraphicalObject</node>
+    <node x="1734.75" y="1131.0">View.Framework.DrawableObject</node>
+    <node x="1828.0" y="825.0">Model.Wohngebiet</node>
+    <node x="54.25" y="1210.0">javax.swing.JPanel</node>
+    <node x="2055.0" y="2003.0">MYF.Level</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Model.Gewerbegebiet" target="MYF.GameObject">
+      <point x="0.0" y="-48.0" />
+      <point x="1332.0" y="640.0" />
+      <point x="1478.15" y="640.0" />
+      <point x="-14.849999999999909" y="290.0" />
+    </edge>
+    <edge source="java.awt.event.KeyListener" target="java.util.EventListener">
+      <point x="0.0" y="-47.5" />
+      <point x="470.75" y="1185.0" />
+      <point x="683.9166666666666" y="1185.0" />
+      <point x="-39.333333333333314" y="14.5" />
+    </edge>
+    <edge source="Model.Background" target="MYF.GameObject">
+      <point x="0.0" y="-48.0" />
+      <point x="450.0" y="610.0" />
+      <point x="1389.0500000000002" y="610.0" />
+      <point x="-103.95000000000005" y="290.0" />
+    </edge>
+    <edge source="View.Framework.DrawingPanel" target="java.awt.event.MouseListener">
+      <point x="87.33333333333337" y="-213.0" />
+      <point x="581.7291666666667" y="1507.0" />
+      <point x="723.25" y="1507.0" />
+      <point x="0.0" y="69.5" />
+    </edge>
+    <edge source="Model.Framework.GraphicalObject" target="View.Framework.DrawableObject">
+      <point x="0.0" y="-212.5" />
+      <point x="1717.75" y="1295.0" />
+      <point x="1797.25" y="1295.0" />
+      <point x="-62.5" y="69.5" />
+    </edge>
+    <edge source="Model.Spieler" target="MYF.GameObject">
+      <point x="-84.5" y="-213.0" />
+      <point x="2791.5" y="600.0" />
+      <point x="1626.65" y="600.0" />
+      <point x="133.64999999999986" y="290.0" />
+    </edge>
+    <edge source="Model.Arbeitsamt" target="MYF.GameObject">
+      <point x="0.0" y="-103.0" />
+      <point x="1654.0" y="640.0" />
+      <point x="1507.85" y="640.0" />
+      <point x="14.849999999999909" y="290.0" />
+    </edge>
+    <edge source="Control.GameManager" target="View.Framework.DrawableObject">
+      <point x="0.0" y="-81.0" />
+      <point x="2001.75" y="1295.0" />
+      <point x="1922.25" y="1295.0" />
+      <point x="62.5" y="69.5" />
+    </edge>
+    <edge source="Model.Wohngebiet" target="MYF.GameObject">
+      <point x="0.0" y="-48.0" />
+      <point x="1969.0" y="630.0" />
+      <point x="1537.5500000000002" y="630.0" />
+      <point x="44.549999999999955" y="290.0" />
+    </edge>
+    <edge source="Model.Freizeit" target="MYF.GameObject">
+      <point x="0.0" y="-70.0" />
+      <point x="2553.0" y="610.0" />
+      <point x="1596.9499999999998" y="610.0" />
+      <point x="103.94999999999982" y="290.0" />
+    </edge>
+    <edge source="Model.Finanzamt" target="MYF.GameObject">
+      <point x="0.0" y="-103.0" />
+      <point x="740.0000000000001" y="620.0" />
+      <point x="1418.75" y="620.0" />
+      <point x="-74.25" y="290.0" />
+    </edge>
+    <edge source="javax.swing.JPanel.AccessibleJPanel" target="javax.swing.JPanel">
+      <point x="0.0" y="-37.0" />
+      <point x="-72.25" y="136.0" />
+    </edge>
+    <edge source="Model.Spieler" target="MYF.InputManager">
+      <point x="84.5" y="-213.0" />
+      <point x="0.0" y="135.5" />
+    </edge>
+    <edge source="Control.Framework.UIController" target="java.awt.event.ActionListener">
+      <point x="0.0" y="-103.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="MYF.MusicManager.SoundFile" target="MYF.MusicManager">
+      <point x="0.0" y="-202.0" />
+      <point x="0.0" y="92.0" />
+    </edge>
+    <edge source="java.awt.event.MouseListener" target="java.util.EventListener">
+      <point x="0.0" y="-69.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="View.Framework.DrawingPanel" target="javax.swing.JPanel">
+      <point x="-87.33333333333326" y="-213.0" />
+      <point x="407.06250000000006" y="1507.0" />
+      <point x="271.0" y="1507.0" />
+      <point x="72.25" y="136.0" />
+    </edge>
+    <edge source="java.awt.event.ActionListener" target="java.util.EventListener">
+      <point x="0.0" y="-25.5" />
+      <point x="996.25" y="1185.0" />
+      <point x="762.5833333333334" y="1185.0" />
+      <point x="39.33333333333337" y="14.5" />
+    </edge>
+    <edge source="Model.Industriegebiet" target="MYF.GameObject">
+      <point x="0.0" y="-48.0" />
+      <point x="148.0" y="600.0" />
+      <point x="1359.35" y="600.0" />
+      <point x="-133.6500000000001" y="290.0" />
+    </edge>
+    <edge source="Model.Block" target="MYF.GameObject">
+      <point x="0.0" y="-70.0" />
+      <point x="2264.5" y="620.0" />
+      <point x="1567.25" y="620.0" />
+      <point x="74.25" y="290.0" />
+    </edge>
+    <edge source="Model.Bank" target="MYF.GameObject">
+      <point x="0.0" y="-70.0" />
+      <point x="1030.0" y="630.0" />
+      <point x="1448.4500000000003" y="630.0" />
+      <point x="-44.549999999999955" y="290.0" />
+    </edge>
+    <edge source="View.Framework.DrawingPanel" target="java.awt.event.KeyListener">
+      <point x="0.0" y="-213.0" />
+      <point x="494.3958333333333" y="1507.0" />
+      <point x="470.75" y="1507.0" />
+      <point x="0.0" y="47.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.40000000000000013" x="1129.5761183261188" y="2126.4069264069267" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
