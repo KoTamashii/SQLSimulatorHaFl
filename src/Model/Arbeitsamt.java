@@ -33,9 +33,14 @@ public class Arbeitsamt extends GameObject {
             e.printStackTrace();
         }
 
+        arbeitsPlaetze = 0;
+        arbeiterGewerbe = 0;
+        arbeiterIndustrie = 0;
+        arbeitslose = 0;
+
         try {
-            stmt.execute("INSERT INTO HaFl_Arbeitsamt (Arbeiter, ArbeiterGewerbe, ArbeiterIndustrie, Arbeitslose) " +
-                    "VALUES ("+ bevölkerung +", "+arbeiterGewerbe+", "+arbeiterIndustrie+","+arbeitslose+") ;");
+            stmt.execute("INSERT INTO HaFl_Arbeitsamt (Arbeiter, ArbeiterGewerbe, ArbeitsPlaetzeGewerbe, ArbeiterIndustrie, ArbeitsPlaetzeIndustrie, Arbeitslose) " +
+                    "VALUES ("+ bevölkerung +", "+arbeiterGewerbe+", "+arbeitsPlaetzeGewerbe+", "+arbeiterIndustrie+", "+arbeitsPlaetzeIndustrie+","+arbeitslose+") ;");
         }catch (SQLException e) {
             e.printStackTrace();
         }
@@ -93,7 +98,7 @@ public class Arbeitsamt extends GameObject {
 
     public void berechneArbeiter(){
         try {
-            ResultSet result = stmt.executeQuery("SELECT SUM(population) FROM HaFl_Wohngebiet;");
+            ResultSet result = stmt.executeQuery("SELECT SUM(Population) FROM HaFl_Wohngebiet;");
             result.next();
                 bevölkerung = result.getInt(1);
                 System.out.println("Bevölkerung: " + bevölkerung);
@@ -111,12 +116,14 @@ public class Arbeitsamt extends GameObject {
         int x;
         int y;
         int arbeiterx;
-        x = (int)Math.random()*100+1;
+        x = (int)(Math.random()*100)+1;
+        System.out.println(x);
         y = 100-x;
-        arbeitsPlaetze = arbeitsPlaetzeGewerbe + arbeiterIndustrie;
+        arbeitsPlaetze = arbeitsPlaetzeGewerbe + arbeitsPlaetzeIndustrie;
         arbeitslose = bevölkerung - arbeitsPlaetze;
         int arbeitsPlaetzeGewerbeX = arbeitsPlaetzeGewerbe - bevölkerung;
         int arbeitsPlaetzeIndustrieX = arbeitsPlaetzeIndustrie - bevölkerung;
+
         if (arbeitsPlaetzeGewerbeX >0) {
             try {
                 stmt.execute("UPDATE HaFl_Gewerbegebiet " +
