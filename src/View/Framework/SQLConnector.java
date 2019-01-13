@@ -153,12 +153,8 @@ public class SQLConnector {
             try {
                 stmt.execute("CREATE TABLE HaFl_Arbeitsamt (" +
                         "aID int NOT NULL AUTO_INCREMENT,"+
-                        "Arbeiter int NOT NULL," +
                         "ArbeiterGewerbe int NOT NULL," +
-                        "ArbeitsPlaetzeGewerbe int NOT NULL," +
                         "ArbeiterIndustrie int NOT NULL," +
-                        "ArbeitsPlaetzeIndustrie int NOT NULL," +
-                        "Arbeitslose int NOT NULL," +
                         "PRIMARY KEY (aID)" +
                         ");");
                 System.out.println("Arbeitsamt wurde erstellt");

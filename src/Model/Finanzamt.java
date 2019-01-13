@@ -75,17 +75,25 @@ public class Finanzamt extends GameObject {
 
     public void berechneEinnahmenWohn(){
         try {
-        ResultSet einnahmen = stmt.executeQuery("SELECT SUM(arbeiter) FROM HaFl_Arbeitsamt;");
-        einnahmen.next();
-        einnahmenWohn = einnahmen.getInt(1) * 200;
-            stmt.execute("UPDATE HaFl_Finanzamt " +
-                    "SET EinnahmenWohn = " + einnahmenWohn + ";");
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
+            ResultSet arbeiterGewerbe = stmt.executeQuery("SELECT SUM(arbeiterGewerbe) FROM HaFl_Arbeitsamt;");
+
+            int arbeiter = 0;
+            if (arbeiterGewerbe.next()) {
+                arbeiter += arbeiterGewerbe.getInt(1);
+                ResultSet arbeiterIndustrie = stmt.executeQuery("SELECT SUM(arbeiterIndustrie) FROM HaFl_Arbeitsamt;");
+                if(arbeiterIndustrie.next()){
+                    arbeiter += arbeiterIndustrie.getInt(1);
+                    einnahmenWohn = arbeiter * 200;
+                    stmt.execute("UPDATE HaFl_Finanzamt " +
+                            "SET EinnahmenWohn = " + einnahmenWohn + ";");
+                }
+            }
+        } catch (SQLException e){
+                e.printStackTrace();
         }
         System.out.println("Einnahmen der Wohngebiete: " + einnahmenWohn);
     }
+
     public void berechneEinnahmenGewerbe(){
         try {
             ResultSet einnahmen = stmt.executeQuery("SELECT SUM(arbeiterGewerbe) FROM HaFl_Arbeitsamt;");

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Wohngebiet extends GameObject {
 
     //Attribute
-    private int population;
+    private int population = 30;
     private int wohnID;
     private int timer;
 
@@ -65,7 +65,7 @@ public class Wohngebiet extends GameObject {
         }
         if (timer == 0) {
             if (zeit.isDayOver()) {
-                if (population < 51) {
+                /*if (population < 51) {
                     int kinderMachen = (int) (Math.random() * 100) + (population / 2);
                     if (kinderMachen > 30) {
                         population += 1;
@@ -86,7 +86,7 @@ public class Wohngebiet extends GameObject {
                         population = rsPopulation.getInt(1);
                 } catch (SQLException e) {
                     e.printStackTrace();
-                }
+                }*/
                 timer =10;
             }
         }

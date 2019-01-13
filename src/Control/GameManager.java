@@ -33,8 +33,8 @@ public class GameManager implements DrawableObject{
 
         musicManager.searchForSoundFileWithName("DODI").startSoundFile();
 
-        JButton playButton = UIDesigner.addButtonWithImageWithStandardDesign("assets/images/play.png", df.getActiveDrawingPanel(),
-                                                        new Point((Config.WINDOW_WIDTH/2)-63, (Config.WINDOW_HEIGHT/2)-63 ), new Point(126,126), null);
+        JButton playButton = UIDesigner.addButtonWithImageWithStandardDesign("assets/images/start.png", df.getActiveDrawingPanel(),
+                                                        new Point((Config.WINDOW_WIDTH/2)-327, (Config.WINDOW_HEIGHT/2)-110 ), new Point(655,220), null);
 
         df.getActiveDrawingPanel().add(playButton);
 
