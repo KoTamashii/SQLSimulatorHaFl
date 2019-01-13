@@ -87,6 +87,8 @@ public class Finanzamt extends GameObject {
             ResultSet einnahmen = stmt.executeQuery("SELECT SUM(arbeiterGewerbe) FROM HaFl_Arbeitsamt;");
             einnahmen.next();
             einnahmenGewerbe = einnahmen.getInt(1) * 50;
+            stmt.execute("UPDATE HaFl_Finanzamt " +
+                    "SET EinnahmenGewerbe = "+einnahmenGewerbe+";");
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -99,6 +101,8 @@ public class Finanzamt extends GameObject {
             ResultSet einnahmen = stmt.executeQuery("SELECT SUM(arbeiterIndustrie) FROM HaFl_Arbeitsamt;");
             einnahmen.next();
             einnahmenIndustrie = einnahmen.getInt(1) * 80;
+            stmt.execute("UPDATE HaFl_Finanzamt " +
+                    "SET EinnahmenIndustrie = "+einnahmenIndustrie+";");
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -121,9 +125,10 @@ public class Finanzamt extends GameObject {
         try {
             ResultSet rs = stmt.executeQuery("SELECT Geld FROM HaFl_Spieler;");
             rs.next();
-            int neuesGeld = rs.getInt(1);
+            int geld = rs.getInt(1);
+            geld += gesamtEinnahmen;
             stmt.execute("UPDATE HaFl_Spieler " +
-                    "SET Geld = " + neuesGeld + ";");
+                    "SET Geld = "+geld+";");
         }
         catch (SQLException e) {
             e.printStackTrace();

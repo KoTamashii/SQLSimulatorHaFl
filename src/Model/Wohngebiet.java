@@ -61,9 +61,7 @@ public class Wohngebiet extends GameObject {
         if (timer == 0) {
             if (zeit.isDayOver()) {
                 if (population < 51) {
-                    System.out.println("Population: " + population);
                     int kinderMachen = (int) (Math.random() * 100) + (population / 2);
-                    System.out.println(kinderMachen);
                     if (kinderMachen > 30) {
                         population += 1;
                         try {
