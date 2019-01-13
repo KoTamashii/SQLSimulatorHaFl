@@ -6,16 +6,14 @@ import MYF.ImageLoader;
 import View.Framework.DrawingPanel;
 
 import java.awt.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class Industriegebiet extends GameObject {
 
     //Attribute
     private int arbeitsplatz;
+    private int industrieID;
 
     //Referenzen
     private Connection con;
@@ -39,18 +37,30 @@ public class Industriegebiet extends GameObject {
         arbeitsplatz = 60;
 
         try {
+            ResultSet rs = stmt.executeQuery("SELECT Geld FROM HaFl_Spieler");
+            rs.next();
+            int geld = rs.getInt(1);
+            geld -= 1000;
             stmt.execute("INSERT INTO HaFl_Spieler (Geld)" +
-                    "Values(-1000)");
+                    "Values("+geld+");");
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
-
         try {
             stmt.execute("INSERT INTO HaFl_Industriegebiet (posX, posY, Arbeitsplatz)" +
                     "VALUES ("+x+", "+y+", "+arbeitsplatz+");");
         }
         catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            ResultSet rs = stmt.executeQuery("SELECT IndustrieID FROM HaFl_Industriegebiet ");
+            while(rs.next()) {
+                industrieID = rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 

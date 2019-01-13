@@ -4,16 +4,14 @@ import MYF.GameObject;
 import View.Framework.DrawingPanel;
 
 import java.awt.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class Gewerbegebiet extends GameObject {
 
     //Attribute
     private int arbeitsplatz;
+    private int gewerbeID;
 
     //Referenzen
     private Connection con;
@@ -34,14 +32,18 @@ public class Gewerbegebiet extends GameObject {
         }
         arbeitsplatz = 40;
 
+
         try {
+            ResultSet rs = stmt.executeQuery("SELECT Geld FROM HaFl_Spieler");
+            rs.next();
+            int geld = rs.getInt(1);
+            geld -= 1000;
             stmt.execute("INSERT INTO HaFl_Spieler (Geld)" +
-                    "Values(-1000)");
+                    "Values("+geld+");");
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
-
         try {
             stmt.execute("INSERT INTO HaFl_Gewerbegebiet (posX, posY, Arbeitsplatz)" +
                     "VALUES ("+x+", "+y+", "+arbeitsplatz+");");
@@ -49,10 +51,20 @@ public class Gewerbegebiet extends GameObject {
         catch (SQLException e) {
             e.printStackTrace();
         }
+        try {
+            ResultSet rs = stmt.executeQuery("SELECT gewerbeID FROM HaFl_Gewerbegebiet ");
+            while(rs.next()) {
+                gewerbeID = rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void update(ArrayList<GameObject> object) {
+
     }
 
     @Override
