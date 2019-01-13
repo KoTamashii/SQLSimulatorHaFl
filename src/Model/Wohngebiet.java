@@ -40,8 +40,9 @@ public class Wohngebiet extends GameObject {
         }
         try {
             ResultSet rs = stmt.executeQuery("SELECT wohnID FROM HaFl_Wohngebiet ");
-            rs.next();
-            wohnID = rs.getInt(1);
+            while(rs.next()) {
+                wohnID = rs.getInt(1);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -51,6 +52,7 @@ public class Wohngebiet extends GameObject {
 
     @Override
     public void update(ArrayList<GameObject> object) {
+
         if (timer ==10) {
             if (!zeit.isDayOver()) {
                 timer = 0;
@@ -60,12 +62,13 @@ public class Wohngebiet extends GameObject {
             if (zeit.isDayOver()) {
                 if (population < 51) {
                     System.out.println("Population: " + population);
-                    int kinderMachen = (int) Math.random() * 100 + (population / 2);
+                    int kinderMachen = (int) (Math.random() * 100) + (population / 2);
+                    System.out.println(kinderMachen);
                     if (kinderMachen > 30) {
                         population += 1;
                         try {
-                            stmt.execute("UPDATE HaFl_Wohngebiet" +
-                                    "SET Population = "+population+"" +
+                            stmt.execute("UPDATE HaFl_Wohngebiet " +
+                                    "SET Population = "+population+" " +
                                     "WHERE "+wohnID+" = wohnID ;");
                         } catch (SQLException e) {
                             e.printStackTrace();
@@ -74,11 +77,10 @@ public class Wohngebiet extends GameObject {
 
                 }
                 try {
-                ResultSet rsPopulation = stmt.executeQuery("SELECT Population FROM HaFl_Wohngebiet " +
-                        "WHERE "+wohnID+" = wohnID ;");
-                rsPopulation.next();
-                population = rsPopulation.getInt(1);
-                    System.out.println(population);
+                    ResultSet rsPopulation = stmt.executeQuery("SELECT Population FROM HaFl_Wohngebiet " +
+                            "WHERE "+wohnID+" = wohnID ;");
+                    rsPopulation.next();
+                        population = rsPopulation.getInt(1);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
