@@ -11,6 +11,7 @@ public class Wohngebiet extends GameObject {
 
     //Attribute
     private int population;
+    private int wohnID;
     private int timer;
 
 
@@ -32,8 +33,16 @@ public class Wohngebiet extends GameObject {
         }
         population = 2;
         try {
-            stmt.execute("INSERT INTO HaFl_Wohngebiet (posX, posY, Population)" +
+            stmt.execute("INSERT INTO HaFl_Wohngebiet (posX, posY, Population) " +
                     "VALUES ("+x+", "+y+", "+population+");");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            ResultSet rs = stmt.executeQuery("SELECT wohnID FROM HaFl_Wohngebiet ");
+            rs.next();
+            wohnID = rs.getInt(1);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -50,18 +59,14 @@ public class Wohngebiet extends GameObject {
         if (timer == 0) {
             if (zeit.isDayOver()) {
                 if (population < 51) {
-                    System.out.println(population);
+                    System.out.println("Population: " + population);
                     int kinderMachen = (int) Math.random() * 100 + (population / 2);
                     if (kinderMachen > 30) {
                         population += 1;
                         try {
                             stmt.execute("UPDATE HaFl_Wohngebiet" +
-                                    "SET Population = " + population + "," +
-                                    "WHERE " + x + " = posX, " + y + " = posY;");
-
-                            ResultSet rsPopulation = stmt.executeQuery("SELECT Population FROM HaFl_Wohngebiet;");
-                            rsPopulation.next();
-                            population = rsPopulation.getInt(1);
+                                    "SET Population = "+population+"" +
+                                    "WHERE "+wohnID+" = wohnID ;");
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }
@@ -69,10 +74,11 @@ public class Wohngebiet extends GameObject {
 
                 }
                 try {
-                ResultSet rsPopulation = stmt.executeQuery("SELECT Population FROM HaFl_Wohngebiet" +
-                        "WHERE " + x + " = posX AND " + y + " = posY;");
+                ResultSet rsPopulation = stmt.executeQuery("SELECT Population FROM HaFl_Wohngebiet " +
+                        "WHERE "+wohnID+" = wohnID ;");
                 rsPopulation.next();
                 population = rsPopulation.getInt(1);
+                    System.out.println(population);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
