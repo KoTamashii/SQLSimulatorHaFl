@@ -106,6 +106,7 @@ public class Arbeitsamt extends GameObject {
         }
     }
 
+
     public void weiseArbeiterZu(){
         int x;
         int y;
