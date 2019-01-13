@@ -50,6 +50,7 @@ public class GameManager implements DrawableObject{
                 Finanzamt finanzamt = new Finanzamt(-100,-100,1,1, "assets/images/Bank/Bank1.png", zeit);
                 Arbeitsamt arbeitsamt = new Arbeitsamt(-100,-100,1,1, "assets/images/Bank/Bank1.png", zeit);
 
+
                 df.getActiveDrawingPanel().addObject(finanzamt);
                 df.getActiveDrawingPanel().addObject(arbeitsamt);
                 df.getActiveDrawingPanel().addObject(new Spieler(0,0,0,0,null, df.getActiveDrawingPanel(), shop));
