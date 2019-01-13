@@ -1,6 +1,8 @@
 package Model;
 
+import MYF.Animation;
 import MYF.GameObject;
+import MYF.ImageLoader;
 import View.Framework.DrawingPanel;
 
 import java.awt.*;
@@ -18,6 +20,8 @@ public class Industriegebiet extends GameObject {
     //Referenzen
     private Connection con;
     private Statement stmt;
+
+    private Animation idle;
 
     public Industriegebiet(int x, int y, int width, int height, String filePath){
         super(x,y,width,height,filePath);
@@ -45,6 +49,10 @@ public class Industriegebiet extends GameObject {
         catch (SQLException e) {
             e.printStackTrace();
         }
+
+        idle = new Animation(3f, image, ImageLoader.loadImage("assets/images/Industriegebiet/Freizeit2.png"),
+                ImageLoader.loadImage("assets/images/Freizeit/Freizeit3.png"),
+                ImageLoader.loadImage("assets/images/Freizeit/Freizeit4.png"));
     }
 
     @Override

@@ -48,7 +48,7 @@ public class Freizeit extends GameObject {
     public void update(ArrayList<GameObject> object) {
         try {
             stmt.execute("INSERT INTO HaFl_Freizeit (posX, posY)" +
-                    "VALUES (x, y);");
+                    "VALUES (" +x+"," + y + ");");
         }catch (SQLException e) {
             e.printStackTrace();
         }
