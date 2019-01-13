@@ -103,6 +103,7 @@ public class SQLConnector {
                         "EinnahmenWohn int NOT NULL," +
                         "EinnahmenGewerbe int NOT NULL," +
                         "EinnahmenIndustrie int NOT NULL," +
+                        "EinnahmenArbeitslose int NOT NULL," +
                         "PRIMARY KEY (fID)" +
                         ");");
                 System.out.println("Finanzamt wurde erstellt");

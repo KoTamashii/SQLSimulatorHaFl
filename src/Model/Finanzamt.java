@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Finanzamt extends GameObject {
 
     //Atribute
-    private int einnahmenWohn,einnahmenGewerbe, einnahmenIndustrie, gesamtEinnahmen;
+    private int einnahmenWohn,einnahmenGewerbe, einnahmenIndustrie, gesamtEinnahmen, einnahmenArbeitslose;
     private int spielerZufriedenheit;
     private int timer;
     //Referenzen
@@ -29,10 +29,14 @@ public class Finanzamt extends GameObject {
         }catch (SQLException e) {
             e.printStackTrace();
         }
+        einnahmenWohn = 0;
+        einnahmenGewerbe = 0;
+        einnahmenIndustrie = 0;
+        einnahmenArbeitslose = 0;
 
         try {
-            stmt.execute("INSERT INTO HaFl_Finanzamt (EinnahmenWohn, EinnahmenGewerbe, EinnahmenIndustrie)" +
-                    "VALUES (einnahmenWohn, einnahmenGewerbe, einnahmenIndustrie);");
+            stmt.execute("INSERT INTO HaFl_Finanzamt (EinnahmenWohn, EinnahmenGewerbe, EinnahmenIndustrie, EinnahmenArbeitslose)" +
+                    "VALUES ("+einnahmenWohn+", "+einnahmenGewerbe+", "+einnahmenIndustrie+", "+einnahmenArbeitslose+");");
         }catch (SQLException e) {
             e.printStackTrace();
         }
@@ -110,8 +114,23 @@ public class Finanzamt extends GameObject {
         System.out.println("Einnahmen der Industriegebiete: " + einnahmenIndustrie);
     }
 
+    public void berechneEinnahmenArbeitslose(){
+        try {
+            ResultSet einnahmen = stmt.executeQuery("SELECT SUM(Arbeitslose) FROM HaFl_Arbeitsamt;");
+            einnahmen.next();
+            einnahmenArbeitslose = einnahmen.getInt(1) * 10;
+            stmt.execute("UPDATE HaFl_Finanzamt " +
+                    "SET EinnahmenArbeitslose = "+einnahmenArbeitslose+";");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Einnahmen der Industriegebiete: " + einnahmenIndustrie);
+    }
+
+
     public void einnahmenSendenKomplett(){
-        gesamtEinnahmen = einnahmenWohn + einnahmenGewerbe + einnahmenIndustrie;
+        gesamtEinnahmen = einnahmenWohn + einnahmenGewerbe + einnahmenIndustrie + einnahmenArbeitslose;
         System.out.println("Gesamteinnahmen: " + gesamtEinnahmen);
         try {
             ResultSet einnahmen = stmt.executeQuery("SELECT Zufriedenheit FROM HaFl_Spieler;");
