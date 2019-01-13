@@ -193,21 +193,21 @@ public class Spieler extends GameObject implements InputManager {
 
     private void fügeBasicsHinzu() {
         try {
-        stmt.execute("INSERT INTO HaFl_Wohngebiet " +
+        stmt.execute("INSERT INTO HaFl_Wohngebiet (posX, posY, Population)" +
                 "VALUES (-100,-100,0);");
         } catch (Exception e) {
             System.out.println("Fehler beim Inserten des Basic Wohngebiets");
         }
 
         try {
-            stmt.execute("INSERT INTO HaFl_Gewerbegebiet " +
+            stmt.execute("INSERT INTO HaFl_Gewerbegebiet (posX, posY, Arbeitsplatz) " +
                     "VALUES (-100,-100,0);");
         } catch (Exception e) {
             System.out.println("Fehler beim Inserten des Basic Gewerbegebiets");
         }
 
         try {
-            stmt.execute("INSERT INTO HaFl_Industriegebiet " +
+            stmt.execute("INSERT INTO HaFl_Industriegebiet (posX, posY, Arbeitsplatz) " +
                     "VALUES (-100,-100,0);");
         } catch (Exception e){
             System.out.println("Fehler beim Inserten des Basic Industriegebiets");
