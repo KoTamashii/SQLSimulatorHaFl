@@ -1,6 +1,8 @@
 package Model;
 
+import MYF.Animation;
 import MYF.GameObject;
+import MYF.ImageLoader;
 import View.Framework.DrawingPanel;
 
 import java.awt.*;
@@ -20,6 +22,7 @@ public class Wohngebiet extends GameObject {
     private Statement stmt;
     private Zeit zeit;
 
+    private Animation idle;
 
     public Wohngebiet(int x, int y, int width, int height, String filePath, Zeit zeit){
         super(x,y,width,height,filePath);
@@ -48,6 +51,8 @@ public class Wohngebiet extends GameObject {
             e.printStackTrace();
         }
         timer =0;
+
+        idle = new Animation(3f, image, ImageLoader.loadImage("assets/images/Wohngebiet/Haus2.png"));
     }
 
     @Override
@@ -89,7 +94,7 @@ public class Wohngebiet extends GameObject {
 
     @Override
     public void render(DrawingPanel dp, Graphics g) {
-        Graphics2D g2d = (Graphics2D)g;
-        g2d.drawImage(image,x,y,width,height,null);
+        idle.runAnimation();
+        idle.renderAnimation(g, x, y);
     }
 }

@@ -1,6 +1,8 @@
 package Model;
 
+import MYF.Animation;
 import MYF.GameObject;
+import MYF.ImageLoader;
 import View.Framework.DrawingPanel;
 
 import java.awt.*;
@@ -17,6 +19,8 @@ public class Gewerbegebiet extends GameObject {
     private Connection con;
     private Statement stmt;
     private Zeit zeit;
+
+    private Animation idle;
 
     public Gewerbegebiet(int x, int y, int width, int height, String filePath, Zeit zeit){
         super(x,y,width,height,filePath);
@@ -60,6 +64,9 @@ public class Gewerbegebiet extends GameObject {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        idle = new Animation(3f, image, ImageLoader.loadImage("assets/images/Gewerbegebiet/Markt.png"),
+                ImageLoader.loadImage("assets/images/Gewerbegebiet/Markt2.png"));
     }
 
     @Override
@@ -69,7 +76,7 @@ public class Gewerbegebiet extends GameObject {
 
     @Override
     public void render(DrawingPanel dp, Graphics g) {
-        Graphics2D g2d = (Graphics2D)g;
-        g2d.drawImage(image,x,y,width,height,null);
+        idle.runAnimation();
+        idle.renderAnimation(g, x, y);
     }
 }
