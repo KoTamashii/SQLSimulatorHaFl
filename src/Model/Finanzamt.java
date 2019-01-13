@@ -39,11 +39,16 @@ public class Finanzamt extends GameObject {
 
     @Override
     public void update(ArrayList<GameObject> object) {
+        System.out.println("Geht DOCH");
+        System.out.println(zeit.isDayOver());
         if (zeit.isDayOver()){
+
+            System.out.println("MIAU");
             berechneEinnahmenWohn();
             berechneEinnahmenGewerbe();
             berechneEinnahmenIndustrie();
             einnahmenSendenKomplett();
+
         }
     }
 
@@ -62,7 +67,7 @@ public class Finanzamt extends GameObject {
         catch (SQLException e) {
             e.printStackTrace();
         }
-
+        System.out.println("Einnahmen der Wohngebiete: " + einnahmenWohn);
     }
     public void berechneEinnahmenGewerbe(){
         try {
@@ -72,6 +77,7 @@ public class Finanzamt extends GameObject {
         catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println("Einnahmen der Gewerbegebiete: " + einnahmenGewerbe);
     }
 
     public void berechneEinnahmenIndustrie(){
@@ -82,10 +88,12 @@ public class Finanzamt extends GameObject {
         catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println("Einnahmen der Industriegebiete: " + einnahmenIndustrie);
     }
 
     public void einnahmenSendenKomplett(){
         gesamtEinnahmen = einnahmenWohn + einnahmenGewerbe + einnahmenIndustrie;
+        System.out.println("gesamteinnahmen: " + gesamtEinnahmen);
         try {
             ResultSet einnahmen = stmt.executeQuery("SELECT Zufriedenheit + FROM HaFl_Spieler;");
             spielerZufriedenheit = einnahmen.getInt(1);

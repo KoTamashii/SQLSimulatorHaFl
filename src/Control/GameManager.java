@@ -30,7 +30,6 @@ public class GameManager implements DrawableObject{
         musicManager = new MusicManager();
         musicManager.addNewSoundFile("DODI", "assets/music/DODI.wav",true);
         musicManager.addNewSoundFile("BALLIN", "assets/music/BALLIN.wav",true);
-
         musicManager.searchForSoundFileWithName("DODI").startSoundFile();
 
         JButton playButton = UIDesigner.addButtonWithImageWithStandardDesign("assets/images/play.png", df.getActiveDrawingPanel(),
@@ -49,7 +48,6 @@ public class GameManager implements DrawableObject{
                 //Niicht sichtbar -> ausserhabl des Windows & nicht zum drawingpanel hinzugefügt
                 Finanzamt finanzamt = new Finanzamt(-100,-100,1,1, "assets/images/Bank/Bank1.png", zeit);
                 Arbeitsamt arbeitsamt = new Arbeitsamt(-100,-100,1,1, "assets/images/Bank/Bank1.png", zeit);
-
                 df.getActiveDrawingPanel().addObject(new Spieler(0,0,0,0,null, df.getActiveDrawingPanel(), shop));
             }
         });
@@ -58,11 +56,11 @@ public class GameManager implements DrawableObject{
 
     @Override
     public void draw(DrawTool drawTool) {
-
     }
 
     @Override
     public void update(double dt) {
+
     }
 
     @Override

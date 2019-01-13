@@ -20,7 +20,6 @@ public class Spieler extends GameObject implements InputManager {
     private boolean clicked = false;
     private int gPopulation;
     private int zufriedenheit;
-    private int sID;
 
     private DrawingPanel dp;
 
@@ -43,7 +42,6 @@ public class Spieler extends GameObject implements InputManager {
         zufriedenheit = 10;
         geld = 50000;
         gPopulation= 2;
-        sID = 1;
         try {
             stmt.execute("INSERT INTO HaFl_Spieler (Geld, Zufriedenheit, gPopulation)" +
                     "VALUES ("+getGeld()+","+getZufriedenheit()+","+getgPopulation()+");");
@@ -70,10 +68,10 @@ public class Spieler extends GameObject implements InputManager {
                while(rsZufriedenheit.next()) {
                    zufriedenheit = rsZufriedenheit.getInt(1);
                }
-        }
-        catch (SQLException popu) {
+        } catch (SQLException popu) {
             popu.printStackTrace();
         }
+        System.out.println("Geld: " + getGeld());
         gameObjects = object;
     }
 
@@ -188,9 +186,5 @@ public class Spieler extends GameObject implements InputManager {
 
     public int getgPopulation() {
         return gPopulation;
-    }
-
-    public int getsID() {
-        return sID;
     }
 }
