@@ -30,7 +30,6 @@ public class SQLConnector {
                         "sID int NOT NULL AUTO_INCREMENT,"+
                         "Geld int ," +
                         "Zufriedenheit int ," +
-                        "gPopulation int ," +
                         "PRIMARY KEY (sID)" +
                         ");");
                 System.out.println("Spieler wurde erstellt");
