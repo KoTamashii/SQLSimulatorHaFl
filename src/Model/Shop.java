@@ -21,6 +21,10 @@ public class Shop {
     private DrawFrame drawFrame;
     private Spieler spieler;
 
+    private int gewerbegebiete = 0;
+    private int industriegebiete = 0;
+    private int wohngebiete = 0;
+
     public Shop(DrawFrame drawFrame, Zeit zeit){
         this.drawFrame = drawFrame;
         shop = new JFrame();
@@ -106,6 +110,8 @@ public class Shop {
                             drawFrame.getActiveDrawingPanel().addObject(new Industriegebiet((int) actualBlock.getX(), (int) actualBlock.getY(), 32, 32, "assets/images/Industriegebiet/Fabrik.png", zeit));
                             spieler.setClicked(false);
                             shop.setVisible(false);
+
+                            industriegebiete++;
                         } else {
                             System.out.println("Du hat nicht genug Geld. Dein Geld beträgt: " + rs.getInt(1));
                         }
@@ -142,6 +148,7 @@ public class Shop {
                             drawFrame.getActiveDrawingPanel().addObject(new Gewerbegebiet((int) actualBlock.getX(), (int) actualBlock.getY(), 32, 32, "assets/images/Gewerbegebiet/Markt.png", zeit));
                             spieler.setClicked(false);
                             shop.setVisible(false);
+                            gewerbegebiete++;
                         } else {
                             System.out.println("Du hat nicht genug Geld. Dein Geld beträgt: " + rs.getInt(1));
                         }
@@ -180,6 +187,7 @@ public class Shop {
                             drawFrame.getActiveDrawingPanel().addObject(new Wohngebiet ((int) actualBlock.getX(), (int) actualBlock.getY(), 32, 32, "assets/images/Wohngebiet/Haus.png",zeit));
                             spieler.setClicked(false);
                             shop.setVisible(false);
+                            wohngebiete++;
                         } else {
                             System.out.println("Du hat nicht genug Geld. Dein Geld beträgt: " + rs.getInt(1));
                         }
@@ -238,4 +246,15 @@ public class Shop {
         this.spieler = spieler;
     }
 
+    public int getGewerbegebiete() {
+        return gewerbegebiete;
+    }
+
+    public int getIndustriegebiete() {
+        return industriegebiete;
+    }
+
+    public int getWohngebiete() {
+        return wohngebiete;
+    }
 }

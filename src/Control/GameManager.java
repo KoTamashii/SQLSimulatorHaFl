@@ -48,7 +48,7 @@ public class GameManager implements DrawableObject{
                 Shop shop = new Shop(df, zeit);
                 //Niicht sichtbar -> ausserhabl des Windows & nicht zum drawingpanel hinzugefügt
                 Finanzamt finanzamt = new Finanzamt(-100,-100,1,1, "assets/images/Bank/Bank1.png", zeit);
-                Arbeitsamt arbeitsamt = new Arbeitsamt(-100,-100,1,1, "assets/images/Bank/Bank1.png", zeit);
+                Arbeitsamt arbeitsamt = new Arbeitsamt(-100,-100,1,1, "assets/images/Bank/Bank1.png", zeit, shop);
 
 
                 df.getActiveDrawingPanel().addObject(finanzamt);

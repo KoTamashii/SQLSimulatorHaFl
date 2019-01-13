@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Gewerbegebiet extends GameObject {
 
     //Attribute
-    private int arbeitsplatz;
+    private int arbeitsplatz = 40;
     private int gewerbeID;
 
     //Referenzen
@@ -34,7 +34,6 @@ public class Gewerbegebiet extends GameObject {
         }catch (SQLException e) {
             e.printStackTrace();
         }
-        arbeitsplatz = 40;
 
 
         try {
@@ -50,7 +49,7 @@ public class Gewerbegebiet extends GameObject {
         }
         try {
             stmt.execute("INSERT INTO HaFl_Gewerbegebiet (posX, posY, Arbeitsplatz)" +
-                    "VALUES ("+x+", "+y+", "+arbeitsplatz+");");
+                    "VALUES ("+x+", "+y+", "+ 40 +" );");
         }
         catch (SQLException e) {
             e.printStackTrace();
