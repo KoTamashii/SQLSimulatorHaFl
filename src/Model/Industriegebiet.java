@@ -13,7 +13,6 @@ public class Industriegebiet extends GameObject {
 
     //Attribute
     private int arbeitsplatz;
-    private int industrieID;
 
     //Referenzen
     private Connection con;
@@ -24,9 +23,7 @@ public class Industriegebiet extends GameObject {
 
     public Industriegebiet(int x, int y, int width, int height, String filePath, Zeit zeit){
         super(x,y,width,height,filePath);
-
         this.zeit = zeit;
-
         try {
             // Erstelle eine Verbindung zu unserer SQL-Datenbank
             con = DriverManager.getConnection("jdbc:mysql://mysql.webhosting24.1blu.de/db85565x2810214?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "s85565_2810214", "kkgbeste");
@@ -34,23 +31,14 @@ public class Industriegebiet extends GameObject {
         }catch (SQLException e) {
             e.printStackTrace();
         }
-        arbeitsplatz = 60;
 
+        arbeitsplatz = 60;
 
         try {
             stmt.execute("INSERT INTO HaFl_Industriegebiet (posX, posY, Arbeitsplatz)" +
                     "VALUES ("+x+", "+y+", "+arbeitsplatz+");");
         }
         catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
-            ResultSet rs = stmt.executeQuery("SELECT IndustrieID FROM HaFl_Industriegebiet ");
-            while(rs.next()) {
-                industrieID = rs.getInt(1);
-            }
-
-        } catch (SQLException e) {
             e.printStackTrace();
         }
 
