@@ -32,7 +32,7 @@ public class Shop {
         shop.setAlwaysOnTop(true);
         shop.setSize(500,200);
         shop.setUndecorated(true);
-        shop.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        shop.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         //Initialize all buttons
 
         try {
