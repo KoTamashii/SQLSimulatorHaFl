@@ -27,19 +27,6 @@ public class Freizeit extends GameObject {
             e.printStackTrace();
         }
 
-
-        try {
-            ResultSet rs = stmt.executeQuery("SELECT Geld FROM HaFl_Spieler");
-            rs.next();
-            int geld = rs.getInt(1);
-            geld -= 100;
-            stmt.execute("UPDATE HaFl_Spieler " +
-                    "SET Geld = "+geld+";");
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-
         idle = new Animation(3f, image, ImageLoader.loadImage("assets/images/Freizeit/Freizeit2.png"),
                 ImageLoader.loadImage("assets/images/Freizeit/Freizeit3.png"),
                 ImageLoader.loadImage("assets/images/Freizeit/Freizeit4.png"));
