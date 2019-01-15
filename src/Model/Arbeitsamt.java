@@ -65,7 +65,6 @@ public class Arbeitsamt extends GameObject {
             e.printStackTrace();
         }
 
-        System.out.println("Runde: " + runde);
         System.out.println("Bevölkerung = 0");
         System.out.println("Arbeitslose = 0");
         System.out.println("Obdachlose = 0");
@@ -83,19 +82,16 @@ public class Arbeitsamt extends GameObject {
 
         if (timer == 0) {
             if (zeit.isDayOver()) {
-                System.out.println("---------------------------------------");
-                System.out.println("     Der Tag ist vorbei!");
-                System.out.println("---------------------------------------");
-
-
 
                 runde++;
-                System.out.println("Runde: " + runde);
                 berechneBevölkerung();
                 berechneArbeitsplätzeInsgesamt();
                 berechneArbeiter();
                 berechneObdachlose();
                 checkeFreizeitAngebot();
+                System.out.println("---------------------------------------");
+                System.out.println("     Der Tag ist vorbei!");
+                System.out.println("---------------------------------------");
 
                 try {
                     stmt.execute("UPDATE HaFl_Arbeitsamt SET ArbeiterGewerbe = " + arbeiterGewerbe + ", ArbeiterIndustrie = " + arbeiterIndustrie + " ;");
