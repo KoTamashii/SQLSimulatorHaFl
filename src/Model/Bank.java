@@ -14,6 +14,7 @@ public class Bank extends GameObject {
     //Attribute
     private double zinsen;
     private int kapital;
+    private boolean accessed = false;
 
     //Referenzen
     private Connection con;
@@ -49,11 +50,34 @@ public class Bank extends GameObject {
     @Override
     public void update(ArrayList<GameObject> object) {
 
-        if (zeit.isDayOver()) {
-             if (kapital >0) {
-                 kapital += kapital * zinsen;
-             }
-        }
+
+
+        /*if (zeit.isDayOver() && accessed == false) {
+            accessed = true;
+            try{
+                ResultSet rs = stmt.executeQuery("SELECT Geld FROM HaFl_Spieler;");
+
+                int spielerGeld = 0;
+                if(rs.next()) {
+                    spielerGeld = rs.getInt(1);
+                }
+                double random = Math.random();
+                if(random > 0.5) {
+                    stmt.execute("UPDATE HaFl_Spieler "+
+                            "SET Geld = "+(spielerGeld+500)+";");
+                    System.out.println("Spielergeld = " + spielerGeld + ", Geld dazuverdient = 250");
+                    accessed = false;
+                } else{
+                    stmt.execute("UPDATE HaFl_Spieler "+
+                            "SET Geld = "+(spielerGeld-500)+";");
+                    System.out.println("Spielergeld = " + spielerGeld + ", Geld verloren = 500");
+                    accessed = false;
+                }
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+
+        }*/
     }
 
     @Override
@@ -61,6 +85,8 @@ public class Bank extends GameObject {
         idle.runAnimation();
         idle.renderAnimation(g, x, y);
     }
+
+
 
     public void geldEinzahlen(int abzugVonGeld){
         try {
