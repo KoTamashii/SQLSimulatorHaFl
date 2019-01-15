@@ -4,6 +4,7 @@ import Control.Config;
 import MYF.Camera;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 /** Entspricht einem Fenster, das DrawingPanels beinhalten kann.
@@ -41,6 +42,8 @@ public class DrawFrame extends JFrame {
         setTitle(name);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+
+        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
         if ( Config.INFO_MESSAGES) System.out.println("  > DrawFrame: Ich wurde erzeugt. Das erste DrawingPanel wurde angelegt.");
 
