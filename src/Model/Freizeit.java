@@ -6,10 +6,7 @@ import MYF.ImageLoader;
 import View.Framework.DrawingPanel;
 
 import java.awt.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class Freizeit extends GameObject {
@@ -32,13 +29,17 @@ public class Freizeit extends GameObject {
 
 
         try {
-            stmt.execute("INSERT INTO HaFl_Spieler (Geld)" +
-                    "Values(-1000)" +
-                    ";");
+            ResultSet rs = stmt.executeQuery("SELECT Geld FROM HaFl_Spieler");
+            rs.next();
+            int geld = rs.getInt(1);
+            geld -= 100;
+            stmt.execute("UPDATE HaFl_Spieler " +
+                    "SET Geld = "+geld+";");
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
+
         idle = new Animation(3f, image, ImageLoader.loadImage("assets/images/Freizeit/Freizeit2.png"),
                 ImageLoader.loadImage("assets/images/Freizeit/Freizeit3.png"),
                 ImageLoader.loadImage("assets/images/Freizeit/Freizeit4.png"));
@@ -60,17 +61,6 @@ public class Freizeit extends GameObject {
     public void render(DrawingPanel dp, Graphics g) {
         idle.runAnimation();
         idle.renderAnimation(g, x, y);
-    }
-
-    public void erstelleFreizeit(){
-        try {
-            stmt.execute("INSERT INTO HaFl_Freizeit " +
-                    "Values(x,y)" +
-                    ";");
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     public void steigereZufriedenheit(){

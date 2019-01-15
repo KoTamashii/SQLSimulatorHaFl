@@ -34,7 +34,7 @@ public class Wohngebiet extends GameObject {
         }catch (SQLException e) {
             e.printStackTrace();
         }
-        population = 2;
+        population = 5;
         try {
             stmt.execute("INSERT INTO HaFl_Wohngebiet (posX, posY, Population) " +
                     "VALUES ("+x+", "+y+", "+population+");");
