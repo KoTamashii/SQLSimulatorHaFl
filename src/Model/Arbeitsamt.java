@@ -125,7 +125,7 @@ public class Arbeitsamt extends GameObject {
             System.out.println("Nicht genug Freizeit angebote!");
             rundenOhneFreizeit++;
         }
-        System.out.println("Freizeitangebote = 0");
+        System.out.println("Freizeitangebote = " + freizeit);
     }
 
     private void berechneObdachlose() {
@@ -224,8 +224,7 @@ public class Arbeitsamt extends GameObject {
                 }
             }, 5000);
 
-        }
-        if(rundenOhneFreizeit == 3){
+        } else if(rundenOhneFreizeit == 3){
             System.out.println("Sie haben verloren!!!!!!!!!!!");
             System.out.println("Die LEUTE WOLLEN FREIZEITANGEBOTE!!!!!");
             System.out.println("Es herscht Anarchie. Der Staat kolabiert.");
@@ -242,7 +241,42 @@ public class Arbeitsamt extends GameObject {
                 }
             }, 5000);
 
+        } else if(anzahlObdachlose >10){
+            System.out.println("Sie haben verloren!!!!!!!!!!!");
+            System.out.println("Zu viele Leute sind obdachlos!!!!!");
+            System.out.println("Es herscht Anarchie. Der Staat kolabiert.");
+            cross.runAnimation();
+            cross.renderAnimation(g,100, 100, scaleX, scaleY);
+
+            scaleX+=25;
+            scaleY+=25;
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    System.exit(0);
+                }
+            }, 5000);
+
+        } else if((arbeiterGewerbe + arbeiterIndustrie) < (bevölkerung * 0.45f) && runde > 3){
+            System.out.println("Sie haben verloren!!!!!!!!!!!");
+            System.out.println("Zu viele Leute sind arbeitslos!!!!!");
+            System.out.println("Es herscht Anarchie. Der Staat kolabiert.");
+            cross.runAnimation();
+            cross.renderAnimation(g,100, 100, scaleX, scaleY);
+
+            scaleX+=25;
+            scaleY+=25;
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    System.exit(0);
+                }
+            }, 5000);
+
         }
+
     }
 
 
