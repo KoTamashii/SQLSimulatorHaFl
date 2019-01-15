@@ -36,17 +36,7 @@ public class Gewerbegebiet extends GameObject {
         }
 
 
-        try {
-            ResultSet rs = stmt.executeQuery("SELECT Geld FROM HaFl_Spieler");
-            rs.next();
-            int geld = rs.getInt(1);
-            geld -= 1000;
-            stmt.execute("UPDATE HaFl_Spieler " +
-                    "SET Geld = "+geld+";");
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
+
         try {
             stmt.execute("INSERT INTO HaFl_Gewerbegebiet (posX, posY, Arbeitsplatz)" +
                     "VALUES ("+x+", "+y+", "+ 40 +" );");
