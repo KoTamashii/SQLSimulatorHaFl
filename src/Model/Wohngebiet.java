@@ -12,10 +12,8 @@ import java.util.ArrayList;
 public class Wohngebiet extends GameObject {
 
     //Attribute
-    private int population = 30;
-    private int wohnID;
+    private int population;
     private int timer;
-
 
     //Referenzen
     private Connection con;
@@ -41,15 +39,7 @@ public class Wohngebiet extends GameObject {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        try {
-            ResultSet rs = stmt.executeQuery("SELECT wohnID FROM HaFl_Wohngebiet ");
-            while(rs.next()) {
-                wohnID = rs.getInt(1);
-            }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         timer =0;
 
         idle = new Animation(3f, image, ImageLoader.loadImage("assets/images/Wohngebiet/Haus2.png"));
